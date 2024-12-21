@@ -1,0 +1,48 @@
+//- views/index.pug
+extends layout
+
+block content
+  h1
+    i.fas.fa-cogs(style="margin-right: 10px;")
+    | Summarize a Transcript
+
+  .container
+    if error
+      p.error-message= error
+
+    form(action="/summarizeAll" method="post")
+      .form-group
+        label(for="transcriptSelect") Select a Transcript:
+        select(name="transcriptSelect" id="transcriptSelect" required aria-label="Select Transcript")
+          option(value="" disabled selected) -- Select Transcript --
+          each transcript in transcripts
+            option(value=transcript.id)= `ID ${transcript.id} - ${transcript.scenario}`
+
+      .form-group
+        label(for="transcriptText") Transcript:
+        textarea(name="transcript" id="transcriptText" rows="10" required aria-label="Transcript")
+
+      button(type="submit") Summarize
+
+  .link-group
+    a(href="/new") Create New Transcript
+    a(href="/update") Update Transcript
+    a(href="/delete") Delete Transcript
+
+  script.
+    document.addEventListener('DOMContentLoaded', function() {4
+      const transcripts = !{JSON.stringify(transcripts)};
+      const transcriptSelect = document.getElementById('transcriptSelect');
+      const transcriptText = document.getElementById('transcriptText');
+      const form = document.querySelector('form');
+
+      transcriptSelect.addEventListener('change', function() {
+        const selectedId = parseInt(this.value);
+        const selectedTranscript = transcripts.find(t => t.id === selectedId);
+        if (selectedTranscript) {
+          transcriptText.value = selectedTranscript.transcript;
+        } else {
+          transcriptText.value = '';
+        }
+      });
+    });

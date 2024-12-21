@@ -1,0 +1,27 @@
+//- views/delete.pug
+extends layout
+
+block content
+  h1
+    i.fas.fa-trash(style="margin-right: 10px;")
+    | Delete a Transcript
+
+  .container
+    if error
+      p.error-message= error
+
+    if transcripts && transcripts.length > 0
+      form(action="/delete" method="post")
+        .form-group
+          label(for="deleteId") Select a Transcript to Delete:
+          select(name="id" id="deleteId" required aria-label="Select Transcript")
+            option(value="" disabled selected) -- Select Transcript --
+            each t in transcripts
+              option(value=t.id) ID #{t.id} - #{t.scenario}
+
+        button(type="submit") Delete
+    else
+      p.error-message No transcripts available to delete.
+
+  .link-group
+    a(href="/") Back to Summarize

@@ -1,0 +1,58 @@
+//- views/update.pug
+extends layout
+
+block content
+  h1
+    i.fas.fa-edit(style="margin-right: 10px;")
+    | Update Transcript
+
+  .container
+    if error
+      p.error-message= error
+
+    if transcripts && transcripts.length > 0
+      form(action="/update" method="post")
+        .form-group
+          label(for="updateId") Select a Transcript to Update:
+          select(name="id" id="updateId" required aria-label="Select Transcript")
+            option(value="" disabled selected) -- Select Transcript --
+            each t in transcripts
+              option(value=t.id) ID #{t.id} - #{t.scenario}
+
+        .form-group
+          label(for="scenario") Scenario:
+          input(type="text" name="scenario" id="scenario" required aria-label="Scenario")
+
+        .form-group
+          label(for="transcript") Transcript:
+          textarea(name="transcript" id="transcript" rows="5" required aria-label="Transcript")
+
+        button(type="submit") Update
+    else
+      p.error-message No transcripts available to update.
+
+  .link-group
+    a(href="/") Back to Summarize
+
+  // Make transcripts available to JS
+  script.
+    const transcripts = !{JSON.stringify(transcripts)};
+
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      const updateIdSelect = document.getElementById('updateId');
+      const scenarioInput = document.getElementById('scenario');
+      const transcriptTextarea = document.getElementById('transcript');
+
+      updateIdSelect.addEventListener('change', function() {
+        const selectedId = parseInt(this.value);
+        const selectedTranscript = transcripts.find(t => t.id === selectedId);
+        if (selectedTranscript) {
+          scenarioInput.value = selectedTranscript.scenario;
+          transcriptTextarea.value = selectedTranscript.transcript;
+        } else {
+          scenarioInput.value = '';
+          transcriptTextarea.value = '';
+        }
+      });
+    });

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Summarization Results
+  if summaries.length > 0
+    .summary-grid
+      each summary in summaries
+        .summary-box
+          h2= summary.providerName
+          pre.summary-content= summary.summary
+  else
+    p No summaries available.
+
+  .link-group
+    a(href="/") Back to Summarize

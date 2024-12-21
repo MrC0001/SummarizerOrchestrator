@@ -1,0 +1,29 @@
+//- views/new.pug
+
+extends layout
+
+block content
+  // Header above the container
+  h1
+    i.fas.fa-plus-circle(style="margin-right: 10px;")
+    | Create New Transcript
+
+  // The container (panel) with the form
+  .container
+    if error
+      p.error-message= error
+
+    form(action="/create" method="post")
+      .form-group
+        label(for="scenario") Scenario:
+        input(type="text" name="scenario" id="scenario" required aria-label="Scenario")
+
+      .form-group
+        label(for="transcript") Transcript:
+        textarea(name="transcript" id="transcript" rows="5" required aria-label="Transcript")
+
+      button(type="submit") Create
+
+  // Buttons (links) below the container
+  .link-group
+    a(href="/") Back to Summarize

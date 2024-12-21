@@ -1,0 +1,28 @@
+{
+  "name": "pugfront",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Node.js Frontend with Pug",
+  "main": "index.js",
+  "scripts": {
+    "test": "-test"
+  },
+  "author": "David Szabo",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pugfront.git"
+  },
+  "keywords": [
+    "pugfront"
+  ],
+  "bugs": {
+    "url": "https://github.com/pugfront/issues"
+  },
+  "homepage": "https://github.com/pugfront#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2",
+    "pug": "^3.0.3"
+  }
+}
