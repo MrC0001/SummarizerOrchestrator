@@ -1,6 +1,7 @@
 package com.local.SummarizerOrchestrator.services;
 
 import com.local.SummarizerOrchestrator.dtos.TranscriptDTO;
+
 import java.util.List;
 
 public interface TranscriptService {

@@ -12,7 +12,8 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SummarizationRequestDTO {
-    private String prompt; // Instruction for summarization
-    private String context; // Text or transcript to summarize
-    private Map<String, Object> parameters; // Optional parameters like max_tokens, temperature
+    private Long transcriptId;
+    private String prompt;
+    private String context;
+    private Map<String, Object> parameters;
 }

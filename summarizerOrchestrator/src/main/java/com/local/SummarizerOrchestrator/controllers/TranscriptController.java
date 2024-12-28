@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/transcripts")
 public class TranscriptController {
+
     private final TranscriptService transcriptService;
 
     public TranscriptController(TranscriptService transcriptService) {

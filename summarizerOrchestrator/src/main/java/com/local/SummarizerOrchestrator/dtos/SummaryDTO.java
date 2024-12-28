@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SummarizationResponseDTO {
+public class SummaryDTO {
+    private Long id;
     private String providerName;
-    private String summary;
+    private String summaryText;
 }

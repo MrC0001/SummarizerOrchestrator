@@ -5,11 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SummarizationResponseDTO {
-    private String providerName;
-    private String summary;
+public class TranscriptWithSummariesDTO {
+    private Long id;
+    private String scenario;
+    private String transcript;
+    private List<SummaryDTO> summaries;
 }

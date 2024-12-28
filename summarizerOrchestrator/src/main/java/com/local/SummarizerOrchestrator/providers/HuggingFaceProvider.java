@@ -56,7 +56,7 @@ public class HuggingFaceProvider implements SummarizationProvider {
             // Create a new CloseableHttpClient for each request
             RequestConfig requestConfig = RequestConfig.custom()
                     .setConnectTimeout(5000) // Connection timeout in milliseconds
-                    .setSocketTimeout(100000) // Read timeout in milliseconds
+                    .setSocketTimeout(10000) // Read timeout in milliseconds
                     .build();
 
             try (CloseableHttpClient httpClient = HttpClientBuilder.create()
