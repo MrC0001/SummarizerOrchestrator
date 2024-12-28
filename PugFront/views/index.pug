@@ -21,6 +21,7 @@ block content
       .form-group
         label(for="transcriptText") Transcript:
         textarea(name="transcript" id="transcriptText" rows="10" required aria-label="Transcript")
+          | Select transcript from dropdown.
 
       button(type="submit") Summarize
 
@@ -28,17 +29,19 @@ block content
     a(href="/new") Create New Transcript
     a(href="/update") Update Transcript
     a(href="/delete") Delete Transcript
+    a(href="/summaries") Browse Summaries
 
   script.
-    document.addEventListener('DOMContentLoaded', function() {4
+    document.addEventListener('DOMContentLoaded', function() {
       const transcripts = !{JSON.stringify(transcripts)};
       const transcriptSelect = document.getElementById('transcriptSelect');
       const transcriptText = document.getElementById('transcriptText');
-      const form = document.querySelector('form');
 
       transcriptSelect.addEventListener('change', function() {
         const selectedId = parseInt(this.value);
         const selectedTranscript = transcripts.find(t => t.id === selectedId);
+
+        // Autofill the transcript textarea
         if (selectedTranscript) {
           transcriptText.value = selectedTranscript.transcript;
         } else {

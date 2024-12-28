@@ -1,0 +1,41 @@
+//- views/summaries.pug
+extends layout
+
+block content
+  h1 Stored Summaries
+
+  .container
+    if error
+      p.error-message= error
+
+    form(action="/summaries/view" method="post")
+      .form-group
+        label(for="transcriptSelect") Select a Transcript:
+        select(name="transcriptId" id="transcriptSelect" required)
+          option(value="" disabled selected) -- Select Transcript --
+          each transcript in transcripts
+            option(value=transcript.id)= `ID ${transcript.id} - ${transcript.scenario}`
+
+      button(type="submit") View Summaries
+
+    if transcript
+      h2 Transcript Text
+      .summary-box
+        pre.summary-content= transcript
+
+    if summaries
+      h2 Summaries for Selected Transcript
+      .summaries-container
+        each summary in summaries
+          .summary-box
+            h3= summary.providerName
+            if summary.summary
+              p= summary.summary
+            else
+              p.error-message No summary text available for this provider.
+
+    else if transcript
+      p No summaries found for the selected transcript. Please summarize it first.
+
+  .link-group
+    a(href="/") Back to Summarize

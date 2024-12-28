@@ -1,15 +1,39 @@
+//- views/results.pug
 extends layout
 
 block content
   h1 Summarization Results
-  if summaries.length > 0
-    .summary-grid
-      each summary in summaries
+
+  if newSummaries && newSummaries.length > 0
+    h2 New Summaries
+    .summaries-container
+      each summary in newSummaries
         .summary-box
-          h2= summary.providerName
-          pre.summary-content= summary.summary
+          h3= summary.providerName
+          if summary.summary.startsWith("Error")
+            p.error-message= summary.summary
+          else
+            p= summary.summary
+
+    if oldSummaries && oldSummaries.length > 0
+      h2 Old Summaries
+      .summaries-container
+        each summary in oldSummaries
+          .summary-box
+            h3= summary.providerName
+            if summary.summary.startsWith("Error")
+              p.error-message= summary.summary
+            else
+              p= summary.summary
+
+      // Overwrite button
+      form(action="/summaries/overwrite" method="post")
+        input(type="hidden" name="transcriptId" value=transcriptId)
+        input(type="hidden" name="newSummaries" value=JSON.stringify(newSummaries))
+        button(type="submit") Overwrite Summaries
+
   else
-    p No summaries available.
+    p No new summaries available.
 
   .link-group
     a(href="/") Back to Summarize
