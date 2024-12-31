@@ -6,6 +6,10 @@ import com.local.SummarizerOrchestrator.dtos.SummarizationRequestDTO;
 
 import java.util.Map;
 
+/**
+ * Utility class for cleaning and formatting JSON data.
+ * Includes methods for sanitizing inputs, extracting fields, and cleaning raw text.
+ */
 public class JSONCleaner {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
@@ -17,6 +21,9 @@ public class JSONCleaner {
      * @return The cleaned string.
      */
     public static String cleanGeneratedText(String generatedText) {
+        if (generatedText == null) {
+            return "";
+        }
         return generatedText
                 .replace("\\n", "\n")
                 .replace("\\\"", "\"")
@@ -53,6 +60,9 @@ public class JSONCleaner {
      * @return The formatted summary.
      */
     public static String formatSummary(String summary) {
+        if (summary == null) {
+            return "";
+        }
         return summary
                 .replace("\\n", "\n")
                 .replace("\\\"", "\"")
@@ -88,7 +98,7 @@ public class JSONCleaner {
      */
     public static String removeControlCharacters(String text) {
         if (text == null) {
-            return null;
+            return "";
         }
         return text.replaceAll("[\\u0000-\\u001F]", "").trim();
     }

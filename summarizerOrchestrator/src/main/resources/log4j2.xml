@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <!-- Console Appender with ANSI Colors -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false" noConsoleNoAnsi="false">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} [%highlight{%p}{FATAL=red bold, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=blue, TRACE=cyan}] %c{36} - %msg%n</pattern>
+            </PatternLayout>
+        </Console>
+
+        <!-- Rolling File Appender -->
+        <RollingFile name="RollingFile" fileName="logs/application.log" filePattern="logs/application-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} [%p] %c{36} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root Logger (change to info in prod) -->
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>

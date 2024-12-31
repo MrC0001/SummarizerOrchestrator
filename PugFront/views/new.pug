@@ -1,29 +1,62 @@
 //- views/new.pug
-
 extends layout
 
 block content
-  // Header above the container
   h1
     i.fas.fa-plus-circle(style="margin-right: 10px;")
     | Create New Transcript
 
-  // The container (panel) with the form
   .container
     if error
       p.error-message= error
 
-    form(action="/create" method="post")
+    form(action="/create" method="post" id="createForm")
       .form-group
         label(for="scenario") Scenario:
-        input(type="text" name="scenario" id="scenario" required aria-label="Scenario")
+        input(type="text" name="scenario" id="scenario" 
+          required 
+          aria-label="Scenario" 
+          placeholder="Enter a brief scenario (max 255 characters)" 
+          maxlength="255")
 
       .form-group
         label(for="transcript") Transcript:
-        textarea(name="transcript" id="transcript" rows="5" required aria-label="Transcript")
+        textarea(name="transcript" id="transcript" rows="5" 
+          required 
+          aria-label="Transcript" 
+          placeholder="Paste the transcript here")
 
-      button(type="submit") Create
+      button(type="submit" class="btn-submit") Create
 
-  // Buttons (links) below the container
+    script.
+      document.addEventListener('DOMContentLoaded', function () {
+        try {
+          const form = document.getElementById('createForm');
+          const scenarioInput = document.getElementById('scenario');
+          const transcriptTextarea = document.getElementById('transcript');
+
+          form.addEventListener('submit', (e) => {
+            const scenario = scenarioInput.value.trim();
+            const transcript = transcriptTextarea.value.trim();
+
+            if (!scenario || !transcript) {
+              e.preventDefault();
+              console.error('Validation failed: Scenario or Transcript is empty.');
+              alert('Please fill in both the scenario and transcript fields.');
+              return;
+            }
+
+            if (scenario.length > 255) {
+              e.preventDefault();
+              console.error('Validation failed: Scenario exceeds maximum length.');
+              alert('Scenario must not exceed 255 characters.');
+              return;
+            }
+          });
+        } catch (error) {
+          console.error('Error initializing create form:', error);
+        }
+      })
+
   .link-group
-    a(href="/") Back to Summarize
+    a(href="/" class="btn-link") Back to Summarize

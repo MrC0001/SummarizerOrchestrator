@@ -23,29 +23,33 @@ block content
         textarea(name="transcript" id="transcriptText" rows="10" required aria-label="Transcript")
           | Select transcript from dropdown.
 
-      button(type="submit") Summarize
+      button(type="submit" class="btn-submit") Summarize
 
   .link-group
-    a(href="/new") Create New Transcript
-    a(href="/update") Update Transcript
-    a(href="/delete") Delete Transcript
-    a(href="/summaries") Browse Summaries
+    a(href="/new" class="btn-link") Create New Transcript
+    a(href="/update" class="btn-link") Update Transcript
+    a(href="/delete" class="btn-link") Delete Transcript
+    a(href="/summaries" class="btn-link") Browse Summaries
 
   script.
     document.addEventListener('DOMContentLoaded', function() {
-      const transcripts = !{JSON.stringify(transcripts)};
-      const transcriptSelect = document.getElementById('transcriptSelect');
-      const transcriptText = document.getElementById('transcriptText');
+      try {
+        const transcripts = !{JSON.stringify(transcripts)};
+        const transcriptSelect = document.getElementById('transcriptSelect');
+        const transcriptText = document.getElementById('transcriptText');
 
-      transcriptSelect.addEventListener('change', function() {
-        const selectedId = parseInt(this.value);
-        const selectedTranscript = transcripts.find(t => t.id === selectedId);
+        transcriptSelect.addEventListener('change', function() {
+          const selectedId = parseInt(this.value);
+          const selectedTranscript = transcripts.find(t => t.id === selectedId);
 
-        // Autofill the transcript textarea
-        if (selectedTranscript) {
-          transcriptText.value = selectedTranscript.transcript;
-        } else {
-          transcriptText.value = '';
-        }
-      });
+          // Autofill the transcript textarea
+          if (selectedTranscript) {
+            transcriptText.value = selectedTranscript.transcript;
+          } else {
+            transcriptText.value = '';
+          }
+        });
+      } catch (error) {
+        console.error("Error in transcript selection script:", error);
+      }
     });

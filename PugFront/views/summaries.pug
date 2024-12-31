@@ -8,22 +8,25 @@ block content
     if error
       p.error-message= error
 
-    form(action="/summaries/view" method="post")
+    // Transcript selection form
+    form(action="/summaries/view" method="post" id="viewSummariesForm")
       .form-group
         label(for="transcriptSelect") Select a Transcript:
-        select(name="transcriptId" id="transcriptSelect" required)
+        select(name="transcriptId" id="transcriptSelect" required aria-label="Select Transcript")
           option(value="" disabled selected) -- Select Transcript --
           each transcript in transcripts
             option(value=transcript.id)= `ID ${transcript.id} - ${transcript.scenario}`
 
-      button(type="submit") View Summaries
+      button(type="submit" class="btn-submit") View Summaries
 
+    // Display the selected transcript text
     if transcript
       h2 Transcript Text
       .summary-box
         pre.summary-content= transcript
 
-    if summaries
+    // Display the summaries if available
+    if summaries && summaries.length > 0
       h2 Summaries for Selected Transcript
       .summaries-container
         each summary in summaries
@@ -35,7 +38,26 @@ block content
               p.error-message No summary text available for this provider.
 
     else if transcript
-      p No summaries found for the selected transcript. Please summarize it first.
+      p.info-message No summaries found for the selected transcript. Please summarize it first.
 
   .link-group
-    a(href="/") Back to Summarize
+    a(href="/" class="btn-link") Back to Summarize
+
+  // Client-side validation script
+  script.
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        const form = document.getElementById('viewSummariesForm');
+        const transcriptSelect = document.getElementById('transcriptSelect');
+
+        form.addEventListener('submit', (e) => {
+          if (!transcriptSelect.value || transcriptSelect.value === "") {
+            e.preventDefault();
+            console.error('No transcript selected for viewing summaries.');
+            alert('Please select a transcript to view summaries.');
+          }
+        });
+      } catch (error) {
+        console.error('Error initializing view summaries form:', error);
+      }
+    });

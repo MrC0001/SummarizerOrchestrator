@@ -6,34 +6,51 @@ block content
 
   if newSummaries && newSummaries.length > 0
     h2 New Summaries
-    .summaries-container
-      each summary in newSummaries
-        .summary-box
-          h3= summary.providerName
-          if summary.summary.startsWith("Error")
-            p.error-message= summary.summary
-          else
-            p= summary.summary
+    +renderSummaries(newSummaries, 'New Summaries Available')
 
     if oldSummaries && oldSummaries.length > 0
       h2 Old Summaries
-      .summaries-container
-        each summary in oldSummaries
-          .summary-box
-            h3= summary.providerName
-            if summary.summary.startsWith("Error")
-              p.error-message= summary.summary
-            else
-              p= summary.summary
+      +renderSummaries(oldSummaries, 'Previous Summaries')
 
       // Overwrite button
-      form(action="/summaries/overwrite" method="post")
+      form(action="/summaries/overwrite" method="post" id="overwriteForm")
         input(type="hidden" name="transcriptId" value=transcriptId)
-        input(type="hidden" name="newSummaries" value=JSON.stringify(newSummaries))
-        button(type="submit") Overwrite Summaries
+        input(type="hidden" name="newSummaries" id="newSummariesData")
+        button(type="submit" class="btn-submit") Overwrite Summaries
+
+      script.
+        try {
+          const form = document.getElementById('overwriteForm');
+          const hiddenInput = document.getElementById('newSummariesData');
+          const summaries = !{JSON.stringify(newSummaries)};
+
+          // Ensure JSON validity
+          hiddenInput.value = JSON.stringify(summaries);
+
+          form.addEventListener('submit', (e) => {
+            if (!summaries || summaries.length === 0) {
+              e.preventDefault();
+              console.error('No summaries available for overwrite.');
+              alert('No valid summaries to overwrite.');
+            }
+          });
+        } catch (error) {
+          console.error('Error initializing overwrite form:', error);
+        }
 
   else
     p No new summaries available.
 
   .link-group
-    a(href="/") Back to Summarize
+    a(href="/" class="btn-link") Back to Summarize
+
+//- Mixin for reusable summary rendering
+mixin renderSummaries(summaries, title)
+  .summaries-container
+    each summary in summaries
+      .summary-box
+        h3= summary.providerName
+        if summary.summary.startsWith("Error")
+          p.error-message= summary.summary
+        else
+          p= summary.summary

@@ -8,128 +8,142 @@ import com.local.SummarizerOrchestrator.repos.SummaryRepo;
 import com.local.SummarizerOrchestrator.repos.TranscriptRepo;
 import com.local.SummarizerOrchestrator.services.SummarizationService;
 import com.local.SummarizerOrchestrator.utils.JSONCleaner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * REST controller for handling summarization-related operations.
+ * Includes endpoints for generating, retrieving, and overwriting summaries.
+ *
+ * Validation Rules:
+ * - `@NotNull`: Ensures parameters are not null.
+ * - `@Min`: Ensures numerical values meet the specified minimum.
+ * - `@Valid`: Enforces validation for request bodies containing DTOs.
+ */
 @RestController
 @RequestMapping("/api")
+@Validated // Enables validation for @PathVariable and @RequestParam
 public class SummarizationController {
+
+    private static final Logger logger = LoggerFactory.getLogger(SummarizationController.class);
 
     private final SummarizationService summarizationService;
     private final TranscriptRepo transcriptRepo;
     private final SummaryRepo summaryRepo;
 
-    @Autowired
+    /**
+     * Constructor for SummarizationController.
+     *
+     * @param summarizationService The service for summarization operations.
+     * @param transcriptRepo       The repository for transcript data.
+     * @param summaryRepo          The repository for summary data.
+     */
     public SummarizationController(SummarizationService summarizationService, TranscriptRepo transcriptRepo, SummaryRepo summaryRepo) {
         this.summarizationService = summarizationService;
         this.transcriptRepo = transcriptRepo;
         this.summaryRepo = summaryRepo;
     }
 
-
     /**
      * Handle summarization requests for both first-time and existing summaries.
+     *
+     * @param request The summarization request payload. Must pass validation rules defined in SummarizationRequestDTO.
+     * @return A ResponseEntity containing new and old summaries or an error message.
+     * @throws jakarta.validation.ConstraintViolationException if validation fails for the request body.
      */
     @PostMapping("/summarize")
-    public ResponseEntity<?> summarize(@RequestBody SummarizationRequestDTO request) {
+    public ResponseEntity<?> summarize(@Valid @RequestBody SummarizationRequestDTO request) {
+        logger.info("Received summarization request: {}", request);
         try {
-            System.out.println("Request received: " + request); // Log request payload
-
             request = JSONCleaner.sanitizeRequest(request);
 
             if (summarizationService.summariesExistForTranscript(request.getTranscriptId())) {
                 Map<String, Object> response = summarizationService.compareSummaries(request);
-                System.out.println("Returning response with old and new summaries: " + response);
+                logger.info("Returning response with old and new summaries for transcript ID: {}", request.getTranscriptId());
                 return ResponseEntity.ok(response);
             } else {
                 List<SummarizationResponseDTO> newSummaries = summarizationService.summarizeAndSave(request);
                 Map<String, Object> response = Map.of("newSummaries", newSummaries, "oldSummaries", List.of());
-                System.out.println("Returning response for first-time summarization: " + response);
+                logger.info("Returning response for first-time summarization for transcript ID: {}", request.getTranscriptId());
                 return ResponseEntity.ok(response);
             }
         } catch (Exception e) {
-            System.err.println("Error processing summarize request: " + e.getMessage());
-            e.printStackTrace(); // Print full stack trace
+            logger.error("Error processing summarization request for transcript ID {}: {}", request.getTranscriptId(), e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error summarizing transcript");
         }
     }
 
-
     /**
      * Retrieve summaries for a specific transcript.
+     *
+     * @param transcriptId The ID of the transcript. Must be greater than or equal to 1 and not null.
+     * @return A ResponseEntity containing the transcript and summaries or an error message.
+     * @throws jakarta.validation.ConstraintViolationException if validation fails for the ID.
      */
     @GetMapping("/{transcriptId}")
-    public ResponseEntity<?> getSummariesWithTranscript(@PathVariable Long transcriptId) {
+    public ResponseEntity<?> getSummariesWithTranscript(@PathVariable @NotNull(message = "Transcript ID must not be null.") @Min(value = 1, message = "Transcript ID must be greater than or equal to 1.") Long transcriptId) {
+        logger.info("Fetching summaries and transcript for transcript ID: {}", transcriptId);
         try {
-            System.out.println("Fetching summaries and transcript for transcript ID: " + transcriptId);
-
-            // Fetch transcript
             Transcript transcript = transcriptRepo.findById(transcriptId)
                     .orElseThrow(() -> new RuntimeException("Transcript not found"));
-            System.out.println("Transcript found: " + transcript.getTranscript());
+            logger.info("Transcript found for ID {}: {}", transcriptId, transcript.getTranscript());
 
-            // Fetch summaries
             List<Summary> summaries = summaryRepo.findByTranscriptId(transcriptId);
-
-            // Map summaries to DTOs
             List<SummarizationResponseDTO> summaryDTOs = summaries.stream()
                     .map(summary -> new SummarizationResponseDTO(summary.getProviderName(), summary.getSummaryText()))
                     .collect(Collectors.toList());
 
-            // Prepare combined response
             Map<String, Object> response = Map.of(
                     "transcript", transcript.getTranscript(),
                     "summaries", summaryDTOs
             );
 
-            System.out.println("Returning transcript and summaries: " + response);
+            logger.info("Returning transcript and summaries for transcript ID: {}", transcriptId);
             return ResponseEntity.ok(response);
-
         } catch (RuntimeException e) {
-            System.err.println("Error fetching data for transcript ID " + transcriptId + ": " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Error fetching data: " + e.getMessage());
+            logger.error("Transcript not found for ID {}: {}", transcriptId, e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error fetching data: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Error fetching transcript and summaries: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error fetching transcript and summaries: " + e.getMessage());
+            logger.error("Error fetching transcript and summaries for ID {}: {}", transcriptId, e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error fetching transcript and summaries");
         }
     }
-
 
     /**
      * Overwrite old summaries with new ones for a specific transcript.
+     *
+     * @param transcriptId The ID of the transcript to overwrite summaries for. Must be greater than or equal to 1 and not null.
+     * @param newSummaries The new summaries to save. Each summary must pass validation rules defined in SummarizationResponseDTO.
+     * @return A ResponseEntity containing a success message or an error message.
+     * @throws jakarta.validation.ConstraintViolationException if validation fails for the ID or request body.
      */
     @PostMapping("/overwrite/{transcriptId}")
     public ResponseEntity<String> overwriteSummaries(
-            @PathVariable Long transcriptId,
-            @RequestBody List<SummarizationResponseDTO> newSummaries) {
+            @PathVariable @NotNull(message = "Transcript ID must not be null.") @Min(value = 1, message = "Transcript ID must be greater than or equal to 1.") Long transcriptId,
+            @Valid @RequestBody List<SummarizationResponseDTO> newSummaries) {
+        logger.info("Received overwrite request for transcript ID: {}", transcriptId);
         try {
-            System.out.println("Received overwrite request for transcript ID: " + transcriptId);
-
             newSummaries.forEach(summary ->
-                    System.out.println("New summary to overwrite: Provider - " + summary.getProviderName() + ", Summary - " + summary.getSummary())
+                    logger.debug("New summary to overwrite: Provider - {}, Summary - {}", summary.getProviderName(), summary.getSummary())
             );
 
             summarizationService.overwriteSummaries(transcriptId, newSummaries);
-
-            System.out.println("Summaries overwritten successfully for transcript ID: " + transcriptId);
+            logger.info("Summaries overwritten successfully for transcript ID: {}", transcriptId);
             return ResponseEntity.ok("Summaries overwritten successfully.");
         } catch (Exception e) {
-            System.err.println("Error overwriting summaries for transcript ID " + transcriptId + ": " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error overwriting summaries: " + e.getMessage());
+            logger.error("Error overwriting summaries for transcript ID {}: {}", transcriptId, e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error overwriting summaries: " + e.getMessage());
         }
     }
-
-
-
-
 }

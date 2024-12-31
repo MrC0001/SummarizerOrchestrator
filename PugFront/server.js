@@ -2,11 +2,29 @@ import express from 'express';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
+import { body, validationResult } from 'express-validator';
+import dotenv from 'dotenv';
+import winston from 'winston';
+
+// Initialize dotenv
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8080';
+const PORT = process.env.PORT || 3000;
+
+// Configure Winston Logger
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.printf(({ timestamp, level, message }) => `[${timestamp}] ${level}: ${message}`)
+    ),
+    transports: [new winston.transports.Console()],
+});
 
 // Set Pug as the view engine
 app.set('view engine', 'pug');
@@ -16,278 +34,399 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Helper function to fetch transcripts from the Java backend
+/**
+ * Fetches transcripts from the backend.
+ * @returns {Promise<Array>} Resolves to an array of transcripts.
+ */
 async function fetchTranscripts() {
-  try {
-    const response = await fetch('http://localhost:8080/api/transcripts');
-    if (!response.ok) {
-      console.error('Failed to fetch transcripts:', response.status, response.statusText);
-      return [];
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/transcripts`);
+        if (!response.ok) {
+            logger.error(`Failed to fetch transcripts: ${response.status} ${response.statusText}`);
+            return [];
+        }
+        return await response.json();
+    } catch (error) {
+        logger.error(`Error fetching transcripts: ${error.message}`);
+        return [];
     }
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching transcripts:', error);
-    return [];
-  }
 }
 
-// Main page - Display list of transcripts
+/**
+ * Main page: Displays the list of transcripts.
+ */
 app.get('/', async (req, res) => {
-  const transcripts = await fetchTranscripts();
-  res.render('index', { title: 'Summarize a Transcript', transcripts, error: null });
+    try {
+        const transcripts = await fetchTranscripts();
+        res.render('index', { title: 'Summarize a Transcript', transcripts, error: null });
+    } catch (error) {
+        logger.error(`Error rendering main page: ${error.message}`);
+        res.render('index', { title: 'Summarize a Transcript', transcripts: [], error: 'Failed to load transcripts.' });
+    }
 });
 
-// New transcript page
+/**
+ * New transcript page.
+ */
 app.get('/new', (req, res) => {
-  res.render('new', { title: 'Create New Transcript', error: null });
+    res.render('new', { title: 'Create New Transcript', error: null });
 });
 
-// Handle creation of new transcript
-app.post('/create', async (req, res) => {
-  const { scenario, transcript } = req.body;
+/**
+ * Handle creation of a new transcript.
+ */
+app.post(
+    '/create',
+    [
+        body('scenario').notEmpty().withMessage('Scenario is required').trim(),
+        body('transcript').notEmpty().withMessage('Transcript is required').trim(),
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            logger.warn(`Validation errors: ${JSON.stringify(errors.array())}`);
+            return res.render('new', { title: 'Create New Transcript', error: errors.array()[0].msg });
+        }
 
-  try {
-    const response = await fetch('http://localhost:8080/api/transcripts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ scenario, transcript }),
-    });
+        const { scenario, transcript } = req.body;
 
-    if (!response.ok) {
-      console.error('Failed to create transcript:', response.status, response.statusText);
-      return res.render('new', { title: 'Create New Transcript', error: 'Failed to create transcript.' });
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/transcripts`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ scenario, transcript }),
+            });
+
+            if (!response.ok) {
+                logger.error(`Failed to create transcript: ${response.status} ${response.statusText}`);
+                return res.render('new', { title: 'Create New Transcript', error: 'Failed to create transcript.' });
+            }
+
+            res.redirect('/');
+        } catch (error) {
+            logger.error(`Error creating transcript: ${error.message}`);
+            res.render('new', { title: 'Create New Transcript', error: 'An error occurred.' });
+        }
     }
+);
 
-    res.redirect('/');
-  } catch (error) {
-    console.error('Error creating transcript:', error);
-    res.render('new', { title: 'Create New Transcript', error: 'An error occurred.' });
-  }
-});
-
-// Update transcript page
+/**
+ * Update transcript page.
+ */
 app.get('/update', async (req, res) => {
-  const transcripts = await fetchTranscripts();
-  res.render('update', { title: 'Update Transcript', transcripts, error: null });
-});
-
-// Handle updating a transcript
-app.post('/update', async (req, res) => {
-  const { id, scenario, transcript } = req.body;
-
-  try {
-    const response = await fetch(`http://localhost:8080/api/transcripts/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ scenario, transcript }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to update transcript.');
+    try {
+        const transcripts = await fetchTranscripts();
+        res.render('update', { title: 'Update Transcript', transcripts, error: null });
+    } catch (error) {
+        logger.error(`Error rendering update page: ${error.message}`);
+        res.render('update', { title: 'Update Transcript', transcripts: [], error: 'Failed to load transcripts.' });
     }
-
-    res.redirect('/');
-  } catch (error) {
-    console.error('Error updating transcript:', error);
-    const transcripts = await fetchTranscripts();
-    res.render('update', { title: 'Update Transcript', transcripts, error: error.message });
-  }
 });
 
-// Delete transcript page
+/**
+ * Handle updating a transcript.
+ */
+app.post(
+    '/update',
+    [
+        body('id').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format'),
+        body('scenario').notEmpty().withMessage('Scenario is required').trim(),
+        body('transcript').notEmpty().withMessage('Transcript is required').trim(),
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            logger.warn(`Validation errors: ${JSON.stringify(errors.array())}`);
+            const transcripts = await fetchTranscripts();
+            return res.render('update', { title: 'Update Transcript', transcripts, error: errors.array()[0].msg });
+        }
+
+        const { id, scenario, transcript } = req.body;
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/transcripts/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ scenario, transcript }),
+            });
+
+            if (!response.ok) {
+                logger.error(`Failed to update transcript: ${response.status} ${response.statusText}`);
+                throw new Error('Failed to update transcript.');
+            }
+
+            res.redirect('/');
+        } catch (error) {
+            logger.error(`Error updating transcript: ${error.message}`);
+            const transcripts = await fetchTranscripts();
+            res.render('update', { title: 'Update Transcript', transcripts, error: error.message });
+        }
+    }
+);
+
+/**
+ * Delete transcript page.
+ */
 app.get('/delete', async (req, res) => {
-  const transcripts = await fetchTranscripts();
-  res.render('delete', { title: 'Delete Transcript', transcripts, error: null });
-});
-
-// Handle deleting a transcript
-app.post('/delete', async (req, res) => {
-  const { id } = req.body;
-
-  try {
-    const response = await fetch(`http://localhost:8080/api/transcripts/${id}`, { method: 'DELETE' });
-
-    if (!response.ok) {
-      throw new Error('Failed to delete transcript.');
+    try {
+        const transcripts = await fetchTranscripts();
+        res.render('delete', { title: 'Delete Transcript', transcripts, error: null });
+    } catch (error) {
+        logger.error(`Error rendering delete page: ${error.message}`);
+        res.render('delete', { title: 'Delete Transcript', transcripts: [], error: 'Failed to load transcripts.' });
     }
-
-    res.redirect('/');
-  } catch (error) {
-    console.error('Error deleting transcript:', error);
-    const transcripts = await fetchTranscripts();
-    res.render('delete', { title: 'Delete Transcript', transcripts, error: error.message });
-  }
 });
 
-app.post('/summarizeAll', async (req, res) => {
-  const { transcriptSelect, transcript } = req.body;
+/**
+ * Handle deleting a transcript.
+ */
+app.post(
+    '/delete',
+    [body('id').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format')],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            logger.warn(`Validation errors: ${JSON.stringify(errors.array())}`);
+            const transcripts = await fetchTranscripts();
+            return res.render('delete', { title: 'Delete Transcript', transcripts, error: errors.array()[0].msg });
+        }
 
-  const payload = {
-    prompt: "Summarize the following conversation:",
-    context: transcript,
-    parameters: { max_tokens: 200, temperature: 0.7 },
-    transcriptId: parseInt(transcriptSelect), // Ensure this is valid
-  };
+        const { id } = req.body;
 
-  try {
-    const response = await fetch('http://localhost:8080/api/summarize', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/transcripts/${id}`, { method: 'DELETE' });
 
-    if (!response.ok) {
-      throw new Error(`Summarize API failed with status ${response.status}`);
+            if (!response.ok) {
+                logger.error(`Failed to delete transcript: ${response.status} ${response.statusText}`);
+                throw new Error('Failed to delete transcript.');
+            }
+
+            res.redirect('/');
+        } catch (error) {
+            logger.error(`Error deleting transcript: ${error.message}`);
+            const transcripts = await fetchTranscripts();
+            res.render('delete', { title: 'Delete Transcript', transcripts, error: error.message });
+        }
     }
+);
 
-    const responseData = await response.json();
-    const newSummaries = responseData.newSummaries || [];
-    const oldSummaries = responseData.oldSummaries || [];
+/**
+ * Summarization page.
+ */
+app.post(
+    '/summarizeAll',
+    [
+        body('transcriptSelect').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format'),
+        body('transcript').notEmpty().withMessage('Transcript content is required'),
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            logger.warn(`Validation errors: ${JSON.stringify(errors.array())}`);
+            const transcripts = await fetchTranscripts();
+            return res.render('index', { title: 'Summarize a Transcript', transcripts, error: errors.array()[0].msg });
+        }
 
-    console.log("Transcript ID being passed to results.pug:", transcriptSelect);
+        const { transcriptSelect, transcript } = req.body;
 
-    res.render('results', { 
-      title: 'Summarization Results', 
-      newSummaries, 
-      oldSummaries, 
-      transcriptId: transcriptSelect // Pass transcriptId to template
-    });
-  } catch (error) {
-    console.error('Error summarizing transcript:', error);
-    const transcripts = await fetchTranscripts();
-    res.render('index', { 
-      title: 'Summarize a Transcript', 
-      transcripts, 
-      error: 'Summarization failed.' 
-    });
-  }
-});
+        const payload = {
+            prompt: "Summarize the following conversation:",
+            context: transcript,
+            parameters: { max_tokens: 200, temperature: 0.7 },
+            transcriptId: parseInt(transcriptSelect),
+        };
 
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/summarize`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
 
-// New route to display summaries page
+            if (!response.ok) {
+                logger.error(`Summarization failed with status: ${response.status}`);
+                throw new Error('Summarization failed.');
+            }
+
+            const responseData = await response.json();
+            const { newSummaries = [], oldSummaries = [] } = responseData;
+
+            res.render('results', { 
+                title: 'Summarization Results', 
+                newSummaries, 
+                oldSummaries, 
+                transcriptId: transcriptSelect,
+            });
+        } catch (error) {
+            logger.error(`Error summarizing transcript: ${error.message}`);
+            const transcripts = await fetchTranscripts();
+            res.render('index', { 
+                title: 'Summarize a Transcript', 
+                transcripts, 
+                error: 'Summarization failed.' 
+            });
+        }
+    }
+);
+
+/**
+ * Displays summaries page with the list of transcripts.
+ */
 app.get('/summaries', async (req, res) => {
   try {
     const transcripts = await fetchTranscripts();
     res.render('summaries', { title: 'Stored Summaries', transcripts, summaries: null, error: null });
   } catch (error) {
-    console.error('Error fetching transcripts:', error);
+    logger.error(`Error fetching transcripts for summaries page: ${error.message}`);
     res.render('summaries', { title: 'Stored Summaries', transcripts: [], summaries: null, error: 'Failed to fetch transcripts.' });
   }
 });
 
-
-app.post('/summaries/view', async (req, res) => {
-  const { transcriptId } = req.body;
-
-  try {
-    const response = await fetch(`http://localhost:8080/api/${transcriptId}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch transcript and summaries for the selected transcript.');
+/**
+ * Displays summaries for a selected transcript.
+ */
+app.post(
+  '/summaries/view',
+  [body('transcriptId').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format')],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      logger.warn(`Validation errors in /summaries/view: ${JSON.stringify(errors.array())}`);
+      const transcripts = await fetchTranscripts();
+      return res.render('summaries', { title: 'Stored Summaries', transcripts, summaries: null, error: errors.array()[0].msg });
     }
 
-    const data = await response.json();
-    console.log("Fetched data for transcript and summaries:", data);
+    const { transcriptId } = req.body;
 
-    const transcripts = await fetchTranscripts(); // Keep transcript list for dropdown
-    res.render('summaries', { 
-      title: 'Stored Summaries', 
-      transcripts, 
-      transcript: data.transcript, 
-      summaries: data.summaries, 
-      error: null 
-    });
-  } catch (error) {
-    console.error('Error fetching transcript and summaries:', error);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/${transcriptId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch transcript and summaries for the selected transcript.');
+      }
+
+      const data = await response.json();
+      logger.info(`Fetched data for transcript ID ${transcriptId}: ${JSON.stringify(data)}`);
+
+      const transcripts = await fetchTranscripts();
+      res.render('summaries', { 
+        title: 'Stored Summaries', 
+        transcripts, 
+        transcript: data.transcript, 
+        summaries: data.summaries, 
+        error: null 
+      });
+    } catch (error) {
+      logger.error(`Error fetching transcript and summaries: ${error.message}`);
+      const transcripts = await fetchTranscripts();
+      res.render('summaries', { 
+        title: 'Stored Summaries', 
+        transcripts, 
+        transcript: null, 
+        summaries: null, 
+        error: 'Failed to fetch transcript and summaries for the selected transcript.' 
+      });
+    }
+  }
+);
+
+/**
+ * Generates summaries for a selected transcript.
+ */
+app.post(
+  '/summaries/generate',
+  [body('transcriptId').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format')],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      logger.warn(`Validation errors in /summaries/generate: ${JSON.stringify(errors.array())}`);
+      return res.redirect('/summaries?error=Validation failed');
+    }
+
+    const { transcriptId } = req.body;
+
     const transcripts = await fetchTranscripts();
-    res.render('summaries', { 
-      title: 'Stored Summaries', 
-      transcripts, 
-      transcript: null, 
-      summaries: null, 
-      error: 'Failed to fetch transcript and summaries for the selected transcript.' 
-    });
-  }
-});
+    const transcript = transcripts.find((t) => t.id === parseInt(transcriptId))?.transcript;
 
-
-
-
-
-// Handle summarization request
-app.post('/summaries/generate', async (req, res) => {
-  const transcriptId = req.body.transcriptId;
-
-  const transcripts = await fetchTranscripts();
-  const transcript = transcripts.find(t => t.id === parseInt(transcriptId))?.transcript;
-
-  if (!transcript) {
-    return res.redirect('/summaries?error=Transcript not found');
-  }
-
-  const payload = {
-    prompt: "Summarize the following conversation:",
-    context: transcript,
-    parameters: { max_tokens: 200, temperature: 0.7 },
-  };
-
-  try {
-    const response = await fetch('http://localhost:8080/api/summarize', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Java API returned status ${response.status}`);
+    if (!transcript) {
+      logger.warn(`Transcript not found for ID ${transcriptId}`);
+      return res.redirect('/summaries?error=Transcript not found');
     }
 
-    const summaries = await response.json();
-    res.render('summaries', { title: 'Summaries', summaries, transcriptId });
-  } catch (error) {
-    console.error('Error generating summaries:', error);
-    res.redirect(`/summaries?error=${encodeURIComponent(error.message)}`);
+    const payload = {
+      prompt: "Summarize the following conversation:",
+      context: transcript,
+      parameters: { max_tokens: 200, temperature: 0.7 },
+    };
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/summarize`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        logger.error(`Summarization failed for transcript ID ${transcriptId}: Status ${response.status}`);
+        throw new Error(`Java API returned status ${response.status}`);
+      }
+
+      const summaries = await response.json();
+      logger.info(`Generated summaries for transcript ID ${transcriptId}`);
+      res.render('summaries', { title: 'Summaries', summaries, transcriptId });
+    } catch (error) {
+      logger.error(`Error generating summaries: ${error.message}`);
+      res.redirect(`/summaries?error=${encodeURIComponent(error.message)}`);
+    }
   }
-});
+);
 
-// Handle overwrite request
-app.post('/summaries/overwrite', async (req, res) => {
-  const { transcriptId, newSummaries } = req.body;
-
-  try {
-    console.log("Received request body:", req.body); // Debugging log for full request body
-
-    if (!transcriptId) {
-      throw new Error('Transcript ID is missing.');
+/**
+ * Overwrites summaries for a selected transcript.
+ */
+app.post(
+  '/summaries/overwrite',
+  [
+    body('transcriptId').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format'),
+    body('newSummaries').notEmpty().withMessage('New summaries data is required'),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      logger.warn(`Validation errors in /summaries/overwrite: ${JSON.stringify(errors.array())}`);
+      return res.redirect('/summaries?error=Validation failed');
     }
 
-    console.log("Transcript ID:", transcriptId);
-    console.log("New Summaries:", newSummaries);
+    const { transcriptId, newSummaries } = req.body;
 
-    // Parse newSummaries from JSON string to an array
-    const parsedNewSummaries = JSON.parse(newSummaries);
+    try {
+      logger.info(`Received overwrite request for transcript ID ${transcriptId}`);
 
-    const response = await fetch(`http://localhost:8080/api/overwrite/${transcriptId}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(parsedNewSummaries),
-    });
+      // Parse newSummaries from JSON string to an array
+      const parsedNewSummaries = JSON.parse(newSummaries);
+      logger.info(`Parsed new summaries: ${JSON.stringify(parsedNewSummaries)}`);
 
-    if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Backend error: ${errorMessage}`);
+      const response = await fetch(`${API_BASE_URL}/api/overwrite/${transcriptId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(parsedNewSummaries),
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        logger.error(`Backend error on overwrite: ${errorMessage}`);
+        throw new Error(`Backend error: ${errorMessage}`);
+      }
+
+      logger.info(`Successfully overwritten summaries for transcript ID ${transcriptId}`);
+      res.redirect('/summaries');
+    } catch (error) {
+      logger.error(`Error overwriting summaries: ${error.message}`);
+      res.redirect(`/summaries?error=${encodeURIComponent(error.message)}`);
     }
-
-    res.redirect('/summaries');
-  } catch (error) {
-    console.error('Error overwriting summaries:', error);
-    res.redirect(`/summaries?error=${encodeURIComponent(error.message)}`);
   }
-});
-
-
+);
 
 // Start the server
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Frontend running at http://localhost:${PORT}`);
+    logger.info(`Frontend server running at http://localhost:${PORT}`);
 });
