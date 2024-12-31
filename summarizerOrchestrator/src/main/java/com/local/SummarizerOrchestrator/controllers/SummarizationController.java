@@ -57,32 +57,49 @@ public class SummarizationController {
 
     /**
      * Handle summarization requests for both first-time and existing summaries.
+     * Supports asynchronous processing to improve responsiveness and scalability.
      *
      * @param request The summarization request payload. Must pass validation rules defined in SummarizationRequestDTO.
-     * @return A ResponseEntity containing new and old summaries or an error message.
+     * @return A ResponseEntity indicating that the summarization request is accepted or returning existing summaries.
      * @throws jakarta.validation.ConstraintViolationException if validation fails for the request body.
      */
     @PostMapping("/summarize")
     public ResponseEntity<?> summarize(@Valid @RequestBody SummarizationRequestDTO request) {
         logger.info("Received summarization request: {}", request);
-        try {
-            request = JSONCleaner.sanitizeRequest(request);
 
-            if (summarizationService.summariesExistForTranscript(request.getTranscriptId())) {
-                Map<String, Object> response = summarizationService.compareSummaries(request);
-                logger.info("Returning response with old and new summaries for transcript ID: {}", request.getTranscriptId());
+        try {
+            // Sanitize the request payload
+            SummarizationRequestDTO sanitizedRequest = JSONCleaner.sanitizeRequest(request);
+
+            if (summarizationService.summariesExistForTranscript(sanitizedRequest.getTranscriptId())) {
+                // Handle case where summaries already exist
+                Map<String, Object> response = summarizationService.compareSummaries(sanitizedRequest);
+                logger.info("Returning response with old and new summaries for transcript ID: {}", sanitizedRequest.getTranscriptId());
                 return ResponseEntity.ok(response);
             } else {
-                List<SummarizationResponseDTO> newSummaries = summarizationService.summarizeAndSave(request);
-                Map<String, Object> response = Map.of("newSummaries", newSummaries, "oldSummaries", List.of());
-                logger.info("Returning response for first-time summarization for transcript ID: {}", request.getTranscriptId());
-                return ResponseEntity.ok(response);
+                // Process summarization asynchronously for first-time summaries
+                Long transcriptId = sanitizedRequest.getTranscriptId(); // Declare a final variable for lambda usage
+                summarizationService.summarizeAndSaveAsync(sanitizedRequest)
+                        .thenAccept(newSummaries ->
+                                logger.info("Summarization completed successfully for transcript ID: {}", transcriptId)
+                        )
+                        .exceptionally(ex -> {
+                            logger.error("Error during asynchronous summarization for transcript ID {}: {}", transcriptId, ex.getMessage(), ex);
+                            return null; // Returning null as CompletableFuture requires it.
+                        });
+
+                // Return immediate response indicating the request is being processed
+                logger.info("Summarization request accepted for transcript ID: {}", sanitizedRequest.getTranscriptId());
+                return ResponseEntity.accepted().body("Summarization request is being processed.");
             }
         } catch (Exception e) {
             logger.error("Error processing summarization request for transcript ID {}: {}", request.getTranscriptId(), e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error summarizing transcript");
         }
     }
+
+
+
 
     /**
      * Retrieve summaries for a specific transcript.

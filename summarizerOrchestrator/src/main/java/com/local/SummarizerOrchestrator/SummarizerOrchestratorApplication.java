@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * Main entry point for the Summarizer Orchestrator application.
  * This application integrates multiple summarization models and provides RESTful APIs.
  */
 @SpringBootApplication
+@EnableAsync
 public class SummarizerOrchestratorApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(SummarizerOrchestratorApplication.class);
