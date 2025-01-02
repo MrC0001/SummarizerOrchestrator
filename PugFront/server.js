@@ -31,8 +31,8 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // Middleware to parse URL-encoded bodies and JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+app.use(express.json({ limit: "10mb" }));
 
 /**
  * Fetches transcripts from the backend.
@@ -214,60 +214,66 @@ app.post(
  * Summarization page.
  */
 app.post(
-    '/summarizeAll',
-    [
-        body('transcriptSelect').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format'),
-        body('transcript').notEmpty().withMessage('Transcript content is required'),
-    ],
-    async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            logger.warn(`Validation errors: ${JSON.stringify(errors.array())}`);
-            const transcripts = await fetchTranscripts();
-            return res.render('index', { title: 'Summarize a Transcript', transcripts, error: errors.array()[0].msg });
-        }
+  '/summarizeAll',
+  [
+      body('transcriptSelect').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format'),
+      body('transcript').notEmpty().withMessage('Transcript content is required'),
+  ],
+  async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+          logger.warn(`Validation errors: ${JSON.stringify(errors.array())}`);
+          const transcripts = await fetchTranscripts();
+          return res.render('index', { title: 'Summarize a Transcript', transcripts, error: errors.array()[0].msg });
+      }
 
-        const { transcriptSelect, transcript } = req.body;
+      const { transcriptSelect, transcript } = req.body;
 
-        const payload = {
-            prompt: "Summarize the following conversation:",
-            context: transcript,
-            parameters: { max_tokens: 200, temperature: 0.7 },
-            transcriptId: parseInt(transcriptSelect),
-        };
+      const payload = {
+          prompt: "Summarize the following conversation:",
+          context: transcript,
+          parameters: { max_tokens: 200, temperature: 0.7 },
+          transcriptId: parseInt(transcriptSelect),
+      };
 
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/summarize`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
+      logger.info(`Summarization payload: ${JSON.stringify(payload)}`);
 
-            if (!response.ok) {
-                logger.error(`Summarization failed with status: ${response.status}`);
-                throw new Error('Summarization failed.');
-            }
+      try {
+          const response = await fetch(`${API_BASE_URL}/api/summarize`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+          });
 
-            const responseData = await response.json();
-            const { newSummaries = [], oldSummaries = [] } = responseData;
+          if (!response.ok) {
+              const errorDetails = await response.text();
+              logger.error(`Summarization failed. Status: ${response.status}, Error: ${errorDetails}`);
+              throw new Error('Summarization failed.');
+          }
 
-            res.render('results', { 
-                title: 'Summarization Results', 
-                newSummaries, 
-                oldSummaries, 
-                transcriptId: transcriptSelect,
-            });
-        } catch (error) {
-            logger.error(`Error summarizing transcript: ${error.message}`);
-            const transcripts = await fetchTranscripts();
-            res.render('index', { 
-                title: 'Summarize a Transcript', 
-                transcripts, 
-                error: 'Summarization failed.' 
-            });
-        }
-    }
+          const responseData = await response.json();
+          const { newSummaries = [], oldSummaries = [] } = responseData;
+
+          logger.info(`Summarization response: ${JSON.stringify(responseData)}`);
+
+          res.render('results', {
+              title: 'Summarization Results',
+              newSummaries,
+              oldSummaries,
+              transcriptId: transcriptSelect,
+          });
+      } catch (error) {
+          logger.error(`Error summarizing transcript: ${error.message}`);
+          const transcripts = await fetchTranscripts();
+          res.render('index', {
+              title: 'Summarize a Transcript',
+              transcripts,
+              error: 'Summarization failed. Please try again.',
+          });
+      }
+  }
 );
+
 
 /**
  * Displays summaries page with the list of transcripts.
@@ -289,45 +295,46 @@ app.post(
   '/summaries/view',
   [body('transcriptId').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format')],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      logger.warn(`Validation errors in /summaries/view: ${JSON.stringify(errors.array())}`);
-      const transcripts = await fetchTranscripts();
-      return res.render('summaries', { title: 'Stored Summaries', transcripts, summaries: null, error: errors.array()[0].msg });
-    }
-
-    const { transcriptId } = req.body;
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/api/${transcriptId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch transcript and summaries for the selected transcript.');
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+          logger.warn(`Validation errors in /summaries/view: ${JSON.stringify(errors.array())}`);
+          const transcripts = await fetchTranscripts();
+          return res.render('summaries', { title: 'Stored Summaries', transcripts, summaries: null, error: errors.array()[0].msg });
       }
 
-      const data = await response.json();
-      logger.info(`Fetched data for transcript ID ${transcriptId}: ${JSON.stringify(data)}`);
+      const { transcriptId } = req.body;
 
-      const transcripts = await fetchTranscripts();
-      res.render('summaries', { 
-        title: 'Stored Summaries', 
-        transcripts, 
-        transcript: data.transcript, 
-        summaries: data.summaries, 
-        error: null 
-      });
-    } catch (error) {
-      logger.error(`Error fetching transcript and summaries: ${error.message}`);
-      const transcripts = await fetchTranscripts();
-      res.render('summaries', { 
-        title: 'Stored Summaries', 
-        transcripts, 
-        transcript: null, 
-        summaries: null, 
-        error: 'Failed to fetch transcript and summaries for the selected transcript.' 
-      });
-    }
+      try {
+          const response = await fetch(`${API_BASE_URL}/api/${transcriptId}`);
+          if (!response.ok) {
+              throw new Error('Failed to fetch transcript and summaries for the selected transcript.');
+          }
+
+          const data = await response.json();
+          logger.info(`Fetched data for transcript ID ${transcriptId}: ${JSON.stringify(data)}`);
+
+          const transcripts = await fetchTranscripts();
+          res.render('summaries', { 
+              title: 'Stored Summaries', 
+              transcripts, 
+              transcript: data.transcript, 
+              summaries: data.summaries, 
+              error: null 
+          });
+      } catch (error) {
+          logger.error(`Error fetching transcript and summaries: ${error.message}`);
+          const transcripts = await fetchTranscripts();
+          res.render('summaries', { 
+              title: 'Stored Summaries', 
+              transcripts, 
+              transcript: null, 
+              summaries: null, 
+              error: 'Failed to fetch transcript and summaries for the selected transcript.' 
+          });
+      }
   }
 );
+
 
 /**
  * Generates summaries for a selected transcript.
