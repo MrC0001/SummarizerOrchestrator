@@ -1,0 +1,72 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Rachel. Can I take your full name to start with, please?
+
+Customer: Hi, it’s Christopher Edwards.
+
+Advisor: Thank you, Mr. Edwards. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 12th May 1984, and my postcode is B1 2JT.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I’m calling because I think we’ve been scammed. I run a small business, and we recently paid an invoice to one of our regular suppliers, but now they’re saying they never received the payment. It was for £18,000.
+
+Advisor: I’m very sorry to hear that, Mr. Edwards. Let me assure you, you’ve done the right thing by contacting us. Could you start by explaining how you received the invoice and any communication you had with the supplier?
+
+Customer: The invoice came via email, just like always. The email looked the same, but it had updated payment details for a new account. I didn’t think to verify it because we’ve worked with them for years.
+
+Advisor: I understand. Did the email contain any urgent language or unusual instructions?
+
+Customer: Yes, it mentioned that their old account was undergoing some kind of audit and that the new details were temporary.
+
+Advisor: Thank you. Let me review your account for this transaction and investigate further. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Mr. Edwards. I’ve identified the payment for £18,000 to the new account. Unfortunately, the account has been flagged in our system as linked to known fraud. Could you tell me if you’ve had any direct conversations with the supplier since making the payment?
+
+Customer: Yes, I called them after they said they hadn’t received it. That’s when I realized something was wrong. They confirmed they never sent any new account details.
+
+Advisor: Understood. It sounds like this could be an invoice redirection fraud, where fraudsters impersonate a supplier to misdirect payments. I’ll flag the transaction and initiate a recovery request with the receiving bank. While I do that, let’s check for any other suspicious activity on your account. Could you hold for a moment?
+
+Customer: Yes, please.
+
+Advisor: Thanks for holding, Mr. Edwards. I’ve reviewed your account, and there are no other unauthorized transactions. However, I recommend resetting your online banking credentials as a precaution. Could you confirm the last four digits of your business debit card?
+
+Customer: It’s 5291.
+
+Advisor: Thank you. I’ll process that now. Additionally, I recommend enabling two-factor authentication for your account to enhance security. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll include detailed instructions in the follow-up email. Let’s also discuss the evidence needed to support the recovery request. Could you provide any emails, invoices, or other communications related to this payment?
+
+Customer: Yes, I’ve kept all the emails and the invoice. I can send them over.
+
+Advisor: That’s perfect. I’ll email you the details for submitting your evidence after the call. Additionally, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide you with a reference number, which we can include in our investigation.
+
+Customer: I’ll do that today. What are the chances of getting the money back?
+
+Advisor: It depends on whether the funds are still available in the fraudster’s account, but we’ll do everything possible to recover them. I’ll keep you updated throughout the process.
+
+Advisor: Let’s also discuss steps to prevent this from happening again. Fraudsters often intercept emails or create convincing replicas to misdirect payments. Always verify account changes directly with the supplier using a known contact number. Do you usually have a verification process in place?
+
+Customer: Not really. We usually trust the invoices we receive.
+
+Advisor: I recommend implementing a dual-authorization process for payments over a certain amount. This requires two people to approve any changes to payee details or large transactions. Would you like advice on setting that up?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: I’ll include information on dual-authorization processes in the follow-up email. Additionally, consider using email encryption or a secure portal for communication with suppliers to reduce the risk of interception.
+
+Customer: I hadn’t thought of that. I’ll look into it.
+
+Advisor: To summarize, your payment was flagged as part of an invoice redirection fraud. I’ve secured your account by resetting your credentials and initiated a recovery request. I’ve recommended enabling two-factor authentication, reporting the incident to Action Fraud, and implementing stronger payment verification processes. I’ll send a follow-up email with detailed guidance. Do you have any other questions or concerns?
+
+Customer: No, I think that covers everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Mr. Edwards. Thank you for reporting this promptly. If you have any further concerns, don’t hesitate to contact us. Take care.
+
+Customer: Thanks. You too.
+

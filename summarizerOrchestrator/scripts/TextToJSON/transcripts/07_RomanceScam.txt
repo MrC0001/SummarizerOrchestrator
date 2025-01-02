@@ -1,0 +1,103 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Daniel. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Sarah Mitchell.
+
+Advisor: Thank you, Ms. Mitchell. Can you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure, my date of birth is 5th November 1985, and my postcode is EH4 2HN.
+
+Advisor: Thank you. Let me access your account details. Could you tell me what prompted you to contact us today?
+
+Customer: I think I’ve been scammed. I sent money to someone I met online, and now I can’t reach them. I feel so stupid for falling for it.
+
+Advisor: I’m very sorry to hear that, Ms. Mitchell. You’ve taken the right step by reaching out to us. Let me gather some details so we can assist you. Could you start by telling me how you came into contact with this person?
+
+Customer: I met him through a dating app about six months ago. We’d been talking every day, and he seemed genuine. A few weeks ago, he started telling me about financial problems he was having.
+
+Advisor: Thank you for sharing that. What kind of financial issues did he mention, if you don’t mind me asking?
+
+Customer: He said his business was struggling, and he needed help to cover some urgent expenses. He said he’d pay me back as soon as his money came through.
+
+Advisor: Understood. Did he ask for a specific amount or provide details about what the money was for?
+
+Customer: Yes, he asked for £2,000 at first to cover a supplier payment. Then, a week later, he asked for another £1,500 because he said the supplier had additional fees.
+
+Advisor: Thank you. Did he provide any invoices, contracts, or other documentation to support his requests?
+
+Customer: No, he didn’t. He just explained everything over the phone and said he’d sort it out soon.
+
+Advisor: I see. And how did you send the money to him? Was it through a bank transfer, or did you use another method?
+
+Customer: I sent it through bank transfers using my online banking app. He gave me his account details.
+
+Advisor: Thank you for confirming. Did he provide any updates or repayment timelines after receiving the funds?
+
+Customer: He kept saying he was working on getting the money back to me, but last week he stopped responding. His phone number isn’t working anymore, and his profile on the dating app has disappeared.
+
+Advisor: I understand how distressing this must be, Ms. Mitchell. Based on what you’ve shared, it sounds like this could be a romance scam. I’ll take immediate steps to secure your account and investigate these transactions. Could you hold for a moment while I review your account activity?
+
+Customer: Yes, please.
+
+Advisor: Thanks for holding, Ms. Mitchell. I’ve reviewed the transactions, and I can see two payments—one for £2,000 and another for £1,500—sent to the account he provided. I’ll flag these as unauthorized transfers. Before I proceed further, could you confirm the account details he shared with you?
+
+Customer: Yes, the sort code was 40-22-55, and the account number was 65432109.
+
+Advisor: Thank you. I’ll cross-check these details against our internal database for any links to reported fraudulent activity. This may take a few minutes. Could you hold again?
+
+Customer: Sure, no problem.
+
+Advisor: Thanks for waiting. The account you sent the funds to is flagged in our system as being associated with multiple reports of fraud. This confirms that you were unfortunately targeted in a scam. I’ll escalate this case to our investigations team and work to recover the funds. Before I proceed, I’ll need to ask a few more questions to complete the investigation. Is that okay?
+
+Customer: Yes, of course.
+
+Advisor: Thank you. Have you had any additional contact with this person outside of the dating app, such as emails or other phone numbers they may have used?
+
+Customer: He sent a few emails, but he mainly called me. I still have the emails saved.
+
+Advisor: That’s good to know. Those emails might be helpful for our investigation. Would you be able to forward them to our fraud team?
+
+Customer: Yes, I can do that.
+
+Advisor: Great. I’ll provide you with instructions on how to send those emails securely. In the meantime, could you tell me if you’ve shared any other personal information with him, such as your address or account details?
+
+Customer: He knows my address because I mentioned where I live, but I didn’t give him any account details.
+
+Advisor: Thank you for clarifying. As an added precaution, I recommend monitoring for any unusual activity, such as unexpected deliveries or correspondence. If you notice anything out of the ordinary, please let us know immediately.
+
+Customer: Okay, I’ll keep an eye out.
+
+Advisor: Now, let’s discuss the next steps. First, I’ll place a recovery request with the recipient bank to recall the funds. This process usually takes between five and ten working days, but we’ll prioritize your case. Second, I’ll block any further transactions to that account from your account. Lastly, I’ll set up enhanced fraud monitoring to flag any suspicious activity. Does that sound okay?
+
+Customer: Yes, thank you. Do you think I’ll get my money back?
+
+Advisor: We’ll do everything we can to recover your funds. While we can’t guarantee the outcome, the fact that the recipient’s account is flagged increases the likelihood of a successful recovery. Our investigations team will keep you updated throughout the process.
+
+Customer: I just feel so embarrassed. I can’t believe I fell for this.
+
+Advisor: Please don’t blame yourself, Ms. Mitchell. These scammers are very convincing, and they prey on trust. The important thing is that you’ve reported it, and we’re taking action to protect you.
+
+Customer: Thank you. Is there anything else I should do?
+
+Advisor: Yes, there are a few additional steps I recommend. First, report this incident to Action Fraud, the UK’s national fraud reporting centre. They’ll provide you with a reference number, which will also help with our investigation. I can give you their contact details if you’d like.
+
+Customer: Yes, please.
+
+Advisor: Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. Second, consider reviewing your online privacy settings, especially on social media. Scammers often gather personal information from public profiles. Would you like me to send you guidance on improving online privacy?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll arrange that. Finally, I recommend speaking to someone you trust about this experience. Romance scams can be emotionally distressing, and having support can make a big difference. Do you have someone you can talk to?
+
+Customer: Yes, I think I’ll talk to my sister about it.
+
+Advisor: That’s a good idea. Remember, we’re here to support you as well. If you have any questions or need further assistance, please don’t hesitate to reach out. Before we finish, is there anything else I can assist you with?
+
+Customer: No, I think that’s everything. Thank you for your help.
+
+Advisor: You’re welcome, Ms. Mitchell. To summarize, I’ve flagged the unauthorized transactions, initiated a recovery request, and provided steps to improve your online security. Our investigations team will keep you updated. Thank you for contacting us, and take care.
+
+Customer: Thank you, Daniel. I really appreciate your help.
+
+Advisor: You’re welcome. Have a good day.

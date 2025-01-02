@@ -1,0 +1,52 @@
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is David. Can I take your full name to start with, please?
+Customer: Yes, it’s Sophie Carter.
+Advisor: Thank you, Ms. Carter. Could you also confirm your date of birth and the postcode linked to your account?
+Customer: Sure, my date of birth is 4th October 1991, and the postcode is NG3 5BY.
+Advisor: Great, thanks for that. Let me bring up your account now. Could you tell me why you’re calling today?
+Customer: I think I’ve been scammed. I bought something online last week, but it hasn’t arrived, and now I can’t get in touch with the seller.
+Advisor: I’m sorry to hear that, Ms. Carter. Let me take a few details so we can look into this for you. What was it that you purchased?
+Customer: It was a pair of headphones. They were on sale for £120 on a website I found through social media.
+Advisor: Thank you. And when did you make the purchase?
+Customer: It was last Wednesday, so the 15th.
+Advisor: Got it. Did you use your debit or credit card for the transaction?
+Customer: My debit card.
+Advisor: Okay, thank you for confirming. Have you contacted the seller to request a refund or an update on the delivery?
+Customer: Yes, I’ve emailed them three times, but they haven’t responded. Their phone number doesn’t work either.
+Advisor: Understood. Just to confirm, was this a well-known retailer or a smaller business?
+Customer: It seemed like a smaller business. They had a professional-looking website, though.
+Advisor: I see. Have you purchased from this seller before, or was this the first time?
+Customer: This was the first time.
+Advisor: Thank you. And when you visited the website, did you notice anything unusual? For example, spelling mistakes, unusual payment requests, or anything else that seemed off?
+Customer: No, it looked fine to me. The checkout process was normal, and I got a confirmation email.
+Advisor: Thank you for sharing that. Let me check some details on my end. Could you hold for a moment?
+Customer: Sure.
+Advisor: Thanks. Just a moment.
+Customer: Okay.
+Advisor: Thanks for waiting. I’ve reviewed the transaction, and it appears this retailer may be linked to fraudulent activity. It’s possible the site was set up to scam customers and collect payments without delivering goods.
+Customer: Oh no, I can’t believe this. I thought it was a genuine deal.
+Advisor: It’s an easy mistake to make, Ms. Carter. Scammers are getting more sophisticated, and their websites can look very convincing. The good news is that since you used your debit card, we can look into reimbursing you under the Chargeback scheme.
+Customer: How does that work?
+Advisor: Essentially, we’ll dispute the transaction on your behalf with the retailer’s bank. If the seller doesn’t respond or we find sufficient evidence of fraud, we’ll refund the money to your account. It may take a few days for the investigation to complete. Does that sound okay?
+Customer: Yes, that would be great. Thank you.
+Advisor: You’re welcome. I’ll raise the Chargeback request now. I’ll need to document a few more details for the investigation. Could you confirm the name of the website where you made the purchase?
+Customer: It was called TrendyTechDeals.com.
+Advisor: Thank you. Did you notice if the website had any reviews or customer feedback when you were shopping?
+Customer: There were a few reviews on the site itself, but I didn’t check anywhere else.
+Advisor: That’s helpful to know. For future reference, it’s a good idea to cross-check reviews on independent platforms. Fraudulent websites often fake their testimonials to appear trustworthy.
+Customer: I’ll remember that next time.
+Advisor: Great. I’ve added the website name and your feedback to the case notes. I’ll also report the website to our fraud team so they can investigate further. In the meantime, I recommend keeping an eye on your account for any unusual activity. Would you like me to set up additional monitoring for you?
+Customer: Yes, please.
+Advisor: I’ll enable that now. This will flag any suspicious transactions for review. I’ve also noticed that scammers sometimes try to target their victims again after the first attempt. Have you received any further suspicious emails or calls since this purchase?
+Customer: No, not yet.
+Advisor: That’s good to hear. If anything does come through, please don’t hesitate to report it to us. We can also add a fraud alert to your account, which ensures our systems are even more vigilant with your transactions. Would you like me to do that as well?
+Customer: Yes, I think that would be helpful.
+Advisor: I’ll action that now. While I’m doing that, let me share some advice for protecting yourself from similar scams in the future. First, always verify websites by looking for reviews on platforms like Trustpilot or social media. Second, avoid making purchases from websites that only accept bank transfers or debit card payments. Credit cards offer an additional layer of protection. Does that make sense?
+Customer: Yes, I didn’t realize there was such a difference.
+Advisor: Absolutely. Credit card providers often have stricter fraud protections, which can make recovering funds easier. Also, double-check for a secure payment page, which you can identify by a padlock symbol in the address bar. Have you come across that before?
+Customer: Yes, I know about that.
+Advisor: Great. And finally, if a deal seems too good to be true, it often is. It’s always better to take a moment to research before making a payment. I know hindsight is twenty-twenty, but these steps can save you a lot of trouble in the future.
+Customer: I’ll definitely be more careful next time. Thank you.
+Advisor: You’re welcome. I’ve raised the Chargeback request, added enhanced monitoring to your account, and flagged the fraudulent website for our internal investigation. The Chargeback team should contact you within five to seven working days with an update. Is there anything else I can assist you with today?
+Customer: No, that’s everything.
+Advisor: Thank you for calling, Ms. Carter. Take care, and have a good day.
+Customer: Thanks, David. You too.

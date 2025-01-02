@@ -1,0 +1,81 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Jessica. Can I take your full name to start with, please?
+
+Customer: Hi, it’s Amanda Green.
+
+Advisor: Thank you, Ms. Green. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 14th September 1985, and my postcode is N12 6QT.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I bought an item online from a seller on a social media marketplace, but it never arrived. I tried contacting the seller, but they’ve blocked me now. I think I’ve been scammed.
+
+Advisor: I’m very sorry to hear that, Ms. Green. Let me assure you, we’ll investigate this thoroughly. Could you start by explaining how you found the seller and what the purchase was for?
+
+Customer: It was for a second-hand gaming console. The seller had a post on Facebook Marketplace. They seemed genuine and had good reviews on their profile.
+
+Advisor: Thank you. Could you confirm how much you paid and the method you used to make the payment?
+
+Customer: I paid £350 by bank transfer directly to their account. They said it was the fastest way to secure the item.
+
+Advisor: I see. Did the seller provide any proof of the item, like photos, receipts, or shipping details?
+
+Customer: Yes, they sent me pictures of the console and said they’d ship it once payment was received. After I transferred the money, they sent a tracking number, but it doesn’t work.
+
+Advisor: Thank you for explaining. Let me review the payment details and check for any suspicious activity on your account. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Green. I’ve identified the payment to the seller’s account, as well as another small payment to the same account for £15. Do you recognize this second transaction?
+
+Customer: No, I didn’t make another payment. That’s strange.
+
+Advisor: Thank you for confirming. It’s possible the fraudster attempted to extract more funds. I’ll flag both transactions as suspicious and block any further transfers to this account. Let’s also check for any other unauthorized activity on your account. Could you hold for a moment while I investigate further?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Ms. Green. I’ve reviewed your account, and no additional suspicious activity has been detected. However, I recommend resetting your online banking credentials as a precaution. Could you confirm the last four digits of your debit card?
+
+Customer: It’s 4792.
+
+Advisor: Thank you. I’ll secure your account now. While I’m doing that, let’s discuss the steps we can take to recover your funds and protect your account in the future. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: First, I’ll initiate a dispute for the payments made to the seller. We’ll contact the receiving bank to request a refund on your behalf. Please note that the process can take up to 15 business days, and success depends on whether the funds are still available in the recipient’s account.
+
+Customer: I understand. Do I need to provide any additional information?
+
+Advisor: It would help if you could provide any evidence of your communication with the seller, such as screenshots of messages, the listing, or any receipts they sent. Would you be able to email those to us?
+
+Customer: Yes, I have all of that. I’ll send it over today.
+
+Advisor: Perfect. I’ll email you the details for submitting your evidence after the call. Additionally, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They can provide a reference number, which we can use for our investigation.
+
+Customer: I’ll contact them as well. Thank you.
+
+Advisor: Let’s also talk about how to avoid similar scams in the future. When buying items online, especially on social media platforms, it’s safer to use payment methods that offer buyer protection, like PayPal Goods and Services. Have you used those options before?
+
+Customer: No, I usually just transfer the money directly.
+
+Advisor: Direct transfers don’t offer the same level of security. Always look for payment options that can provide a refund if the item doesn’t arrive or isn’t as described. I’ll include more tips on safe online purchasing in the follow-up email.
+
+Customer: That’s good to know. I’ll make sure to do that next time.
+
+Advisor: Before we finish, let’s also enable two-factor authentication for your online banking to enhance security. Would you like assistance setting that up?
+
+Customer: Yes, that would be great.
+
+Advisor: I’ll include detailed instructions in the follow-up email. Additionally, I recommend monitoring your account and credit report for unusual activity, as personal details can sometimes be compromised in scams like this. Would you like advice on signing up for a credit monitoring service?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: Let me summarize the steps we’ve taken today. I’ve flagged the suspicious transactions and initiated a dispute process with the receiving bank. I’ve advised you to report the incident to Action Fraud and provided guidance on securing your account and avoiding similar scams in the future. I’ve also recommended enabling two-factor authentication and monitoring your credit report. Do you have any other questions or concerns?
+
+Customer: No, I think that covers everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Ms. Green. Thank you for reporting this promptly. If you have any further concerns, don’t hesitate to contact us. Take care.
+
+Customer: Thanks. You too.

@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * Represents a summary entity.
  *
@@ -53,4 +55,7 @@ public class Summary extends BaseEntity{
     @Column(name = "summary_text", length = 10_000) // Matches Transcript text style
     @NotBlank(message = "Summary text must not be blank.")
     private String summaryText;
+
+    @OneToMany(mappedBy = "summary", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Metrics> metrics;
 }

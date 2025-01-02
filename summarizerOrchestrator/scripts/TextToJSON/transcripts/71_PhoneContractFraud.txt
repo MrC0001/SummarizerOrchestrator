@@ -1,0 +1,87 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Claire. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Robert Lewis.
+
+Advisor: Thank you, Mr. Lewis. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 14th May 1983, and my postcode is BS8 1RL.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I received a letter saying I’ve taken out a new phone contract with a company I’ve never dealt with. I think someone’s stolen my details. Now, I’m seeing some payments leaving my account that I didn’t authorize.
+
+Advisor: I’m very sorry to hear that, Mr. Lewis. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by explaining when you received this letter and what it said?
+
+Customer: The letter came two days ago. It confirmed a new contract under my name and address, with a payment of £80 per month. I also checked my account and saw payments to a telecom provider I’ve never used.
+
+Advisor: Thank you. Have you noticed any other unusual activity, such as alerts about new devices or additional transactions?
+
+Customer: Yes, I received a text from the bank last week about a one-time passcode I didn’t request. I ignored it at the time because I wasn’t using my account.
+
+Advisor: Thank you for explaining. Let me review your recent transactions and investigate further. Could you hold for a moment?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Mr. Lewis. I’ve identified the payments to the telecom provider you mentioned, along with several other unauthorized transactions. These include a £1,000 transfer to a flagged account, £500 to an electronics store, and smaller purchases totaling £300. Do you recognize any of these?
+
+Customer: No, none of those are mine.
+
+Advisor: Thank you for confirming. I’ve flagged these as unauthorized and blocked any further transactions to the associated accounts. Before proceeding, I need to verify some additional details to secure your account. Could you confirm the answer to your security question: “What is your favorite movie?”
+
+Customer: It’s The Shawshank Redemption.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 3764.
+
+Advisor: Perfect. I’ll reset your online banking credentials now and secure your account. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: Let’s discuss the phone contract further. Did the letter include any details about the account used to set up the contract, such as an email or phone number?
+
+Customer: Yes, it listed an email address I don’t recognize. It’s definitely not mine.
+
+Advisor: Thank you. Did you recently share any personal information online or through emails that could have been compromised?
+
+Customer: I did respond to an email from what I thought was my phone provider, asking me to confirm my details for a “system upgrade.”
+
+Advisor: Thank you. It’s likely the fraudsters used that phishing email to collect your information. Did you notice any changes to your online banking or receive any notifications about new devices logging in?
+
+Customer: Yes, I got a text about a new device logging in a few days ago, but I thought it was a mistake.
+
+Advisor: Let me review the devices linked to your account and check for further suspicious activity. Could you hold for a moment?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Mr. Lewis. I’ve identified several unauthorized devices linked to your account, including one from an international IP address. I’ve also flagged multiple suspicious payees and removed them. Have you reused your banking credentials on any other platforms?
+
+Customer: Yes, I use the same password for my email account.
+
+Advisor: Thank you for mentioning that. It’s possible the fraudsters accessed your account through your email. I recommend updating all your passwords immediately and enabling two-factor authentication. Would you like assistance with that?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll send you guidance on securing your account and email. Let’s focus on recovering your funds and minimizing future risks.
+
+Advisor: I recommend enabling two-factor authentication for your online banking account to add an extra layer of security. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll send you detailed instructions for that. Additionally, I recommend contacting the telecom provider to report the fraudulent contract. They may require a police reference number, which you can obtain by reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Lastly, I suggest monitoring your credit report for unusual activity, as your personal details may have been compromised. Would you like advice on signing up for a credit monitoring service?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions, reset your online banking credentials, and initiated recovery processes for your funds. I’ve also provided guidance on contacting the telecom provider and securing your account. Do you have any other questions or concerns?
+
+Customer: No, I think that’s everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Mr. Lewis. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

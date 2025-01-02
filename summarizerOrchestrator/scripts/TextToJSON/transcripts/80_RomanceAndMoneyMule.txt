@@ -1,0 +1,95 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Claire. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Emily Roberts.
+
+Advisor: Thank you, Ms. Roberts. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 5th June 1986, and my postcode is CH1 1AA.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think I’ve been scammed. I’ve been helping someone I met online with their finances, and now I’ve noticed transactions I didn’t make. I’m really worried.
+
+Advisor: I’m very sorry to hear that, Ms. Roberts. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by explaining how you met this person and what they asked you to do?
+
+Customer: I met him on a dating app about three months ago. He said he was working overseas and couldn’t access his bank account, so he asked if he could transfer money to me to send to his family.
+
+Advisor: Thank you. How much money was transferred to your account, and where did you send it?
+
+Customer: Over the past two months, he’s transferred about £30,000 into my account. I forwarded it to various accounts he provided. I thought I was helping him, but now I feel like something’s not right.
+
+Advisor: Understood. Did he ask for any of your personal information, such as your banking credentials or ID?
+
+Customer: Yes, he said he needed my bank details to “verify” the transfers and a copy of my passport for “official paperwork.”
+
+Advisor: Thank you. Have you noticed any unauthorized transactions or additional activity on your account?
+
+Customer: Yes, there are payments totaling around £5,000 that I don’t recognize, and I’ve received emails from the bank about unusual login attempts.
+
+Advisor: Let me review your recent transactions and investigate further. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Roberts. I’ve identified the £30,000 transfers, as well as the £5,000 in unauthorized transactions. There are also multiple new payees added to your account. Do you recognize any of these details?
+
+Customer: No, I don’t.
+
+Advisor: Thank you for confirming. I’ve flagged these as unauthorized and blocked any further transactions to the associated accounts. Before proceeding, I need to verify some additional details to secure your account. Could you confirm the answer to your security question: “What is the name of your first pet?”
+
+Customer: It’s Daisy.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 7863.
+
+Advisor: Perfect. I’ll reset your online banking credentials now and secure your account. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: Let’s discuss the person you met further. Did they provide any documentation or evidence to make their story believable?
+
+Customer: Yes, he sent pictures of himself, his passport, and even bank statements to show his funds. It seemed genuine at the time.
+
+Advisor: Thank you. Did he create any urgency or pressure to make you act quickly?
+
+Customer: Yes, he said the money was for his mother’s medical bills and that any delays could be life-threatening.
+
+Advisor: Understood. Have you received any emails or texts from the bank about new devices logging in or changes to your account settings?
+
+Customer: Yes, I received a text about a new device, but I thought it was just an error.
+
+Advisor: Let me review the devices linked to your account and check for further suspicious activity. Could you hold for a moment?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Ms. Roberts. I’ve identified multiple unauthorized devices linked to your account, including one from an international IP address. I’ve also flagged and removed several suspicious payees. Have you reused your banking credentials on other platforms?
+
+Customer: Yes, I use the same password for my email and a couple of shopping sites.
+
+Advisor: Thank you for mentioning that. It’s possible the fraudsters accessed your account through compromised credentials. I recommend updating all your passwords immediately and enabling two-factor authentication. Would you like assistance with that?
+
+Customer: Yes, please.
+
+Advisor: I’ll send you guidance on securing your account and reviewing linked services. Let’s focus on recovering your funds and minimizing further risks.
+
+Advisor: I recommend enabling two-factor authentication for your online banking account to add an extra layer of security. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll send you detailed instructions for that. Additionally, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number for your case, which you can share with us.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Lastly, I suggest monitoring your credit report for unusual activity, as your personal details may have been compromised. Would you like advice on signing up for a credit monitoring service?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions, reset your online banking credentials, and initiated recovery processes for your funds. I’ve also provided guidance on improving your account security and monitoring your identity. Do you have any other questions or concerns?
+
+Customer: No, I think that’s everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Ms. Roberts. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

@@ -1,0 +1,99 @@
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Rebecca. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Alan Thompson.
+
+Advisor: Thank you, Mr. Thompson. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 17th June 1990, and the postcode is N1 7GU.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think I’ve been scammed. I invested in a cryptocurrency platform, and now I can’t withdraw my money. The platform’s customer service isn’t responding, and I’m really worried I’ve lost everything.
+
+Advisor: I’m sorry to hear that, Mr. Thompson. You’ve done the right thing by contacting us. Let me gather more details to assist you. Could you start by telling me how you came across this platform?
+
+Customer: I saw an ad on social media. It said you could double your money in a few weeks through cryptocurrency investments. It looked legitimate, so I clicked the link and signed up.
+
+Advisor: Thank you. Did the platform ask for any specific information or documentation when you signed up?
+
+Customer: Yes, they asked for my ID and proof of address, which I provided. Then they said I needed to fund my account to start investing.
+
+Advisor: I see. How much did you initially deposit, and how did you make the payment?
+
+Customer: I started with £500, which I transferred directly from my bank account. Then they kept encouraging me to invest more, saying I could get better returns.
+
+Advisor: Thank you for sharing that. How much have you sent to them in total?
+
+Customer: About £8,000. It’s been over the last two months, in multiple transfers.
+
+Advisor: Understood. Did the platform provide any documentation, such as receipts or investment statements?
+
+Customer: Yes, they sent me statements showing my “profits.” My account balance kept growing, which made me trust them. But when I tried to withdraw my funds last week, they said I needed to pay a “release fee” of £2,000.
+
+Advisor: Thank you for explaining. Fraudulent platforms often use fake profit statements to gain trust and demand additional payments. Did you pay the release fee?
+
+Customer: No, I didn’t. That’s when I realized something was wrong.
+
+Advisor: I see. Could you confirm the name of the platform and the details of the accounts you sent money to?
+
+Customer: The platform is called CryptoFuture. The accounts varied each time. I have the sort codes and account numbers saved if that helps.
+
+Advisor: That would be helpful. Could you provide those details now?
+
+Customer: Sure. One of the accounts had a sort code of 60-11-33 and an account number of 87654321. Another one was 20-15-44 and 12345678.
+
+Advisor: Thank you. I’ll cross-check these against our internal fraud database. This may take a few minutes. Could you hold while I investigate?
+
+Customer: Yes, that’s fine.
+
+Advisor: Thanks for holding, Mr. Thompson. Both accounts you mentioned are flagged in our system for being associated with fraudulent activity. This confirms that the platform you used is likely a scam. I’ll escalate this case to our investigations team and initiate recovery attempts for your funds. Before proceeding further, I’ll need to ask some additional questions to complete the profile for the investigation. Is that okay?
+
+Customer: Yes, of course.
+
+Advisor: Thank you. Have you had any direct contact with the platform’s representatives, such as emails, phone calls, or messages through their website?
+
+Customer: Yes, they called me regularly to discuss “investment opportunities.” They also sent emails and messages through their portal. I still have all the emails.
+
+Advisor: That’s great to hear. Those emails could be helpful for our investigation. Would you be able to forward them to our fraud team?
+
+Customer: Yes, I can do that.
+
+Advisor: Thank you. Could you describe the calls? Did the representatives seem professional, or did anything strike you as unusual?
+
+Customer: They sounded professional, but they were very pushy. They kept saying I needed to act quickly to take advantage of “exclusive opportunities.”
+
+Advisor: Understood. Did they ever mention their location or provide any company registration details?
+
+Customer: They claimed to be based in London and said they were registered with a financial authority, but I didn’t verify it.
+
+Advisor: Thank you. It’s common for fraudulent platforms to falsely claim regulatory approval. I’ll include this information in the case notes. Have you shared any additional personal or financial information with them, such as other account details or passwords?
+
+Customer: No, just the payments I made.
+
+Advisor: Thank you for clarifying. Let’s focus on securing your account and minimizing further risks. I’ll block any future transactions to the flagged accounts, reset your online banking credentials, and enable enhanced fraud monitoring. Does that sound okay?
+
+Customer: Yes, please do that.
+
+Advisor: I’ve processed those changes. While I’m doing that, I’d like to provide guidance on how to secure your personal information and avoid similar scams in the future. Would that be helpful?
+
+Customer: Yes, definitely.
+
+Advisor: First, I recommend reviewing your online privacy settings, especially on social media. Fraudsters often gather information from public profiles to make their scams more convincing. Have you shared any personal details online recently?
+
+Customer: Not directly, but I do post a lot about my interests and travels.
+
+Advisor: That’s good to know. It’s a good idea to limit what you share publicly and adjust your privacy settings so only trusted contacts can see your posts. Second, always verify the legitimacy of investment platforms before engaging with them. Look for reviews on independent sites and ensure they’re registered with the Financial Conduct Authority. Would you like me to send you a guide on identifying trustworthy investment opportunities?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this scam to Action Fraud. They’ll provide you with a reference number, which you can share with us. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040.
+
+Customer: Okay, I’ll do that.
+
+Advisor: Great. Let’s summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions, initiated recovery requests, and provided steps to secure your account and personal information. Our investigations team will keep you updated on the progress. Do you have any questions or concerns?
+
+Customer: No, I think that covers everything. Thank you for your help.
+
+Advisor: You’re welcome, Mr. Thompson. Thank you for reporting this promptly. If you have further concerns, don’t hesitate to contact us. Take care, and have a good day.
+
+Customer: Thanks. You too.

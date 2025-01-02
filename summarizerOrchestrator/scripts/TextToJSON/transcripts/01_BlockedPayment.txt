@@ -1,0 +1,50 @@
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Sarah. Can I take your full name to start with, please?
+Customer: Yes, it’s Michael Green.
+Advisor: Thank you, Mr. Green. Could you also confirm your date of birth and the postcode linked to your account?
+Customer: Sure, my date of birth is 12th March 1987, and my postcode is SE15 3BX.
+Advisor: Great, thanks for that. Let me just bring up your account. Okay, I see there’s been some activity flagged by our system. Could you tell me a bit more about why you’re calling today?
+Customer: I was trying to transfer three thousand five hundred pounds to a company in France this morning, but it got blocked. I don’t understand why.
+Advisor: I understand how frustrating that can be, Mr. Green. Let me have a look at the transaction details to see what caused the block. Bear with me for just a moment while I check.
+Customer: Okay.
+Advisor: Okay, I can see here that the transfer was flagged by our payment verification system. Just to confirm, were you making the transfer to a business or an individual?
+Customer: It’s a business, some property management company I’ve been dealing with. They sent me an invoice.
+Advisor: Thank you. And have you made transfers to this company before? Or is this the first time?
+Customer: This is the first time.
+Advisor: Understood. And how did you come into contact with them? Was it through a referral, or have you worked with them directly before?
+Customer: I found them online. They manage short-term rental properties, and I’m renting a place through them.
+Advisor: Got it. Have they sent you any documentation or contracts regarding the transaction?
+Customer: Yes, I got a rental agreement, and they sent the invoice via email.
+Advisor: Thanks for confirming. Just a few more questions, if that’s okay. When you received the email with the invoice, did you notice anything unusual, such as spelling errors or unexpected requests?
+Customer: No, it all looked fine to me.
+Advisor: Okay. And when you tried to make the payment, were you prompted to approve it through your mobile banking app or receive a One-Time Passcode?
+Customer: Yes, I approved it on my app, but then I got a notification saying the payment couldn’t go through.
+Advisor: Thank you for confirming. Let me take a closer look at the rules that were triggered to block this payment. It’ll take a couple of minutes—would you mind holding?
+Customer: That’s fine.
+Advisor: Thank you. Please bear with me.
+Customer: Okay.
+Advisor: Mr. Green, thanks for waiting. I can see that the system flagged this payment because it matches certain patterns associated with fraud. While I investigate further, can I ask you to log into your mobile banking app and confirm the account details for the recipient?
+Customer: Sure, give me a second. Okay, it’s an account ending in nine eight seven six with a sort code of forty-thirty-twenty-four.
+Advisor: Thanks for that. Let me cross-reference this with known reports of fraudulent activity. It’ll take a couple of minutes. Are you okay to hold?
+Customer: Yeah, go ahead.
+Advisor: Thank you.
+Customer: Right.
+Advisor: Mr. Green, thanks for holding. The account you’re trying to send money to is unfortunately linked to several reports of fraudulent activity. It looks like scammers might be impersonating a legitimate company. I know this isn’t what you want to hear, but it’s good the system stopped the payment.
+Customer: What? Are you serious? They seemed so professional.
+Advisor: I completely understand how concerning this is. Scammers can be incredibly convincing, and it’s not uncommon for them to create fake invoices and websites that look legitimate. Did the company ask for payment in a specific way, such as a bank transfer only?
+Customer: Yes, they insisted on a bank transfer. I didn’t think much of it.
+Advisor: That’s often a red flag. Scammers prefer bank transfers because it’s harder for victims to recover the funds once they’ve been sent. Do you have any other communication with them—emails, phone calls, or texts?
+Customer: I’ve got emails and a few phone calls. They even confirmed the rental dates with me.
+Advisor: Thank you. It might be helpful to forward those emails to our fraud team for further analysis. I can guide you on how to do that shortly. Right now, I’ll block the payment completely to ensure it doesn’t go through. Does that sound okay?
+Customer: Yes, please do that. I don’t want to lose my money.
+Advisor: Understood. I’ve actioned the block. Can I suggest some next steps for you?
+Customer: Go ahead.
+Advisor: First, stop all communication with the company immediately. Second, if you’ve shared any personal information, like your address or ID details, you might want to report this to Action Fraud, the UK’s national fraud reporting centre. I can provide their contact details.
+Customer: Okay, I’ll do that. What about getting my money back?
+Advisor: Since the payment didn’t go through, there’s no financial loss to you. However, I’d still recommend keeping an eye on your account for any suspicious activity. Would you like me to set up additional account monitoring for you?
+Customer: Yes, please.
+Advisor: I’ll enable that now. This means any unusual activity on your account will trigger alerts for our team to review. Additionally, if you’d like, we can send you educational resources to help identify scams in the future.
+Customer: That would be helpful, thank you.
+Advisor: Of course. Before we wrap up, is there anything else I can assist you with today?
+Customer: No, I think that’s everything.
+Advisor: Great. I’ve documented everything we discussed and escalated the case to our internal fraud team for review. If they need further information, they’ll contact you directly. Thank you for calling, Mr. Green. Take care, and have a good day.
+Customer: Thanks, Sarah. You too.

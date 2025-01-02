@@ -1,0 +1,97 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Alex. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Sarah Walker.
+
+Advisor: Thank you, Ms. Walker. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 23rd June 1991, and my postcode is SE1 3DY.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I’ve been getting notifications about third-party apps accessing my account through Open Banking. I don’t remember authorizing these, and now I’m seeing payments that I didn’t make.
+
+Advisor: I’m sorry to hear that, Ms. Walker. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by telling me when you first noticed these notifications?
+
+Customer: It was two days ago. I got an email saying that an app had been connected to my account. I assumed it was a mistake because I don’t use Open Banking. Then I noticed payments leaving my account this morning.
+
+Advisor: Thank you. Can you describe the payments? Do they appear to be transfers, purchases, or subscriptions?
+
+Customer: There’s a £400 transfer to an account I don’t recognize, £120 to an online retailer, and a £50 recurring subscription to something called “QuickPay Plus.”
+
+Advisor: Thank you for sharing those details. Did you receive any emails or messages recently asking you to log in to your account or confirm any information?
+
+Customer: Yes, a few days ago I got an email saying there was unusual activity on my account. It included a link to log in and check. I clicked the link and entered my details.
+
+Advisor: Thank you. It’s possible that email was part of a phishing attack designed to capture your login credentials. Did the website you were directed to resemble our official site?
+
+Customer: Yes, it looked exactly like your website. That’s why I didn’t think twice about it.
+
+Advisor: I understand. Phishing sites are designed to mimic legitimate platforms. After you entered your details, did you notice any unusual activity, such as failed login attempts or changes to your account settings?
+
+Customer: No, everything seemed fine until this morning.
+
+Advisor: Thank you for clarifying. Let me review your account for suspicious activity and investigate the third-party app connections. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Walker. I’ve reviewed your account, and I can see the payments you mentioned. I’ve also identified connections to three third-party apps through Open Banking. These include “QuickPay Plus,” “SmartWallet Pro,” and “EaseTransfer.” Did you authorize any of these?
+
+Customer: No, I’ve never even heard of them.
+
+Advisor: Thank you for confirming. I’ll revoke access for these apps immediately and block any further payments to the flagged accounts. Before proceeding, I’ll need to verify some additional details to secure your account. Could you confirm the answer to your security question: “What is your favorite animal?”
+
+Customer: It’s a dolphin.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 8429.
+
+Advisor: Perfect. I’ll reset your online banking credentials now and secure your account. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, that’s fine.
+
+Advisor: Let’s start with the phishing email you received. Did the sender’s email address look unusual, or did it appear legitimate?
+
+Customer: It looked legitimate. It had your bank’s name in it.
+
+Advisor: Thank you. Fraudsters often spoof email addresses to make their messages seem authentic. Did the email request any specific actions, such as verifying your identity or uploading documents?
+
+Customer: Yes, it asked me to log in and verify my identity because of “suspicious activity.”
+
+Advisor: I see. Creating urgency is a common tactic used in phishing scams to bypass skepticism. Let’s move on to the unauthorized payments. Have you noticed any other transactions in the last few days that you didn’t recognize?
+
+Customer: No, just the ones I mentioned earlier.
+
+Advisor: Thank you for clarifying. Did you download any apps or software recently that might be linked to this activity?
+
+Customer: No, I haven’t downloaded anything new.
+
+Advisor: That’s good to know. Let’s discuss the third-party apps connected to your account. Fraudsters often use Open Banking to authorize apps that facilitate unauthorized payments. I’ve revoked their access, but I recommend monitoring your account closely for any new connections. Does that make sense?
+
+Customer: Yes, it does.
+
+Advisor: I’ve flagged the unauthorized payments, initiated recovery requests, and secured your account. While our investigations team works on recovering your funds, I’d like to provide advice on avoiding scams like this in the future. Would that be helpful?
+
+Customer: Yes, please.
+
+Advisor: Of course. To prevent phishing scams, always verify the sender’s email address and avoid clicking on links in unsolicited messages. If you’re unsure, contact us directly using the number on the back of your debit card. Would you like me to send you a guide on recognizing phishing attempts?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll arrange that. Additionally, I recommend enabling two-factor authentication for your online banking account. This adds an extra layer of security by requiring a verification code for every login. Would you like assistance with setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll send you instructions for that as well. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number, which you can share with us for our investigation.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized payments, revoked access for the third-party apps, and reset your online banking credentials. I’ve also initiated recovery processes for your funds and provided guidance on improving your account security. Do you have any other questions or concerns?
+
+Customer: No, I think that’s everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Ms. Walker. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

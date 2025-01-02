@@ -1,0 +1,73 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is James. Can I take your full name to start with, please?
+
+Customer: Hi, it’s Laura Bennett.
+
+Advisor: Thank you, Ms. Bennett. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 15th October 1982, and my postcode is ME10 3DS.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think my business email has been hacked. A client just told me they paid an invoice we sent, but it went to the wrong account. It’s a lot of money, and I don’t know what to do.
+
+Advisor: I’m very sorry to hear this, Ms. Bennett. Let me assure you, we’ll investigate this thoroughly. Could you start by explaining how you discovered the issue?
+
+Customer: One of my clients called earlier to ask why we’d changed our bank account details. That’s when I checked, and I saw the invoice they were sent had been altered. It wasn’t the one we originally sent.
+
+Advisor: Understood. Have you noticed any other unusual activity, such as emails you didn’t send or unexpected logins to your account?
+
+Customer: Yes, I saw a few “failed login attempts” notifications last week, but I didn’t think much of it at the time. Now I’m wondering if they got in somehow.
+
+Advisor: Thank you for explaining. Did your client confirm how much they transferred and when the payment was made?
+
+Customer: Yes, they said it was £28,000, and the payment was made yesterday.
+
+Advisor: I see. Let me review your account for any associated activity and investigate further. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Bennett. I’ve reviewed your account, and there’s no indication of unauthorized transactions from your side. However, the fraudulent account your client transferred to has been flagged in our system. This suggests a possible compromise of your email or communication system. Have you shared your email credentials with anyone recently, or clicked on any unusual links?
+
+Customer: I haven’t shared my login, but I did get an email a couple of weeks ago asking me to update my account settings. I clicked on the link, but nothing seemed to happen.
+
+Advisor: That email could have been a phishing attempt. It’s likely the fraudsters used that link to gain access to your email account. I recommend resetting your email password immediately and enabling two-factor authentication. Would you like assistance with that?
+
+Customer: Yes, please. I don’t want this to happen again.
+
+Advisor: I’ll send you detailed instructions in a follow-up email. Additionally, I recommend running a full security check on your business systems. Do you have an IT team or support provider who can assist with this?
+
+Customer: Yes, I’ll contact them right away.
+
+Advisor: That’s a great step. Let’s also initiate a recovery process for the funds your client transferred. Could you provide a copy of the original invoice, along with the fraudulent one, so we can include them in our investigation?
+
+Customer: Yes, I’ve got both saved. I can email them to you.
+
+Advisor: Perfect. I’ll send you the details for submitting your evidence. Additionally, I recommend informing your client to report the fraud to their bank as soon as possible. Their quick action could help in recovering the funds.
+
+Customer: They’ve already called their bank. Is there anything else they should do?
+
+Advisor: That’s a good start. They should also report the incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. The reference number they provide can help us coordinate the investigation.
+
+Customer: I’ll let them know. What about protecting our other clients? Could they be at risk too?
+
+Advisor: It’s possible. I recommend notifying all your clients about the potential compromise and advising them to verify any payment instructions directly with your office. This can prevent further incidents while you secure your systems.
+
+Customer: That’s a good idea. I’ll draft an email to send out today.
+
+Advisor: Let’s also discuss ways to prevent this in the future. Fraudsters often target businesses through phishing or by exploiting weak passwords. Have you considered implementing email encryption or secure communication tools for sensitive information?
+
+Customer: We haven’t, but it sounds like something we should do.
+
+Advisor: I’ll include guidance on those tools in the follow-up email. Additionally, consider training your team to recognize phishing attempts and secure their devices. Would you like resources for that as well?
+
+Customer: Yes, that would be really helpful. We’ve never done any formal training on this.
+
+Advisor: Before we wrap up, let me summarize the steps we’ve taken today. I’ve flagged the fraudulent account your client transferred to and initiated a recovery request. I’ve recommended securing your email account, conducting a security audit, and notifying your clients about the incident. I’ll also provide resources on secure communication, phishing awareness, and staff training. Do you have any other questions or concerns?
+
+Customer: No, I think that covers everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Ms. Bennett. Thank you for contacting us promptly. If you have any further concerns, don’t hesitate to reach out. Take care.
+
+Customer: Thanks. You too.

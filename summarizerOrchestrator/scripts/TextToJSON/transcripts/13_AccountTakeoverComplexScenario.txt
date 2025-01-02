@@ -1,0 +1,105 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Chloe. Can I take your full name to begin with, please?
+
+Customer: Yes, it’s Michael Harris.
+
+Advisor: Thank you, Mr. Harris. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 21st August 1985, and my postcode is NW1 6XE.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think someone has hacked into my account. I tried to log in this morning, and it said my password had been changed. Then I got a notification about a transaction I didn’t authorize.
+
+Advisor: I’m sorry to hear that, Mr. Harris. I’ll investigate this for you right away. Could you confirm when you last successfully logged into your account?
+
+Customer: It was yesterday evening, around 7 p.m. Everything was fine then.
+
+Advisor: Thank you. Did you receive any emails, texts, or phone calls recently asking you to verify your account or provide personal information?
+
+Customer: Yes, I got an email yesterday claiming to be from the bank. It said there was suspicious activity on my account and that I needed to log in through a link to secure it.
+
+Advisor: I see. Did you click on the link and enter your login details?
+
+Customer: Yes, I did. It looked just like the bank’s website.
+
+Advisor: Thank you for sharing that. Based on what you’ve described, it sounds like you may have been targeted by a phishing scam. I’ll secure your account immediately to prevent further unauthorized access. Could you hold for a moment while I review your recent activity?
+
+Customer: Yes, that’s fine.
+
+Advisor: Thanks for holding, Mr. Harris. I can see that your account was accessed this morning at 8:15 a.m. from an unfamiliar IP address. Since then, several transactions have been made. Could you confirm your last authorized transaction?
+
+Customer: The last thing I paid for was my electricity bill yesterday evening, for £120.
+
+Advisor: Thank you. After that, I can see the following transactions: a £1,000 transfer to an account ending in 8756 at 8:30 a.m., a £2,500 transfer to an account ending in 4532 at 9:15 a.m., and a new payee was added at 10 a.m., followed by another transfer of £800. Do you recognize any of these?
+
+Customer: No, none of those were me.
+
+Advisor: Understood. I’ll flag all of these as unauthorized. Before proceeding, I’ll need to confirm some additional security details to reset your credentials and secure your account. Could you confirm the answer to your security question: “What is your mother’s maiden name?”
+
+Customer: Yes, it’s Parker.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 5421.
+
+Advisor: Perfect. I’ll reset your credentials now. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, of course.
+
+Advisor: Thank you. Let’s start with the email you received. Did the sender’s address match the bank’s official email, or did it look unusual?
+
+Customer: It looked like the bank’s email at first, but now that I think about it, there was a spelling mistake in the address.
+
+Advisor: Thank you for mentioning that. Fraudsters often use slight variations in email addresses to make their messages appear legitimate. Did the email include any attachments or request additional information beyond your login details?
+
+Customer: No, it was just the link to log in.
+
+Advisor: Understood. Did you notice any unusual activity on your devices after clicking the link, such as pop-ups or apps being installed?
+
+Customer: No, everything seemed normal.
+
+Advisor: That’s good to hear. However, it’s still possible that the phishing site captured your credentials. I recommend running a full antivirus scan on your devices to rule out any malicious software. Do you have antivirus software installed?
+
+Customer: Yes, I do.
+
+Advisor: Excellent. I’ll provide guidance on securing your devices further. Let’s move on to the unauthorized transactions. Could you confirm whether you’ve shared your banking details with anyone recently or used your card on any unfamiliar websites?
+
+Customer: No, I’m always careful about that. I haven’t shared my details with anyone.
+
+Advisor: Thank you. It’s possible the fraudsters used the information they obtained from the phishing email to initiate these transactions. I’ll escalate this case to our investigations team and work to recover the funds. While I process that, could you confirm whether you’ve noticed any suspicious emails or texts since this incident?
+
+Customer: No, nothing else so far.
+
+Advisor: That’s good to know. Let’s proceed with securing your account. I’ll block any future transactions to the flagged accounts, enable enhanced fraud monitoring, and set up alerts for any unusual activity. Does that sound okay?
+
+Customer: Yes, please do that.
+
+Advisor: I’ve completed those actions. While we work on recovering the funds, I’d like to explain how phishing scams typically operate and provide some tips to protect yourself in the future. Would that be helpful?
+
+Customer: Yes, definitely. I want to make sure this doesn’t happen again.
+
+Advisor: Of course. Phishing scams often involve fake emails, texts, or calls that mimic trusted institutions. They create urgency to pressure you into acting quickly, such as claiming your account is at risk. Always double-check the sender’s address and avoid clicking on links. Instead, log in directly through the bank’s official website or app. Does that make sense?
+
+Customer: Yes, it does. I’ll be more cautious next time.
+
+Advisor: That’s great to hear. Additionally, I recommend enabling two-factor authentication for your online accounts. This adds an extra layer of security by requiring a verification code in addition to your password. Would you like me to send you a guide on setting this up?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this phishing attempt to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number, which you can share with us for our investigation.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Let me summarize what we’ve done so far. I’ve flagged the unauthorized transactions, reset your online banking credentials, and secured your account. I’ve also provided steps to enhance your online security and report the phishing attempt. Do you have any other questions or concerns?
+
+Customer: No, I think you’ve covered everything. Do you think I’ll get the money back?
+
+Advisor: We’ll do everything we can to recover the funds. Since the transactions were flagged quickly, there’s a good chance we can recall them. Our investigations team will keep you updated on the progress. If you have further concerns, don’t hesitate to contact us.
+
+Customer: Thank you so much for your help. I really appreciate it.
+
+Advisor: You’re welcome, Mr. Harris. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

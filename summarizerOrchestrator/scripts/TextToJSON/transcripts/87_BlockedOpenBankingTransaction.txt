@@ -1,0 +1,81 @@
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is James. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Lisa Graham.
+
+Advisor: Thank you, Ms. Graham. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 12th March 1992, and my postcode is W1T 3EB.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I tried to connect my account to a budgeting app this morning, but I got a notification that the connection was blocked. Then I noticed a payment attempt I didn’t recognize. I think something’s wrong.
+
+Advisor: I’m sorry to hear about the trouble, Ms. Graham. Let me investigate this for you right away. Could you start by explaining how you attempted to link your account to the budgeting app?
+
+Customer: I downloaded the app and followed the setup instructions. It asked for permission to access my bank account through open banking. I approved it, but then I got an error message, and shortly after, I saw the suspicious activity.
+
+Advisor: Thank you for explaining. To confirm, did you receive any email or text messages from the app asking for your login details or verification codes?
+
+Customer: Yes, they sent me a code to confirm the link. I entered it into the app, and that’s when the error popped up.
+
+Advisor: Understood. Let me review your account for any unusual activity and investigate the blocked connection. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Graham. I can see that a £3,000 payment was attempted from your account but was flagged and blocked by our system. Additionally, there was a new connection request under open banking that appears suspicious. Do you recognize the name “FinanceSync Pro”?
+
+Customer: No, I’ve never heard of that. The app I was trying to use is called “BudgetEase.”
+
+Advisor: Thank you for confirming. It appears the connection attempt wasn’t made by BudgetEase but by an unauthorized third party. This could indicate a phishing attack or compromised credentials. Did you download the app from an official app store?
+
+Customer: No, I found a link on a forum recommending it and downloaded it from there. Was that a mistake?
+
+Advisor: It’s possible the version you downloaded wasn’t legitimate. Fraudsters sometimes create fake apps to mimic genuine ones. Before we proceed, I’d like to verify a few more details. Could you confirm the last four digits of your debit card?
+
+Customer: It’s 8943.
+
+Advisor: Thank you. I’ll secure your account and block any further connections from unauthorized third parties. While I do that, let’s go over additional steps to ensure your account is safe. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: Let’s review recent activity on your account. Besides the blocked payment, there are three other connection requests and a small payment of £50 to a merchant named “FastPay Online.” Do you recognize any of these?
+
+Customer: No, none of those are familiar.
+
+Advisor: Thank you for confirming. I’ll flag those transactions and ensure no further payments can be processed to the associated accounts. Additionally, I’ll reset your open banking permissions to revoke access for all third-party services. Once that’s done, you’ll need to reauthorize any legitimate connections. Does that sound okay?
+
+Customer: Yes, that’s fine. I didn’t even know these permissions were in place.
+
+Advisor: No problem. I’ll also send you guidance on managing open banking connections safely. Fraudsters often exploit these permissions to gain unauthorized access. I recommend only using apps downloaded directly from verified sources.
+
+Customer: I’ll make sure to do that in the future.
+
+Advisor: Could you tell me more about the app link you found on the forum? Did the page you downloaded it from look professional, or were there any red flags?
+
+Customer: It seemed fine at first, but now that I think about it, there were some pop-ups and spelling errors. I should have been more cautious.
+
+Advisor: It’s an easy mistake to make. Fraudulent websites often mimic legitimate ones to trick users. I’ll include guidance in my follow-up email on how to verify the authenticity of apps and websites.
+
+Customer: Thank you. That would be helpful.
+
+Advisor: Let me reset your online banking credentials as a precaution and enable two-factor authentication if it’s not already active. Could you confirm your preferred contact method for verification codes?
+
+Customer: I prefer receiving them by text.
+
+Advisor: Thank you. I’ll set that up now. Additionally, I’ll monitor your account for any unusual activity over the next 48 hours. If you notice anything suspicious, please contact us immediately.
+
+Customer: Okay, I will.
+
+Advisor: Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They can provide a reference number for your case, which you can share with us.
+
+Customer: I’ll contact them today.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve blocked the unauthorized open banking connections, flagged and reversed the suspicious transactions, reset your credentials, and secured your account with two-factor authentication. I’ve also provided guidance on verifying apps and websites. Do you have any other questions or concerns?
+
+Customer: No, that’s everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Ms. Graham. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.
+

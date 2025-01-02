@@ -1,0 +1,82 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Sarah. Can I take your full name to start with, please?
+
+Customer: Hi, it’s Linda Davies.
+
+Advisor: Thank you, Ms. Davies. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 18th February 1970, and my postcode is CF10 1AA.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I’ve just realized that the person I’ve been sending money to might not be who they say they are. I’ve been in contact with them for months, but they’ve disappeared now. I feel so foolish.
+
+Advisor: I’m very sorry to hear this, Ms. Davies. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by explaining how you met this person and how your interactions began?
+
+Customer: I met them on a dating site about eight months ago. They said they were working overseas as a doctor on a humanitarian mission. We exchanged messages and video calls almost every day for months. They seemed so genuine.
+
+Advisor: Thank you for explaining. When did they first ask for money, and what reasons did they give?
+
+Customer: It started about three months ago. They said their credit card had been frozen, and they needed money for medical supplies. After that, they kept having issues—hospital bills, travel costs, and even ransom money because they said they’d been detained by corrupt officials.
+
+Advisor: I see. Could you confirm how much you’ve sent in total and the methods you used to transfer the money?
+
+Customer: It’s about £60,000 altogether. I sent the money in smaller amounts, mostly through bank transfers, to accounts they provided. Sometimes they asked me to send to different accounts because they said it was safer.
+
+Advisor: Thank you for explaining. Let me review your account for these transactions and investigate further. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Davies. I’ve identified the payments to the accounts you mentioned. It appears they were made to multiple recipients, most of which are flagged in our system for potential fraudulent activity. Additionally, there are attempts to access your account from unusual IP addresses. Did you share any of your banking credentials or provide verification codes to this person?
+
+Customer: Yes, they said they needed my login details to help process some payments. I trusted them because we were so close.
+
+Advisor: I understand. Sharing those details likely allowed unauthorized access to your account. I’ll reset your online banking credentials immediately to secure your account. Could you confirm the last four digits of your debit card?
+
+Customer: It’s 8943.
+
+Advisor: Thank you. I’ll process that now. While I’m doing this, let’s discuss steps to recover your funds and secure your information. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: First, I’ll initiate a dispute for the payments made to the flagged accounts. We’ll contact the receiving banks to attempt recovery. This process can take some time, and while recovery isn’t guaranteed, we’ll keep you updated throughout.
+
+Customer: Thank you. What do I need to do to help with the process?
+
+Advisor: It would be helpful if you could provide any evidence of your communication with this person, such as emails, messages, or transaction receipts. Could you email those to us?
+
+Customer: Yes, I’ve kept everything. I’ll send it to you today.
+
+Advisor: Perfect. I’ll email you details for submitting the evidence after this call. Additionally, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide you with a reference number that we can use in our investigation.
+
+Customer: I’ll contact them right away. Thank you.
+
+Advisor: Let’s also talk about recognizing and avoiding scams like this in the future. Fraudsters often use fake identities to build trust over time. Did this person avoid meeting you in person or coming on video calls?
+
+Customer: Yes, they always had excuses—poor internet, security issues, or being in dangerous locations. I guess I should have been more skeptical.
+
+Advisor: Those are common tactics used in romance scams. Genuine relationships are based on transparency and mutual trust. I’ll include tips in the follow-up email on recognizing similar red flags and staying safe online.
+
+Customer: Thank you. I’ll definitely be more cautious in the future.
+
+Advisor: Before we finish, let’s secure your accounts and personal information. I recommend enabling two-factor authentication for your online banking. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll include detailed instructions in the follow-up email. Additionally, it’s important to update your passwords for any other accounts where you’ve used similar credentials. Do you use unique passwords for each account?
+
+Customer: No, I’ve been using the same one for a few accounts.
+
+Advisor: I’ll provide guidance on creating strong, unique passwords and suggest using a password manager. Lastly, consider monitoring your credit report for unusual activity, as your personal information may have been compromised. Would you like advice on setting up credit monitoring?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: Let me summarize the steps we’ve taken today. I’ve flagged the payments for investigation and initiated a recovery request. I’ve also secured your online banking credentials and recommended reporting the incident to Action Fraud. In the follow-up email, I’ll include tips on securing your accounts, recognizing scams, and staying safe online. Do you have any other questions or concerns?
+
+Customer: No, I think that covers everything. Thank you for your help.
+
+Advisor: You’re welcome, Ms. Davies. Thank you for contacting us promptly. If you have any further concerns, don’t hesitate to reach out. Take care.
+
+Customer: Thanks. You too.
+

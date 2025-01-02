@@ -1,0 +1,95 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Kate. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Jessica Lee.
+
+Advisor: Thank you, Ms. Lee. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 15th January 1992, and my postcode is LS1 4AP.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I was trying to rent an apartment, and the landlord asked for a deposit before viewing. I sent the money, but now I can’t get in touch with them, and I’ve noticed unauthorized transactions on my account.
+
+Advisor: I’m very sorry to hear that, Ms. Lee. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by explaining how you found the rental and what happened?
+
+Customer: I found the listing on a property website. It seemed legitimate, and the landlord said there was high demand, so I needed to pay a holding deposit of £1,500 to secure it.
+
+Advisor: Thank you. Did they provide any documentation, such as a tenancy agreement or proof of ownership?
+
+Customer: Yes, they sent me a tenancy agreement and photos of the apartment. Everything looked real, so I made the payment through a bank transfer.
+
+Advisor: Understood. After making the payment, did you receive any follow-up communication?
+
+Customer: Yes, they said they needed an additional £500 for “administration fees” before I could view the property. That’s when I got suspicious because they stopped responding after I refused.
+
+Advisor: Thank you. Have you noticed any additional unauthorized transactions on your account?
+
+Customer: Yes, there was a £3,000 transfer to an account I don’t recognize and smaller payments totaling about £1,200.
+
+Advisor: Thank you for explaining. Let me review your recent transactions and investigate further. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Lee. I’ve identified the transactions you mentioned, along with a £2,500 transfer to a flagged account. Do you recognize any of these payments?
+
+Customer: No, none of those are mine.
+
+Advisor: Thank you for confirming. I’ve flagged these as unauthorized and blocked any further transactions to the associated accounts. Before proceeding, I need to verify some additional details to secure your account. Could you confirm the answer to your security question: “What is your favorite movie?”
+
+Customer: It’s Inception.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 8724.
+
+Advisor: Perfect. I’ll reset your online banking credentials now and secure your account. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: Let’s discuss the landlord further. Did the email address or phone number they used seem unusual or suspicious?
+
+Customer: Not at first, but when I looked closer, the email was a generic Gmail account, not something official.
+
+Advisor: Thank you. Did they create any urgency or pressure to make the payment quickly?
+
+Customer: Yes, they said there were multiple people interested and that I’d lose the apartment if I didn’t pay within 24 hours.
+
+Advisor: Understood. Did you notice any notifications or changes to your online banking after making the payment?
+
+Customer: Yes, I got a text about a new device logging in, but I thought it was related to the payment.
+
+Advisor: Let me review the devices linked to your account and check for further suspicious activity. Could you hold for a moment?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Ms. Lee. I’ve identified multiple unauthorized devices linked to your account, including one from an international IP address. I’ve also flagged and removed several suspicious payees. Have you reused your account credentials on other platforms?
+
+Customer: Yes, I use the same password for my email and a shopping site.
+
+Advisor: Thank you for mentioning that. It’s likely the fraudsters accessed your account through compromised credentials. I recommend updating all your passwords immediately and enabling two-factor authentication. Would you like assistance with that?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll send you guidance on securing your account and reviewing linked services. Let’s focus on recovering your funds and minimizing further risks.
+
+Advisor: I recommend enabling two-factor authentication for your online banking account to add an extra layer of security. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll send you detailed instructions for that. Additionally, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number for your case, which you can share with us.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Lastly, I suggest monitoring your credit report for unusual activity, as your personal details may have been compromised. Would you like advice on signing up for a credit monitoring service?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions, reset your online banking credentials, and initiated recovery processes for your funds. I’ve also provided guidance on improving your account security and monitoring your identity. Do you have any other questions or concerns?
+
+Customer: No, I think that’s everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Ms. Lee. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

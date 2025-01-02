@@ -6,37 +6,21 @@ import com.local.SummarizerOrchestrator.dtos.SummarizationRequestDTO;
 
 import java.util.Map;
 
-/**
- * Utility class for cleaning and formatting JSON data.
- * Includes methods for sanitizing inputs, extracting fields, and cleaning raw text.
- */
 public class JSONCleaner {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    /**
-     * Cleans a generated text response by replacing escape sequences.
-     *
-     * @param generatedText The raw response string.
-     * @return The cleaned string.
-     */
     public static String cleanGeneratedText(String generatedText) {
         if (generatedText == null) {
             return "";
         }
-        return generatedText
+        return removeControlCharacters(generatedText)
                 .replace("\\n", "\n")
                 .replace("\\\"", "\"")
                 .replace("\\\\", "\\")
                 .trim();
     }
 
-    /**
-     * Parses the JSON response and extracts the "generated_text" field.
-     *
-     * @param jsonResponse The raw JSON response as a string.
-     * @return The extracted text or an error message if the field is not found.
-     */
     public static String extractGeneratedText(String jsonResponse) {
         try {
             JsonNode root = OBJECT_MAPPER.readTree(jsonResponse);
@@ -48,35 +32,23 @@ public class JSONCleaner {
                 }
             }
         } catch (Exception e) {
-            return "Error parsing JSON: " + e.getMessage();
+            System.err.println("Error parsing JSON: " + e.getMessage());
         }
         return "";
     }
 
-    /**
-     * Formats a summary text by normalizing line breaks and ensuring proper indentation.
-     *
-     * @param summary The raw summary text.
-     * @return The formatted summary.
-     */
     public static String formatSummary(String summary) {
         if (summary == null) {
             return "";
         }
-        return summary
+        return removeControlCharacters(summary)
                 .replace("\\n", "\n")
                 .replace("\\\"", "\"")
                 .replace("\\\\", "\\")
+                .replace("'", "\"")
                 .trim();
     }
 
-    /**
-     * Parses a given JSON string and extracts a specific field as text.
-     *
-     * @param jsonResponse The raw JSON response as a string.
-     * @param fieldName    The name of the field to extract.
-     * @return The extracted field value or an error message.
-     */
     public static String extractField(String jsonResponse, String fieldName) {
         try {
             JsonNode root = OBJECT_MAPPER.readTree(jsonResponse);
@@ -85,17 +57,11 @@ public class JSONCleaner {
                 return fieldNode.asText();
             }
         } catch (Exception e) {
-            return "Error parsing field " + fieldName + ": " + e.getMessage();
+            System.err.println("Error parsing field " + fieldName + ": " + e.getMessage());
         }
         return "";
     }
 
-    /**
-     * Removes control characters from the input string.
-     *
-     * @param text The input string to clean.
-     * @return The cleaned string with control characters removed.
-     */
     public static String removeControlCharacters(String text) {
         if (text == null) {
             return "";
@@ -103,22 +69,17 @@ public class JSONCleaner {
         return text.replaceAll("[\\u0000-\\u001F]", "").trim();
     }
 
-    /**
-     * Cleans the entire SummarizationRequestDTO object.
-     *
-     * @param request The request DTO to sanitize.
-     * @return The sanitized request DTO.
-     */
     public static SummarizationRequestDTO sanitizeRequest(SummarizationRequestDTO request) {
         if (request == null) {
             return null;
         }
 
-        // Sanitize prompt and context
-        request.setPrompt(cleanGeneratedText(request.getPrompt()));
-        request.setContext(cleanGeneratedText(request.getContext()));
+        String sanitizedPrompt = cleanGeneratedText(request.getPrompt());
+        String sanitizedContext = cleanGeneratedText(request.getContext());
 
-        // Sanitize parameters
+        request.setPrompt(sanitizedPrompt.isEmpty() ? "Default prompt" : sanitizedPrompt);
+        request.setContext(sanitizedContext.isEmpty() ? "Default context" : sanitizedContext);
+
         if (request.getParameters() != null) {
             Map<String, Object> sanitizedParameters = request.getParameters();
             sanitizedParameters.replaceAll((key, value) ->
@@ -129,4 +90,48 @@ public class JSONCleaner {
 
         return request;
     }
+
+    public static boolean isValidJSON(String jsonString) {
+        try {
+            JsonNode root = OBJECT_MAPPER.readTree(jsonString);
+
+            // Define required fields specific to metrics output
+            String[] requiredFields = {
+                    "ROUGE-1", "ROUGE-2", "ROUGE-L",
+                    "BERT Precision", "BERT Recall", "BERT F1",
+                    "BLEU", "METEOR", "Length Ratio", "Redundancy"
+            };
+
+            // Check for missing fields
+            for (String field : requiredFields) {
+                if (!root.has(field)) {
+                    System.err.println("Invalid JSON: Missing required field - " + field);
+                    return false;
+                }
+            }
+            return true; // JSON is valid and contains all required fields
+        } catch (Exception e) {
+            System.err.println("Invalid JSON detected: " + jsonString + ". Error: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static String sanitizeInputJSON(Map<String, String> input) {
+        try {
+            // Serialize the map to JSON string
+            String jsonString = OBJECT_MAPPER.writeValueAsString(input);
+
+            // Escape characters for safe shell execution
+            jsonString = jsonString.replace("\\", "\\\\")  // Escape backslashes
+                    .replace("\"", "\\\"") // Escape double quotes
+                    .replace("\n", "\\n")  // Escape newlines
+                    .replace("\r", "\\r"); // Escape carriage returns
+
+            return jsonString;
+        } catch (Exception e) {
+            throw new RuntimeException("Error serializing sanitized input JSON: " + e.getMessage(), e);
+        }
+    }
+
+
 }

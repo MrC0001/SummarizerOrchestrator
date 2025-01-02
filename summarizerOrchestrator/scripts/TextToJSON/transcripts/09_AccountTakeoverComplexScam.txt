@@ -1,0 +1,94 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Charlotte. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Mark Wilson.
+
+Advisor: Thank you, Mr. Wilson. Can you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure, my date of birth is 12th February 1988, and the postcode is SE5 9HA.
+
+Advisor: Thank you for confirming. Let me pull up your account. Could you tell me why you’re contacting us today?
+
+Customer: My online banking isn’t working. When I tried to log in this morning, it said my password had been changed. Then I got a notification about a transaction I didn’t make. I think someone’s hacked my account.
+
+Advisor: I’m sorry to hear that, Mr. Wilson. Let me investigate this for you right away. Could you confirm when you last successfully logged into your account?
+
+Customer: It was yesterday afternoon, around 3 p.m. Everything was fine then.
+
+Advisor: Thank you. Did you receive any emails, texts, or calls recently asking you to verify your account or provide any personal information?
+
+Customer: Yes, actually. Yesterday evening, I got a call from someone claiming to be from the bank. They said there was suspicious activity on my account and that they needed to verify my identity.
+
+Advisor: I see. Could you tell me more about that call? What did they ask for, and what did you provide?
+
+Customer: They asked me to confirm my account details, and then they said they needed my login information to secure the account. They even sent me a text with a code and asked me to read it back to them.
+
+Advisor: Thank you for sharing that. Based on what you’ve described, it sounds like the caller wasn’t from the bank but was attempting to gain access to your account through a social engineering scam. I’ll take immediate steps to secure your account and investigate any unauthorized activity. Could you hold for a moment while I check the notes and recent transactions?
+
+Customer: Yes, please.
+
+Advisor: Thanks for holding, Mr. Wilson. I can see that your account was accessed early this morning from an unfamiliar IP address. Several transactions have been made since then. I’ll need to verify these with you to determine which are legitimate. Could you confirm your most recent transaction that you authorized?
+
+Customer: Sure. The last thing I remember doing was paying my phone bill yesterday for £45.
+
+Advisor: Thank you. Here’s what I can see after that payment: At 7:30 a.m., a transfer of £3,000 was made to an account ending in 7845. At 8:15 a.m., there was another transfer of £1,200 to a different account ending in 5623. There’s also a new direct debit set up for £150 monthly to a company called “Tech Solutions.” Do you recognize any of these?
+
+Customer: No, none of those are mine. What’s “Tech Solutions”? I’ve never heard of it.
+
+Advisor: It appears to be a fake subscription service often linked to fraud. I’ll flag all these transactions as unauthorized and begin the recovery process. Before proceeding, I’ll need to confirm some security details with you. Could you confirm the answer to your security question: “What is the name of your first school?”
+
+Customer: Yes, it’s Greenfield Primary.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 7896.
+
+Advisor: Perfect. I’ll secure your account by blocking access and resetting your credentials. While I do that, I’d like to gather more details about the call you received, as this will help our investigation. Do you recall anything specific about the caller, such as their tone, what they said, or the number they called from?
+
+Customer: The caller sounded professional, like someone from a call center. They even mentioned details about my recent transactions, which made it seem legitimate. The number looked like a UK bank helpline.
+
+Advisor: Thank you. Fraudsters often use spoofing techniques to make their calls appear genuine. Did they mention anything about downloading an app or software during the call?
+
+Customer: Yes, they asked me to install an app called “SecureBanking” to “monitor my account activity.” I downloaded it but didn’t really use it.
+
+Advisor: Thank you for mentioning that. The app they asked you to download is likely malicious and may have allowed them to access your device. I recommend uninstalling it immediately, and I’ll guide you on additional steps to secure your devices shortly. Could you hold for a moment while I escalate this to our investigations team?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for waiting, Mr. Wilson. I’ve escalated your case to our investigations team, and they’ll work to recover the funds. I’ve also flagged the recipient accounts and the direct debit as fraudulent. In the meantime, let’s focus on securing your devices and online accounts. Have you used the same password for your online banking as for other accounts?
+
+Customer: Yes, I’ve used the same one for a few accounts.
+
+Advisor: I recommend updating the passwords on all your accounts immediately. Ensure each password is unique and complex. Would you like me to send you a guide on creating secure passwords?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll arrange that. Next, let’s check your devices for any malicious software. Since you downloaded the app the scammer recommended, I suggest running a full security scan using antivirus software. Do you have antivirus software installed?
+
+Customer: Yes, I have one on my laptop, but not on my phone.
+
+Advisor: No problem. I’ll guide you on how to download a trusted antivirus app for your phone. It’s also a good idea to monitor your email and other accounts for any suspicious activity. Have you noticed anything unusual, like password reset emails or login attempts you didn’t make?
+
+Customer: Now that you mention it, I did get a couple of password reset emails this morning for my email account. I ignored them because I didn’t request any resets.
+
+Advisor: That’s a common tactic fraudsters use to gain control of other accounts. I recommend changing your email password immediately. If you notice any accounts you don’t recognize in your email’s security settings, remove them. Would you like me to provide guidance on securing your email account?
+
+Customer: Yes, please.
+
+Advisor: I’ll include that in the resources I send. Lastly, I recommend reporting this scam to Action Fraud, the UK’s national fraud reporting center. They’ll investigate and provide a reference number, which you can share with us. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040.
+
+Customer: Okay, I’ll do that.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve blocked access to your online banking, flagged the unauthorized transactions, and escalated this case to our investigations team. I’ve also provided steps to secure your devices and online accounts. Do you have any questions or concerns?
+
+Customer: No, I think you’ve covered everything. Do you think I’ll get my money back?
+
+Advisor: We’ll do everything we can to recover the funds. Since the transactions were flagged quickly, there’s a good chance we can recall them. Our investigations team will keep you updated on the progress. If you have any further concerns, don’t hesitate to contact us.
+
+Customer: Thank you for your help. I really appreciate it.
+
+Advisor: You’re welcome, Mr. Wilson. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.
+

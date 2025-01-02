@@ -1,0 +1,87 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Rachel. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Laura Smith.
+
+Advisor: Thank you, Ms. Smith. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 7th August 1990, and my postcode is BR2 8HA.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think someone’s used my account without my permission. I got a notification about an open banking connection I didn’t set up, and now there are payments leaving my account to companies I don’t recognize.
+
+Advisor: I’m very sorry to hear that, Ms. Smith. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by explaining when you first noticed something unusual?
+
+Customer: I got an email this morning saying a new company was connected to my bank account through open banking. I didn’t authorize it, so I logged in to check, and that’s when I saw the payments.
+
+Advisor: Thank you. Do you recognize any of the companies listed in the open banking connections or the transactions?
+
+Customer: No, I don’t. There’s a company called “FastPay Solutions” and another one called “EZ Utilities.” They’ve withdrawn about £3,000 in total over several transactions.
+
+Advisor: Understood. Let me review the open banking connections and transactions on your account. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Smith. I’ve identified the unauthorized connections and transactions you mentioned. There’s also a £2,500 payment pending to a flagged account. I’ve canceled it and blocked any further access. Before proceeding, I’ll need to verify some additional details to secure your account. Could you confirm the answer to your security question: “What is your favorite hobby?”
+
+Customer: It’s painting.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 3847.
+
+Advisor: Perfect. I’ll reset your online banking credentials now and secure your account. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: Let’s discuss the open banking notification you received. Did it include any urgency or unusual instructions, such as verifying the connection through a link?
+
+Customer: Yes, it said I needed to verify the connection to avoid restrictions on my account. It included a link, which I clicked on.
+
+Advisor: Thank you. It’s possible that link directed you to a phishing site. Did the website resemble our online banking platform or include any additional requests?
+
+Customer: It looked exactly the same as your website. It asked me to log in and confirm my security details.
+
+Advisor: Understood. Fraudsters often use phishing sites to collect credentials. After you entered your details, did you notice any changes to your account or receive any follow-up communications?
+
+Customer: Yes, I got a text saying my account was secure and that no further action was required.
+
+Advisor: Thank you for sharing that. Let’s talk about the open banking connections themselves. Have you previously used open banking services, such as connecting your account to budgeting apps or third-party payment providers?
+
+Customer: Yes, I’ve connected it to a budgeting app, but I didn’t authorize these new companies.
+
+Advisor: Thank you. It’s possible your login credentials were compromised, allowing unauthorized connections. Did you recently share your banking details with anyone, or have you experienced any data breaches?
+
+Customer: No, I haven’t shared my details, but I did get an email about a data breach from another service I use last month.
+
+Advisor: That’s helpful to know. It’s likely your details were obtained through that breach. Let me check for any additional suspicious activity on your account. Could you hold for a moment?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Ms. Smith. I’ve identified several other unauthorized transactions totaling £4,000. These were processed through open banking to accounts flagged for fraudulent activity. I’ve flagged them for investigation and initiated recovery processes.
+
+Advisor: I recommend enabling two-factor authentication for your online banking account to add an extra layer of security. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll send you instructions for that. Additionally, I recommend revoking all open banking connections you don’t recognize. I can guide you through that process. Would you like help with it?
+
+Customer: Yes, that would be great.
+
+Advisor: I’ll include detailed steps in the guidance I send. Lastly, I recommend monitoring your credit report for unusual activity, as your details may have been used elsewhere. Would you like advice on signing up for a credit monitoring service?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: I’ll include that as well. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number for your case, which you can share with us.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions and open banking connections, reset your online banking credentials, and initiated recovery processes for your funds. I’ve also provided guidance on improving your account security and managing open banking connections. Do you have any other questions or concerns?
+
+Customer: No, I think that covers everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Ms. Smith. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

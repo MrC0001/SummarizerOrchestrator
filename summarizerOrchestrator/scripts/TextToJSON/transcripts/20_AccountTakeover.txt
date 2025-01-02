@@ -1,0 +1,87 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Ethan. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Maria Robinson.
+
+Advisor: Thank you, Ms. Robinson. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 8th May 1985, and the postcode is SE14 5DL.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think my account’s been hacked. I got a call last night from someone claiming to be from the bank. They said there was suspicious activity and asked me to verify some details. This morning, I noticed transactions I didn’t make.
+
+Advisor: I’m sorry to hear that, Ms. Robinson. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this together. Could you start by telling me more about the call? What did the person say, and what details did they ask you to verify?
+
+Customer: They said they’d noticed suspicious transactions and wanted to verify my identity before blocking my account. They asked for my account number, sort code, and the last four digits of my debit card.
+
+Advisor: Thank you for sharing that. Did they ask for any additional information, such as your online banking password or a one-time passcode?
+
+Customer: Yes, they sent me a code via text and asked me to read it back to them.
+
+Advisor: Thank you. It sounds like the caller wasn’t actually from the bank but a fraudster attempting to gain access to your account. Did they seem rushed or create urgency to act quickly?
+
+Customer: Yes, they said my account could be frozen if I didn’t verify my identity immediately.
+
+Advisor: I understand. Creating urgency is a common tactic fraudsters use to bypass hesitation. Let me review your recent transactions and check for any suspicious activity. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Robinson. I’ve reviewed your account, and I can see several transactions this morning that appear unusual. There’s a £1,500 transfer to a new payee, £800 in online purchases, and a pending transaction for £2,000 to another account. Do you recognize any of these?
+
+Customer: No, none of those were me.
+
+Advisor: Thank you for confirming. I’ll flag all of these as unauthorized and block any further transactions to the associated accounts. Before proceeding, I’ll need to verify some additional details to reset your credentials. Could you confirm the answer to your security question: “What is your favorite color?”
+
+Customer: It’s blue.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 4321.
+
+Advisor: Perfect. I’ll reset your online banking credentials now and secure your account. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, that’s fine.
+
+Advisor: Thank you. Let’s start with the call you received. Did the caller provide a name or any contact details, such as a phone number to call back?
+
+Customer: They said their name was Alex and gave me a number to call back, but I didn’t write it down.
+
+Advisor: That’s okay. Fraudsters often use generic names and spoofed numbers to appear legitimate. Did they mention any specific transactions that seemed suspicious, or was their request general?
+
+Customer: They said there was a £2,000 transfer flagged as suspicious, but I didn’t make that transaction.
+
+Advisor: Thank you. Fraudsters often invent plausible scenarios to gain your trust. After the call, did you receive any emails or texts that seemed unusual?
+
+Customer: Yes, I got an email confirming a change to my online banking password, but I thought it was part of the process they mentioned.
+
+Advisor: Understood. It’s likely the fraudsters used the information you provided to access your account and change the credentials. Did you attempt to log in after receiving that email?
+
+Customer: No, I didn’t try until this morning when I saw the transactions.
+
+Advisor: Thank you for clarifying. Let’s discuss the next steps. I’ve flagged the unauthorized transactions and initiated a recovery process for the funds. I’ll also review your account for additional security vulnerabilities.
+
+Advisor: I’ve secured your account, reset your credentials, and blocked further transactions to the flagged accounts. While we proceed with the investigation, I’d like to provide guidance on preventing similar incidents in the future. Would that be helpful?
+
+Customer: Yes, definitely.
+
+Advisor: Of course. Fraudsters often pose as trusted institutions to gain access to sensitive information. Always verify the identity of the caller by contacting the bank directly using the number on the back of your debit card. Does that make sense?
+
+Customer: Yes, it does.
+
+Advisor: Great. Additionally, never share one-time passcodes or passwords with anyone, even if they claim to be from the bank. We’ll never ask for this information. Would you like me to send you a guide on recognizing social engineering scams?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number, which you can share with us for our investigation.
+
+Customer: Okay, I’ll contact them.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions, blocked further fraudulent activity, and reset your online banking credentials. I’ve also initiated the recovery process for your funds and provided guidance on avoiding social engineering scams in the future. Do you have any other questions or concerns?
+
+Customer: No, I think that’s everything. Thank you for your help.
+
+Advisor: You’re welcome, Ms. Robinson. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

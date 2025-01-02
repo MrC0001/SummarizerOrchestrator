@@ -18,8 +18,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -56,13 +58,39 @@ public class SummarizationController {
     }
 
     /**
-     * Handle summarization requests for both first-time and existing summaries.
-     * Supports asynchronous processing to improve responsiveness and scalability.
+     * Handles summarization requests for both first-time and existing summaries.
      *
-     * @param request The summarization request payload. Must pass validation rules defined in SummarizationRequestDTO.
-     * @return A ResponseEntity indicating that the summarization request is accepted or returning existing summaries.
-     * @throws jakarta.validation.ConstraintViolationException if validation fails for the request body.
+     * <p>
+     * For existing summaries:
+     * <ul>
+     *   <li>Fetches and compares old summaries with newly generated ones.</li>
+     * </ul>
+     * For new summarization requests:
+     * <ul>
+     *   <li>Processes the summarization asynchronously using multiple providers.</li>
+     *   <li>Waits synchronously for the results to ensure a complete response.</li>
+     *   <li>Filters and validates the summaries before returning them.</li>
+     * </ul>
+     * </p>
+     *
+     * <p>This method ensures:
+     * <ul>
+     *   <li>Graceful handling of provider failures by including only valid summaries.</li>
+     *   <li>Logging and returning detailed error messages if the summarization process fails.</li>
+     *   <li>Returns empty lists for missing summaries instead of null values.</li>
+     * </ul>
+     * </p>
+     *
+     * @param request The summarization request payload, including the transcript ID, prompt, context, and parameters.
+     *                Must pass validation rules defined in {@link SummarizationRequestDTO}.
+     * @return A ResponseEntity containing:
+     *         <ul>
+     *           <li><b>HTTP 200:</b> If the summarization succeeds, returns a JSON response with "newSummaries" and "oldSummaries".</li>
+     *           <li><b>HTTP 500:</b> If an error occurs, returns a structured error message with details.</li>
+     *         </ul>
+     * @throws jakarta.validation.ConstraintViolationException If validation fails for the request body.
      */
+
     @PostMapping("/summarize")
     public ResponseEntity<?> summarize(@Valid @RequestBody SummarizationRequestDTO request) {
         logger.info("Received summarization request: {}", request);
@@ -77,26 +105,27 @@ public class SummarizationController {
                 logger.info("Returning response with old and new summaries for transcript ID: {}", sanitizedRequest.getTranscriptId());
                 return ResponseEntity.ok(response);
             } else {
-                // Process summarization asynchronously for first-time summaries
-                Long transcriptId = sanitizedRequest.getTranscriptId(); // Declare a final variable for lambda usage
-                summarizationService.summarizeAndSaveAsync(sanitizedRequest)
-                        .thenAccept(newSummaries ->
-                                logger.info("Summarization completed successfully for transcript ID: {}", transcriptId)
-                        )
-                        .exceptionally(ex -> {
-                            logger.error("Error during asynchronous summarization for transcript ID {}: {}", transcriptId, ex.getMessage(), ex);
-                            return null; // Returning null as CompletableFuture requires it.
-                        });
+                // Process summarization and save asynchronously
+                CompletableFuture<List<SummarizationResponseDTO>> futureSummaries = summarizationService.summarizeAndSaveAsync(sanitizedRequest);
+                List<SummarizationResponseDTO> summaries = futureSummaries.join(); // Wait for results synchronously
 
-                // Return immediate response indicating the request is being processed
-                logger.info("Summarization request accepted for transcript ID: {}", sanitizedRequest.getTranscriptId());
-                return ResponseEntity.accepted().body("Summarization request is being processed.");
+                // Final validation for JSON response
+                Map<String, Object> response = Map.of(
+                        "newSummaries", summaries,
+                        "oldSummaries", Collections.emptyList()
+                );
+                logger.info("Returning new summaries for transcript ID: {}", sanitizedRequest.getTranscriptId());
+                return ResponseEntity.ok(response);
             }
         } catch (Exception e) {
             logger.error("Error processing summarization request for transcript ID {}: {}", request.getTranscriptId(), e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error summarizing transcript");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "error", "Error summarizing transcript",
+                    "details", e.getMessage()
+            ));
         }
     }
+
 
 
 

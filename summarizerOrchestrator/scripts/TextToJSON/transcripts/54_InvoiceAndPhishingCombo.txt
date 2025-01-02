@@ -1,0 +1,103 @@
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Alex. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Andrew Baker.
+
+Advisor: Thank you, Mr. Baker. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 5th February 1980, and my postcode is BN1 3AA.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think my business has been targeted by fraudsters. We paid an invoice that seemed genuine, but the supplier says they didn’t send it. I’ve also received emails about suspicious logins to our account, and now I can’t log in.
+
+Advisor: I’m very sorry to hear that, Mr. Baker. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by explaining how you received the invoice?
+
+Customer: It came through email, just like all our usual invoices from this supplier. It referenced our last purchase order and had all the correct details, but it also mentioned new payment instructions.
+
+Advisor: Thank you. Did the email address match your supplier’s usual contact, or was there anything unusual about it?
+
+Customer: It looked legitimate at first, but when I checked after the supplier contacted us, I noticed the domain name had an extra letter.
+
+Advisor: Understood. Fraudsters often create lookalike email addresses to impersonate legitimate senders. What instructions were included in the email, and how did you proceed?
+
+Customer: It said their bank account details had changed, and we needed to use the new account for all future payments. I transferred £75,000 through our business banking.
+
+Advisor: Thank you. Did you attempt to verify the payment details with your supplier before completing the transaction?
+
+Customer: No, we didn’t. The email seemed so authentic, and we were in a rush to process payments.
+
+Advisor: Understood. Let me review the payment details and check for any other suspicious activity on your account. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Mr. Baker. I’ve located the transaction, and it was sent to a flagged account associated with fraud. Additionally, I can see multiple login attempts from unfamiliar devices, including one from overseas. Were you aware of these?
+
+Customer: No, I wasn’t.
+
+Advisor: It suggests that your account credentials may have been compromised. Before proceeding, I need to secure your account and block any unauthorized access. Could you confirm the answer to your security question: “What is the name of your favorite teacher?”
+
+Customer: It’s Mrs. Thompson.
+
+Advisor: Thank you. Could you also confirm the last four digits of your business debit card?
+
+Customer: It’s 4937.
+
+Advisor: Perfect. I’ll reset your online banking credentials now and secure your account. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: Let’s discuss the invoice email further. Did it include any urgency or warnings about penalties for late payment?
+
+Customer: Yes, it said the payment was overdue and that further delays could incur penalties.
+
+Advisor: Thank you. Creating urgency is a common tactic in invoice scams to bypass verification processes. Did the email include any attachments or links?
+
+Customer: Yes, it had an invoice attached as a PDF and a link to “confirm payment details.”
+
+Advisor: Thank you. Did you click on the link or download the attachment?
+
+Customer: I opened the attachment to view the invoice and clicked the link, which directed me to what looked like your login page. I entered my details to confirm payment.
+
+Advisor: Understood. It’s likely that link led to a phishing site designed to capture your credentials. Have you noticed any changes to your account, such as new payees or unfamiliar notifications?
+
+Customer: I did see a notification last week about a new payee, but I thought it was related to our payment setup.
+
+Advisor: Let me review the payees and devices linked to your account for further suspicious activity. Could you hold for a moment?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Mr. Baker. I’ve identified several unauthorized payees added to your account, including one linked to the flagged transaction. I’ve also flagged multiple unfamiliar devices attempting to access your account. Have you shared your login details with any third-party services or applications recently?
+
+Customer: No, I haven’t. But I did get an email a few weeks ago about verifying our open banking connections. I clicked the link and followed the instructions.
+
+Advisor: Thank you for mentioning that. It’s possible the fraudsters used that phishing email to set up unauthorized access to your account. I recommend uninstalling any apps linked to your account and running a security scan on your devices. Do you have antivirus software installed?
+
+Customer: Yes, I do.
+
+Advisor: That’s good to hear. Let’s focus on recovering your funds and minimizing further risks.
+
+Advisor: I recommend enabling two-factor authentication for your online banking account to add an extra layer of security. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll send you instructions for that. Additionally, I recommend reviewing your company’s payment authorization process. Implementing dual authorization for high-value transactions can help prevent similar incidents. Would you like guidance on setting that up?
+
+Customer: Yes, that would be very helpful.
+
+Advisor: I’ll include that in the guidance I send. Lastly, I recommend monitoring your company’s credit profile for unusual activity, as stolen credentials can be used for identity theft. Would you like advice on how to do that?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: I’ll include that as well. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number for your case, which you can share with us.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions and payees, reset your online banking credentials, and initiated recovery processes for your funds. I’ve also provided guidance on improving your account and payment security. Do you have any other questions or concerns?
+
+Customer: No, I think that covers everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Mr. Baker. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.
+

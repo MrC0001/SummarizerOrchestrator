@@ -1,0 +1,81 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Emily. Can I take your full name to start with, please?
+
+Customer: Yes, it’s David Hughes.
+
+Advisor: Thank you, Mr. Hughes. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 29th November 1980, and my postcode is BS1 6QR.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think my business has been scammed. We received an invoice from what seemed like one of our regular suppliers, but after we transferred the payment, they contacted us to say they never sent it.
+
+Advisor: I’m very sorry to hear that, Mr. Hughes. You’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by telling me about the invoice you received?
+
+Customer: It looked completely legitimate—same layout, logo, and format as their usual invoices. It even referenced the correct purchase order number.
+
+Advisor: Thank you. Did the invoice come through their usual communication channels, such as their official email address?
+
+Customer: That’s what’s strange. It came through email, but when I checked after the payment, I noticed the sender’s address was slightly different—an extra letter in the domain name.
+
+Advisor: I see. Fraudsters often use subtle changes to email addresses to impersonate legitimate senders. How much was the payment, and how was it made?
+
+Customer: It was £78,000, transferred directly from our business account.
+
+Advisor: Thank you for clarifying. Did the invoice include any mention of changes to the supplier’s usual bank details?
+
+Customer: Yes, they said their account was being audited, so they provided a new account number for this payment.
+
+Advisor: Understood. Let me check the payment details and cross-reference the recipient account. Could you hold for a moment while I review your recent transactions?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Mr. Hughes. I’ve located the payment, and it was sent to an account flagged in our system for fraudulent activity. I’ll initiate a recall request immediately. Before proceeding, I need to gather more details for our investigation. Is that okay?
+
+Customer: Yes, absolutely.
+
+Advisor: Thank you. Have you had any direct communication with the supplier outside of email, such as phone calls or messages?
+
+Customer: No, just the usual emails.
+
+Advisor: Understood. When you realized the fraud, did you contact your supplier to verify the payment details?
+
+Customer: Yes, that’s how I found out it wasn’t them. They confirmed they hadn’t changed their bank account or sent that invoice.
+
+Advisor: Thank you. Did the email address used to send the fraudulent invoice match your supplier’s usual email address, aside from the slight alteration you mentioned?
+
+Customer: Yes, it was identical except for the added letter.
+
+Advisor: Thank you for sharing that. It sounds like the fraudsters either spoofed the email address or compromised your supplier’s email account. Let’s move on to your company’s internal controls. Do you have a verification process for changes to payment details?
+
+Customer: Usually, we call the supplier to confirm, but this invoice looked so normal that we didn’t think to verify it.
+
+Advisor: Understood. Verification steps can be crucial in catching these scams. Let’s focus on securing your account and minimizing further risks. I’ll block any future transactions to the flagged account, reset your company’s online banking credentials, and enable enhanced fraud monitoring. Does that sound okay?
+
+Customer: Yes, please do that.
+
+Advisor: I’ve completed those actions. While I continue the investigation, I’d like to explain how invoice fraud typically works and provide some tips to prevent it in the future. Would that be helpful?
+
+Customer: Yes, absolutely.
+
+Advisor: Great. Invoice fraud often involves fraudsters either compromising a supplier’s email account or creating a lookalike address to impersonate them. They then send fake invoices with altered payment details. To prevent this, I recommend verifying any changes to payment details directly with the supplier using a trusted phone number. Does that make sense?
+
+Customer: Yes, it does. We’ll make sure to do that moving forward.
+
+Advisor: That’s excellent. Additionally, I recommend implementing two-factor authentication for your email accounts and training employees to recognize phishing attempts. Would you like me to send you a guide on strengthening email security?
+
+Customer: Yes, that would be very helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number, which you can share with us for our investigation.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized payment, initiated a recall request, and secured your account. I’ve also provided guidance on improving your company’s security and preventing future scams. Our investigations team will keep you updated on the progress. Do you have any other questions or concerns?
+
+Customer: No, I think that’s everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Mr. Hughes. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

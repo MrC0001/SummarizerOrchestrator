@@ -1,0 +1,77 @@
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Karen. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Jonathan Cooper.
+
+Advisor: Thank you, Mr. Cooper. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 25th August 1980, and my postcode is M1 3AA.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I was trying to transfer £50,000 to a new payee earlier today, but the payment was blocked. It’s urgent because it’s a down payment for a property purchase.
+
+Advisor: I completely understand the urgency, Mr. Cooper. Let me look into this for you right away. Could you confirm how you attempted to make the payment—was it through online banking, our app, or in-branch?
+
+Customer: It was through the mobile app. I’ve made large payments before, so I don’t know why this one was stopped.
+
+Advisor: Thank you. Was this your first time sending money to this payee?
+
+Customer: Yes, I only got their details from my solicitor yesterday.
+
+Advisor: Understood. Did you receive any email or message containing the payee details, or were they provided directly by the solicitor?
+
+Customer: The solicitor emailed them to me. I copied them from the email into the app.
+
+Advisor: Thank you. Let me review your account and the payment details to determine why it was blocked. Could you hold for a moment?
+
+Customer: Sure.
+
+Advisor: Thanks for holding, Mr. Cooper. The payment was blocked because the account details provided didn’t pass our fraud checks. The account you were trying to send money to has been flagged in our system. It may be linked to fraudulent activity. Have you verified these account details directly with your solicitor?
+
+Customer: No, I didn’t think I needed to. They came from the solicitor’s email address.
+
+Advisor: I understand. Unfortunately, fraudsters often intercept emails or impersonate solicitors to misdirect payments. I recommend contacting your solicitor directly by phone to confirm the details before attempting the transfer again.
+
+Customer: I see. I’ll call them now. But what happens if the account isn’t fraudulent? Can the payment still go through?
+
+Advisor: Once we’ve confirmed the account is legitimate, we can unblock the payment and process it. Let’s review the email you received. Were there any unusual signs, like spelling errors or a sudden sense of urgency?
+
+Customer: Now that you mention it, the email said the payment needed to be made within 24 hours to avoid delaying the transaction.
+
+Advisor: That’s often a red flag. Fraudsters use urgency to pressure victims into acting quickly. Let’s also ensure there’s no unauthorized access to your account. Could you hold for a moment while I review the devices connected to your online banking?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Mr. Cooper. I’ve identified a recent login from an IP address not associated with your usual activity. It was flagged as suspicious. Have you noticed any emails or messages asking you to update your account details recently?
+
+Customer: Yes, actually. I got an email a few days ago saying my account security needed updating, and it had a link to log in. I clicked it and entered my credentials.
+
+Advisor: That’s likely how your account details were compromised. Fraudsters use phishing emails to gain access. I’ll reset your online banking credentials now and secure your account. Could you confirm the last four digits of your debit card?
+
+Customer: It’s 6723.
+
+Advisor: Thank you. I’ll process that now. While I’m doing this, I recommend contacting your solicitor immediately to verify the payment details. Also, ensure you don’t reuse the same passwords for online banking and email.
+
+Customer: I’ll call the solicitor right after this. And I’ll update my email password too.
+
+Advisor: That’s a great step. Let’s also discuss two-factor authentication for your online banking account. This adds an extra layer of security. Would you like assistance setting it up?
+
+Customer: Yes, please.
+
+Advisor: I’ll include detailed instructions in the follow-up email. Additionally, I recommend reporting this phishing attempt to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They can help you document the case and provide a reference number.
+
+Customer: I’ll do that. Thank you.
+
+Advisor: One last thing—if the solicitor confirms the account details are correct and this was a false positive, we can quickly unblock the payment for you. If the account is found to be fraudulent, your solicitor may need to provide alternate instructions. Are you comfortable with us holding the payment for now?
+
+Customer: Yes, I’d prefer that. I don’t want to risk sending it to the wrong place.
+
+Advisor: That’s a wise choice. I’ll flag the payment for follow-up and ensure our team reviews the situation as soon as you provide confirmation from your solicitor.
+
+Advisor: Let me summarize the steps we’ve taken today. Your payment was blocked due to a flagged account linked to potential fraud. I’ve secured your online banking by resetting your credentials and recommending two-factor authentication. I’ve advised you to verify the account details with your solicitor and report the phishing email to Action Fraud. Once we have confirmation of the payee details, we’ll proceed accordingly. Do you have any other questions or concerns?
+
+Customer: No, that covers everything. Thank you for your help.
+
+Advisor: You’re welcome, Mr. Cooper. Thank you for contacting us promptly. If you have any further issues, please don’t hesitate to reach out. Take care.
+
+Customer: Thanks, you too.

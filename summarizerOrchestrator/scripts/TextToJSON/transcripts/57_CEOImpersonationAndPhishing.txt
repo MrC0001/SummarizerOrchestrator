@@ -1,0 +1,99 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Rachel. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Jonathan Reed.
+
+Advisor: Thank you, Mr. Reed. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 9th December 1972, and my postcode is W1F 8HN.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I’ve been scammed at work. I got an email from my CEO asking for a payment to close an urgent deal, but he’s just told me he never sent that email. The payment has already gone through, and now I’ve noticed other transactions from our account that I didn’t authorize.
+
+Advisor: I’m very sorry to hear that, Mr. Reed. Let me assure you, you’ve done the right thing by contacting us. Let’s investigate this thoroughly. Could you start by explaining how you received the email?
+
+Customer: It came through last week. It looked exactly like it was from my CEO’s usual email address, with his signature and everything. It referenced a project we’ve been working on, so it seemed legitimate.
+
+Advisor: Thank you. Did the email include any urgency or unusual instructions?
+
+Customer: Yes, it said the payment needed to be made within the hour to secure the deal. There was a lot of pressure to act quickly.
+
+Advisor: Understood. What instructions did the email provide, and how did you proceed?
+
+Customer: It included a new bank account for the transfer. I checked the payment details against our records, but since it came directly from the CEO’s email, I trusted it. I authorized the transfer of £120,000 through our business account.
+
+Advisor: Thank you. Did the email include any attachments or additional follow-up requests?
+
+Customer: Yes, it had an invoice attached, and after the payment, I received another email thanking me for acting quickly and asking me to confirm the payment by clicking on a link.
+
+Advisor: Understood. Did you click the link or provide any additional information?
+
+Customer: Yes, I clicked it. It directed me to what looked like your banking login page, where I entered my details to verify the payment.
+
+Advisor: Thank you for sharing that. It sounds like the fraudsters used a combination of email spoofing and phishing to gain access to your account. Let me review the payment and investigate further. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Mr. Reed. I’ve located the payment to the flagged account, and I can see several other unauthorized transactions. These include a £50,000 transfer to a cryptocurrency exchange and multiple smaller payments totaling £15,000. Do you recognize any of these?
+
+Customer: No, none of those are mine.
+
+Advisor: Thank you for confirming. I’ve flagged these as unauthorized and blocked any further transactions to the associated accounts. Before proceeding, I need to verify some additional details to secure your account. Could you confirm the answer to your security question: “What is your favorite sport?”
+
+Customer: It’s rugby.
+
+Advisor: Thank you. Could you also confirm the last four digits of your business debit card?
+
+Customer: It’s 4912.
+
+Advisor: Perfect. I’ll reset your online banking credentials now and secure your account. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: Let’s discuss the email further. Did the email use your company’s standard template, or was there anything unusual about it?
+
+Customer: It looked like our usual emails, but when I checked more closely later, I noticed the email address had an extra “-finance” added to the domain name.
+
+Advisor: Thank you for pointing that out. Fraudsters often use lookalike domains to deceive recipients. Did the email mention any follow-up actions or include any specific contact details?
+
+Customer: It said not to contact the CEO directly about the payment, as it was confidential. It also included a phone number for the “finance department,” but I didn’t call it.
+
+Advisor: Understood. Let’s talk about the phishing link you mentioned. Did you receive any additional notifications or alerts after entering your details?
+
+Customer: Yes, I got a text saying my account had been accessed from a new device. I thought it was part of the process, so I didn’t question it.
+
+Advisor: Let me review the devices and payees linked to your account for further suspicious activity. Could you hold for a moment?
+
+Customer: Yes, go ahead.
+
+Advisor: Thanks for holding, Mr. Reed. I’ve identified several unauthorized payees added to your account, including one linked to the flagged transactions. I’ve also flagged multiple login attempts from unfamiliar devices, including one from an international IP address. Have you shared your credentials with any other third parties recently?
+
+Customer: No, but I did enter them on that phishing site.
+
+Advisor: Thank you for mentioning that. I recommend uninstalling any apps or software linked to the fraud and running a full security scan on your devices. Do you have antivirus software installed?
+
+Customer: Yes, I do.
+
+Advisor: That’s good to hear. Let’s focus on recovering your funds and minimizing further risks.
+
+Advisor: I recommend enabling two-factor authentication for your online banking account to add an extra layer of security. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll send you instructions for that. Additionally, I recommend implementing dual authorization for high-value payments in your company’s process. This ensures that no single person can authorize large transfers. Would you like guidance on how to set that up?
+
+Customer: Yes, that would be very helpful.
+
+Advisor: I’ll include that in the guidance I send. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number for your case, which you can share with us.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions, reset your online banking credentials, and initiated recovery processes for your funds. I’ve also provided guidance on improving your account security and implementing fraud prevention measures for your business. Do you have any other questions or concerns?
+
+Customer: No, I think that covers everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Mr. Reed. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

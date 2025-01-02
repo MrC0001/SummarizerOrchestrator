@@ -1,0 +1,90 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Emily. Can I take your full name to start with, please?
+
+Customer: Hi, it’s Jonathan Blake.
+
+Advisor: Thank you, Mr. Blake. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 2nd March 1968, and my postcode is LE2 1AA.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think I’ve been scammed. Someone called claiming to be from my internet provider. They said my computer had a virus, and they needed to access it to fix it. Then they asked me to make some payments for “services.”
+
+Advisor: I’m very sorry to hear this, Mr. Blake. Let me assure you, we’ll look into this thoroughly. Could you start by explaining how the call began and what the caller said?
+
+Customer: They said they detected unusual activity on my internet connection and that my personal information might be at risk. They were very convincing and said they needed remote access to my computer to sort it out.
+
+Advisor: I see. Did they ask you to install any software or provide login credentials for any accounts?
+
+Customer: Yes, they told me to download something called TeamViewer so they could “fix” the issue. Then they asked for my online banking details to verify the payments they said were “stuck.”
+
+Advisor: Thank you for explaining. Could you confirm how much you sent and to whom?
+
+Customer: I sent £2,500 in total. They had me transfer the money in two separate transactions to accounts they provided.
+
+Advisor: Thank you. Let me review your account for these transactions and investigate further. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Mr. Blake. I’ve identified the two payments you mentioned. They’ve gone to accounts flagged in our system for fraudulent activity. Additionally, there are several unauthorized login attempts to your online banking account from unfamiliar IP addresses. Did you share any one-time passcodes or banking credentials with the caller?
+
+Customer: Yes, they said they needed the passcodes to verify my account. I feel so stupid for falling for it.
+
+Advisor: Please don’t blame yourself, Mr. Blake. These scams are designed to be highly convincing. I’ll reset your online banking credentials immediately to secure your account. Could you confirm the last four digits of your debit card?
+
+Customer: It’s 6732.
+
+Advisor: Thank you. I’ll process that now. While I’m doing this, let’s discuss the steps to recover your funds and secure your information. Is that okay?
+
+Customer: Yes, please.
+
+Advisor: First, I’ll initiate a dispute for the payments made to these flagged accounts. We’ll contact the receiving banks to attempt recovery. This process may take some time, but we’ll keep you updated throughout.
+
+Customer: Thank you. Is there anything I need to do to assist with the process?
+
+Advisor: It would be helpful if you could provide any evidence, such as emails, call logs, or screenshots of the instructions they gave you. Could you email those to us?
+
+Customer: Yes, I have call logs and a screenshot of the TeamViewer installation. I’ll send them over today.
+
+Advisor: Perfect. I’ll email you the details for submitting that evidence. Additionally, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number we can use in our investigation.
+
+Customer: I’ll contact them as soon as I’m done here. Thank you.
+
+Advisor: Let’s also secure your computer and other devices. Fraudsters often install malicious software during these scams to monitor activity or steal information. Do you have an IT professional who can assist you with this?
+
+Customer: Yes, I’ll contact the technician who set up my system originally.
+
+Advisor: That’s a great step. In the meantime, I recommend disconnecting your computer from the internet and uninstalling any software they had you install. I’ll also send you tips on recognizing and removing malicious software.
+
+Customer: Thank you. I’ll do that immediately.
+
+Advisor: To prevent future incidents, let’s also discuss recognizing these types of scams. Legitimate tech support will never ask for remote access or payment for unsolicited repairs. Did the caller use any high-pressure tactics to make you act quickly?
+
+Customer: Yes, they said my bank account would be frozen if I didn’t act immediately. That really scared me.
+
+Advisor: That’s a common tactic fraudsters use to create urgency. Genuine service providers will never threaten you or ask for sensitive information over the phone. I’ll include tips in the follow-up email on verifying calls and staying safe online.
+
+Customer: I’ll definitely be more cautious from now on.
+
+Advisor: Before we finish, let’s enable two-factor authentication for your online banking to enhance security. Would you like assistance setting that up?
+
+Customer: Yes, please.
+
+Advisor: I’ll include detailed instructions in the follow-up email. Additionally, it’s important to update your passwords for any other accounts that may have been compromised. Do you reuse passwords across multiple platforms?
+
+Customer: Unfortunately, yes. I know I shouldn’t, but it’s hard to keep track of so many.
+
+Advisor: I understand. I’ll provide guidance on creating strong, unique passwords and recommend using a password manager. Lastly, consider monitoring your credit report for any unusual activity. Would you like advice on setting that up?
+
+Customer: Yes, that would be helpful.
+
+Advisor: Let me summarize the steps we’ve taken today. I’ve flagged the fraudulent transactions for investigation and initiated a recovery request. I’ve secured your online banking credentials and recommended contacting Action Fraud. I’ve also advised securing your devices, enabling two-factor authentication, and updating your passwords. Lastly, I’ll send guidance on avoiding similar scams and improving your online security. Do you have any other questions or concerns?
+
+Customer: No, I think that covers everything. Thank you so much for your help.
+
+Advisor: You’re welcome, Mr. Blake. Thank you for reporting this promptly. If you have any further concerns, don’t hesitate to contact us. Take care.
+
+Customer: Thanks. You too.
+

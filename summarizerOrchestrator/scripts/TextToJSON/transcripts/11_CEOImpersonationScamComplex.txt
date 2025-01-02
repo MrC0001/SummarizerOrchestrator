@@ -1,0 +1,85 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is James. Can I take your full name to begin with, please?
+
+Customer: Yes, it’s Rachel Bennett.
+
+Advisor: Thank you, Ms. Bennett. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 7th May 1980, and the postcode is W1T 6EB.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think I’ve been scammed. I’m the accounts manager for my company, and I received an urgent email from my CEO yesterday asking me to process a payment. It seemed legitimate at the time, but now I’m not so sure. The payment was for a large amount, and I can’t reach him to verify it.
+
+Advisor: I understand how concerning this must be, Ms. Bennett. You’ve done the right thing by contacting us. Let’s investigate this step by step. Could you start by telling me about the email you received? What did it say, and did it include any specific details?
+
+Customer: The email came from what looked like my CEO’s address. It was marked as urgent and said he needed me to process a payment of £25,000 for a supplier immediately. He mentioned that he was in meetings all day and couldn’t take calls, but he’d follow up later.
+
+Advisor: Thank you. Did the email include any details about the supplier, such as an invoice or account number?
+
+Customer: Yes, there was an attached invoice with the supplier’s name, account details, and the payment amount. It all looked legitimate, and since it was from my CEO’s email, I trusted it.
+
+Advisor: Understood. Did the email include any unusual language or formatting, or did it seem consistent with how your CEO usually communicates?
+
+Customer: It seemed a little formal compared to his usual emails, but I assumed that was because he was in a rush.
+
+Advisor: Thank you for sharing that. Could you confirm how you processed the payment? Did you use your company’s online banking platform?
+
+Customer: Yes, I logged into our corporate banking system and made the transfer using the account details provided in the invoice.
+
+Advisor: I see. Did you receive any confirmation after making the payment, either from the recipient or from your CEO?
+
+Customer: No, I didn’t. I emailed my CEO afterward to let him know the payment was complete, but I haven’t heard back from him. This morning, I spoke to him in person, and he said he didn’t send any email about a payment.
+
+Advisor: Thank you for clarifying. Based on what you’ve described, it sounds like you’ve been targeted in a CEO impersonation scam, also known as Business Email Compromise. Fraudsters often spoof email addresses to make their requests appear genuine. I’ll take immediate steps to secure your account and investigate the transaction. Could you hold for a moment while I review your company’s recent activity?
+
+Customer: Yes, please.
+
+Advisor: Thanks for holding, Ms. Bennett. I’ve located the payment in question, and it was sent to an account ending in 4827. This account has been flagged in our system for suspected fraudulent activity. I’ll initiate a recall request to recover the funds. Before proceeding, I need to gather additional details for our investigation. Could you confirm whether you received any other communications related to this payment, such as follow-up emails or phone calls?
+
+Customer: No, it was just the one email.
+
+Advisor: Thank you. Could you also confirm whether your company uses any email security measures, such as two-factor authentication or phishing detection tools?
+
+Customer: We do have email filters, but I’m not sure if we use two-factor authentication.
+
+Advisor: Understood. I recommend checking with your IT department to ensure your email accounts are properly secured. Have you noticed any other unusual activity on your company’s systems, such as unauthorized logins or changes to email settings?
+
+Customer: Not that I’m aware of, but I’ll ask our IT team to investigate.
+
+Advisor: That’s a good idea. I’ll also provide guidance on strengthening your company’s email security to prevent similar incidents in the future. Let’s focus on recovering the funds for now. Could you confirm whether your company has any fraud insurance or protocols in place for handling incidents like this?
+
+Customer: Yes, we have fraud insurance, but I haven’t contacted them yet. I wasn’t sure if I should wait for the bank’s investigation first.
+
+Advisor: It’s a good idea to notify your insurer as soon as possible, as they may require a reference number from us to process your claim. I’ll provide you with all the necessary details after we finish here. In the meantime, let’s proceed with the next steps. I’ll block any further transactions to the flagged account, reset your company’s online banking credentials, and enable enhanced fraud monitoring. Does that sound okay?
+
+Customer: Yes, please do that.
+
+Advisor: I’ve completed those actions. While I’m processing your recall request, I’d like to discuss how CEO impersonation scams typically work and provide some tips for preventing them. Would that be helpful?
+
+Customer: Yes, absolutely. I feel awful that I fell for this.
+
+Advisor: Please don’t blame yourself, Ms. Bennett. These scams are designed to exploit trust and urgency. Fraudsters often use email spoofing to make their messages appear authentic. They create a sense of urgency to pressure employees into acting quickly without verifying the request. Moving forward, I recommend always confirming payment requests directly with the person involved, even if the email seems genuine. Does that make sense?
+
+Customer: Yes, it does. I’ll make sure to double-check next time.
+
+Advisor: That’s a great step. Additionally, I recommend implementing two-factor authentication for your company’s email accounts and training employees to recognize phishing attempts. Would you like me to send you a guide on these security measures?
+
+Customer: Yes, that would be very helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this scam to Action Fraud, the UK’s national fraud reporting centre. They’ll provide a reference number, which you can share with your insurer and us. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040.
+
+Customer: Okay, I’ll contact them today.
+
+Advisor: Great. Let’s summarize the steps we’ve taken so far. I’ve flagged the unauthorized payment, initiated a recall request, and secured your company’s online banking account. I’ve also provided guidance on strengthening email security and reporting the scam to Action Fraud. Do you have any questions or concerns?
+
+Customer: No, I think you’ve covered everything. Do you think we’ll get the money back?
+
+Advisor: We’ll do everything we can to recover the funds. Since the transaction was flagged quickly, there’s a good chance we can recall it. Our investigations team will keep you updated on the progress. If you have further concerns, don’t hesitate to contact us.
+
+Customer: Thank you so much for your help. I really appreciate it.
+
+Advisor: You’re welcome, Ms. Bennett. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.

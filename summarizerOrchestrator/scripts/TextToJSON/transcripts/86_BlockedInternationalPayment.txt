@@ -1,0 +1,85 @@
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Sarah. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Matthew Wilson.
+
+Advisor: Thank you, Mr. Wilson. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 18th July 1985, and my postcode is SE22 8XX.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I was trying to make an international payment for a business transaction, but it got blocked. I need it processed urgently, and I don’t understand why it’s been flagged.
+
+Advisor: I’m very sorry for the inconvenience, Mr. Wilson. Let me assure you, I’ll look into this right away. Could you start by telling me the amount and purpose of the payment?
+
+Customer: It’s £10,000 to a supplier in Hong Kong. We’re purchasing raw materials, and the payment is overdue. They’re pressing me to get it sorted.
+
+Advisor: Thank you for explaining. When you say they’re pressing you, have they provided any updates or alternative ways to pay?
+
+Customer: Yes, they sent me an email yesterday saying they’ve already shipped the materials and that I need to pay immediately to avoid penalties.
+
+Advisor: Understood. Could you confirm when you attempted the payment and how you processed it—was it online or through our app?
+
+Customer: I tried to do it through the mobile app yesterday afternoon. I entered all the details correctly, but then I got a notification saying the payment was blocked.
+
+Advisor: Got it. Let me pull up the payment details and investigate the reason for the block. Could you hold for a moment?
+
+Customer: Yes, no problem.
+
+Advisor: Thanks for holding, Mr. Wilson. I’ve reviewed your account, and the payment was flagged due to a mismatch in the payee’s account name and the name listed in our records for the beneficiary. This is a safeguard against potential fraud. Did the supplier provide any updated details recently?
+
+Customer: Yes, they sent me new account details last week, but I didn’t think to verify them. I’ve worked with this supplier for years and never had an issue before.
+
+Advisor: That’s understandable. Fraudsters often impersonate known suppliers to misdirect payments. To ensure your security, I’d like to verify the supplier’s information with you. Could you confirm the account name and number they provided?
+
+Customer: Sure, the account name is “HK Global Supplies Ltd,” and the account number ends in 5678.
+
+Advisor: Thank you. I’ll cross-check these details against fraud databases to ensure they’re legitimate. Could you hold for a moment while I do that?
+
+Customer: Of course.
+
+Advisor: Thanks for holding, Mr. Wilson. Unfortunately, the account you provided has been flagged in our system as potentially linked to fraud. Have you received any unusual communications from the supplier, such as requests to change payment methods or accounts?
+
+Customer: Yes, now that you mention it, they emailed me saying their usual account was under review and to use this new one instead. I didn’t think much of it at the time because it sounded reasonable.
+
+Advisor: Thank you for confirming. This is a common tactic used in invoice redirection scams. I recommend contacting your supplier directly using a verified phone number to confirm these account details. In the meantime, I’ll block further payments to this account to protect your funds.
+
+Customer: That’s a good idea. I’ll call them right away.
+
+Advisor: Before proceeding, let’s also review the activity on your account to ensure there are no other unusual transactions. Could you hold for a moment while I do that?
+
+Customer: Yes, please.
+
+Advisor: Thanks for holding, Mr. Wilson. I’ve reviewed your recent transactions, and everything else appears in order. However, I recommend resetting your online banking credentials as a precaution, as fraudsters often gain access to accounts through phishing. Would you like assistance with that?
+
+Customer: Yes, I think that’s a good idea.
+
+Advisor: I’ll send you guidance on how to update your passwords and enable two-factor authentication. Additionally, I’ll monitor your account for the next 48 hours to ensure no unauthorized activity occurs. If you notice anything unusual, please contact us immediately.
+
+Customer: Thank you. I appreciate that.
+
+Advisor: Let’s discuss a few steps you can take to prevent this in the future. First, always verify payment instructions with the supplier directly, especially if they change account details. It’s best to use a known contact number rather than responding to emails.
+
+Customer: I see now. I should have called them first.
+
+Advisor: Exactly. Second, consider implementing dual authorization for large transactions. This would require two people to approve payments, reducing the risk of fraud. Would you like information on how to set that up?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: I’ll include that in the guidance I send. Lastly, I recommend reviewing your email security. If fraudsters accessed your communication with the supplier, it’s possible your email account has been compromised. Have you noticed any unusual activity, like emails being sent that you didn’t write?
+
+Customer: Now that you mention it, my colleague said they got a strange email from me last week. I thought it was just a mistake.
+
+Advisor: That could be a sign your email account was accessed. I’ll also send guidance on securing your email, including enabling two-factor authentication and updating your password. Would you like assistance with that as well?
+
+Customer: Yes, please.
+
+Advisor: To summarize, your payment was blocked due to potential fraud linked to the new account details provided by your supplier. I recommend confirming the correct details with them directly before making another payment. I’ve also taken steps to secure your account and will monitor it for suspicious activity. Additionally, I’ll send you guidance on email security, dual authorization, and other preventive measures. Do you have any other questions or concerns?
+
+Customer: No, that covers everything. Thanks for your help.
+
+Advisor: You’re welcome, Mr. Wilson. Thank you for your patience, and please don’t hesitate to contact us if you need further assistance. Take care.
+
+Customer: Thanks, you too.
+

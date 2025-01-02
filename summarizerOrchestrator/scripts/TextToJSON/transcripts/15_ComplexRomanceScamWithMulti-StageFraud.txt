@@ -1,0 +1,98 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Rachel. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Sarah Collins.
+
+Advisor: Thank you, Ms. Collins. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 3rd October 1989, and the postcode is SW1A 2AA.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think I’ve been scammed. I’ve been talking to someone online for months, and I’ve sent them money several times. Now they’re not responding, and I’m worried I’ve made a huge mistake.
+
+Advisor: I’m very sorry to hear that, Ms. Collins. Let me assure you, you’ve taken the right step by contacting us. Let’s go through this together. Could you start by telling me how you met this person and what kind of relationship you had with them?
+
+Customer: We met on a dating app about six months ago. He said he was living abroad but working on a big project that would bring him back to the UK soon. We started chatting every day, and it felt really genuine. About a month ago, he started telling me about financial problems with his business.
+
+Advisor: Thank you for sharing that. What kind of financial problems did he describe, and how did he ask for your help?
+
+Customer: He said his construction company was struggling because of delays with his suppliers. He asked if I could help with short-term funding, and he promised to pay me back once his project was completed.
+
+Advisor: I see. How much money have you sent to him, and how did you transfer it?
+
+Customer: I sent about £15,000 in total, in several payments over the last few weeks. I used bank transfers to send the money.
+
+Advisor: Thank you for confirming. Did he provide any documents or proof of the issues he was facing, such as invoices or contracts?
+
+Customer: Yes, he sent me invoices and pictures of the project site. It all looked real at the time.
+
+Advisor: Understood. Fraudsters often use fake documents to make their requests seem legitimate. Could you tell me if he asked for anything else besides money, such as personal or banking information?
+
+Customer: No, just the money. He said it was for his suppliers and to cover some urgent expenses.
+
+Advisor: Thank you. Before he stopped responding, did he ask for one final payment or give you any specific reason why he might need more money?
+
+Customer: Yes, he said he needed £5,000 to clear a customs fee for importing equipment. That’s when I started feeling suspicious, and I didn’t send it.
+
+Advisor: I understand. Fraudsters often escalate their demands when they sense trust is wavering. I’ll investigate the payments you’ve made to him and check if the accounts he used are linked to known fraud cases. Could you hold for a moment while I review your account?
+
+Customer: Yes, please.
+
+Advisor: Thanks for holding, Ms. Collins. I’ve reviewed your recent transactions and identified the accounts you transferred funds to. I’ll cross-check these against our fraud database. This might take a few minutes—are you okay to hold again?
+
+Customer: Yes, that’s fine.
+
+Advisor: Thank you for your patience. The accounts you sent money to are flagged in our system for being linked to multiple reports of fraud. This confirms that you were targeted in a romance scam. I’ll escalate your case to our investigations team and initiate a recovery process for the funds. Before I proceed, I’ll need to ask a few more questions. Is that okay?
+
+Customer: Yes, of course.
+
+Advisor: Thank you. Have you had any other communication with this person outside of the dating app, such as phone calls or emails?
+
+Customer: Yes, we spoke on the phone a few times, and he sent emails with updates about his project.
+
+Advisor: Thank you. Do you still have access to those emails, or did he delete the account?
+
+Customer: I have them saved in my inbox.
+
+Advisor: That’s great. Those emails might contain valuable information for our investigation. Would you be able to forward them to our fraud team?
+
+Customer: Yes, I can do that.
+
+Advisor: Excellent. Did he ever ask you to download any apps or software, or provide you with links to log into external websites?
+
+Customer: No, nothing like that.
+
+Advisor: Thank you. One last question—did he share any personal information about himself that could be verified, such as an ID, business registration, or proof of address?
+
+Customer: He sent a copy of his passport and some business documents. But now I’m wondering if they were fake.
+
+Advisor: It’s possible. Fraudsters often use stolen or fabricated documents to gain trust. I’ll include that in the investigation notes. Let’s focus on securing your account and minimizing further risks. I’ll block any future transactions to the flagged accounts and enable enhanced fraud monitoring. Does that sound okay?
+
+Customer: Yes, please.
+
+Advisor: I’ve secured your account and initiated the recovery process for the funds. While I work on the next steps, I’d like to provide guidance on preventing similar scams in the future. Would that be helpful?
+
+Customer: Yes, definitely. I feel so stupid for falling for this.
+
+Advisor: Please don’t blame yourself, Ms. Collins. These scams are designed to exploit trust and emotions. Romance scams are particularly sophisticated because they involve long-term manipulation. Moving forward, I recommend verifying the identity of anyone requesting financial help online. For example, you can use reverse image searches or consult official business registries. Does that make sense?
+
+Customer: Yes, it does. I wish I’d done that earlier.
+
+Advisor: That’s understandable. Additionally, I recommend limiting the personal information you share online. Fraudsters often gather details from public profiles to make their stories more convincing. Would you like me to send you a guide on improving online security?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide a reference number, which you can share with us for our investigation.
+
+Customer: Okay, I’ll contact them.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the fraudulent transactions, initiated the recovery process, and secured your account. I’ve also provided guidance on improving your online security and steps to report the scam. Our investigations team will keep you updated on the progress. Do you have any other questions or concerns?
+
+Customer: No, I think that’s everything. Thank you for your help.
+
+Advisor: You’re welcome, Ms. Collins. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.
+

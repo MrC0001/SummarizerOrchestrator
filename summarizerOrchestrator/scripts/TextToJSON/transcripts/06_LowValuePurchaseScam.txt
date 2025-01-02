@@ -1,0 +1,111 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Emily. Can I take your full name to begin with, please?
+
+Customer: Yes, it’s Adam Foster.
+
+Advisor: Thank you, Mr. Foster. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 23rd September 1984, and my postcode is B17 9PB.
+
+Advisor: Thank you for confirming. Let me access your account details. Could you tell me what’s prompted you to call today?
+
+Customer: I think I’ve been scammed. I bought something online last week, and it hasn’t arrived. Now the seller isn’t responding to my messages, and their website seems to have disappeared.
+
+Advisor: I’m sorry to hear that, Mr. Foster. Let me gather some details so we can help you resolve this. What was the item you purchased, and how much did it cost?
+
+Customer: It was a pair of running shoes, and I paid £85.
+
+Advisor: Thank you. And when did you make the purchase?
+
+Customer: Last Thursday, so the 9th.
+
+Advisor: Got it. Did you use your debit or credit card for the transaction?
+
+Customer: My debit card.
+
+Advisor: Thank you for confirming. And have you contacted the seller to ask for a refund or an update on your order?
+
+Customer: Yes, I emailed them twice and sent a message through their website, but no response. Then, when I checked again yesterday, the whole website was gone.
+
+Advisor: Understood. Was this a well-known retailer, or was it a smaller online business?
+
+Customer: It seemed like a smaller business, but the website looked professional. They had a lot of products listed.
+
+Advisor: I see. Have you purchased from this seller before, or was this the first time?
+
+Customer: This was my first time.
+
+Advisor: Thank you. When you visited the website, did anything strike you as unusual—like spelling mistakes, unusual payment methods, or anything else?
+
+Customer: No, it all seemed normal. The checkout process was smooth, and I got a confirmation email right after the payment.
+
+Advisor: Thank you for sharing that. Let me take a closer look at the transaction to identify any potential issues. Could you hold for a moment?
+
+Customer: Sure, go ahead.
+
+Advisor: Thanks for waiting, Mr. Foster. I can see the transaction in question, and there’s a note indicating that this retailer’s account has been flagged for potential fraudulent activity. It looks like this seller might have been involved in a purchase scam. Did the confirmation email you received include any tracking details or estimated delivery date?
+
+Customer: No, it just said, “Thank you for your order.” There wasn’t any tracking information.
+
+Advisor: Understood. Scammers often set up fake websites to collect payments and disappear once they’ve received the money. I’ll take steps to help you recover the funds. Before I proceed, I’ll need to verify some additional information with you. Are you okay to continue?
+
+Customer: Yes, that’s fine.
+
+Advisor: Thank you. Let’s start by confirming the exact name of the website you used to make the purchase.
+
+Customer: It was called SportsZoneDeals.com.
+
+Advisor: Thank you. Did you notice any reviews or ratings on the website, or did you check any third-party review sites before making the purchase?
+
+Customer: The website had a few reviews, but I didn’t check anywhere else. They seemed positive.
+
+Advisor: That’s helpful to know. Fraudulent websites often post fake reviews to appear legitimate. For future reference, I recommend checking independent review platforms like Trustpilot or Google Reviews before making a purchase. Does that make sense?
+
+Customer: Yes, I’ll definitely do that next time.
+
+Advisor: Great. I’ll document this information and escalate it to our investigations team. In the meantime, I’ll initiate a Chargeback request to recover the funds. This process involves disputing the transaction with the retailer’s bank. If they fail to respond or provide proof of delivery, we’ll refund the amount to your account. The process usually takes up to 10 working days. Does that sound okay?
+
+Customer: Yes, that’s fine. Thank you.
+
+Advisor: You’re welcome. I’ll also need to check your account for any other potentially fraudulent activity. Could you hold for a few minutes while I review your transaction history?
+
+Customer: Sure, no problem.
+
+Advisor: Thanks for holding. I’ve reviewed your transaction history, and I haven’t found any other suspicious activity. However, I noticed that your account doesn’t have enhanced fraud monitoring enabled. Would you like me to set that up for you?
+
+Customer: Yes, please. What does that involve?
+
+Advisor: Enhanced fraud monitoring adds an extra layer of security to your account. It flags any unusual transactions or activity for review. For example, if a payment is made to a flagged account or from an unrecognized device, our team will review it before it’s processed. Would that work for you?
+
+Customer: Yes, that sounds like a good idea.
+
+Advisor: I’ll enable that now. Additionally, I’d like to provide you with some tips on how to spot fraudulent websites in the future. Would that be helpful?
+
+Customer: Yes, definitely. I want to avoid this happening again.
+
+Advisor: Of course. First, always check for a secure payment page, which you can identify by the padlock icon in the address bar and “https” in the URL. Second, cross-check the website’s details on independent review sites. If you notice overly generic descriptions or reviews, it might be a red flag. Lastly, if the deal seems too good to be true, it’s worth double-checking before proceeding. Does that make sense?
+
+Customer: Yes, it does. I think I was too quick to trust this time.
+
+Advisor: It happens to many people, Mr. Foster. These scams are designed to look convincing. The important thing is that you reported it, and we’re taking steps to resolve it. One more thing—did you use the same password for this account and other websites?
+
+Customer: Yes, I tend to reuse the same one.
+
+Advisor: I recommend updating your passwords to make them unique for each account. This prevents fraudsters from accessing multiple accounts if one is compromised. Would you like me to send you a guide on creating strong passwords?
+
+Customer: Yes, please. That would be helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this scam to Action Fraud, the UK’s national fraud reporting centre. They can investigate further and help protect others. Their website is actionfraud.police.uk, and you can report it there.
+
+Customer: Okay, I’ll do that.
+
+Advisor: Great. Before we finish, do you have any other questions or concerns about the process?
+
+Customer: No, I think that covers everything. Thank you for your help.
+
+Advisor: You’re welcome. To summarize, I’ve raised a Chargeback request, enabled enhanced fraud monitoring on your account, and provided tips to avoid future scams. Our team will keep you updated on the recovery of funds. If you need further assistance, don’t hesitate to call us again. Thank you for contacting us, Mr. Foster, and take care.
+
+Customer: Thank you, Emily. I appreciate your help.
+
+Advisor: You’re welcome. Have a good day.

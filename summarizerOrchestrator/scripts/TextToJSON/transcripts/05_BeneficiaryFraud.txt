@@ -1,0 +1,94 @@
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Karen. Can I take your full name to begin with, please?
+
+Customer: Yes, it’s Richard White.
+
+Advisor: Thank you, Mr. White. Can you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 19th May 1978, and the postcode is SW4 7AB.
+
+Advisor: Thank you for that. Let me just bring up your account here. Could you tell me a bit more about why you’re calling today?
+
+Customer: I tried to make a payment earlier today, but it was blocked, and now my account is restricted. I don’t understand what’s going on.
+
+Advisor: I see. I’ll take a closer look at this for you. Just to confirm, was this payment something you initiated through online banking or your mobile app?
+
+Customer: Yes, it was through the app. I was trying to send £800 to a friend for a business expense.
+
+Advisor: Thank you for confirming. And when you tried to make the payment, did you receive any specific messages or notifications explaining why it was blocked?
+
+Customer: It just said the payment couldn’t be processed, and then I got a text saying my account had been restricted.
+
+Advisor: Understood. Let me check the notes on your account to see what triggered the restriction. Could you hold for a moment while I investigate?
+
+Customer: Sure, go ahead.
+
+Advisor: Thank you for holding, Mr. White. I can see here that your account has been flagged for potential fraudulent activity. Specifically, there’s a note indicating that funds from a known fraudulent source may have been transferred into your account recently. Does that sound familiar to you?
+
+Customer: What? No, that doesn’t make any sense. I haven’t received any fraudulent money.
+
+Advisor: I understand this might be surprising to hear. To clarify, I’ll ask a few questions about your recent account activity. Have you received any unexpected payments or transfers from people you don’t recognize?
+
+Customer: No, I only get payments from friends or family. Nothing unusual.
+
+Advisor: Thank you for confirming. Let’s go through your recent transactions to identify any that could be causing this issue. Could you share details of the most recent deposits into your account, especially anything over the past week?
+
+Customer: Let me think. I got a transfer of £2,000 from my cousin James a few days ago. He said it was for some work I helped him with. Other than that, nothing stands out.
+
+Advisor: Thank you. Did James provide any context or details about where this payment came from?
+
+Customer: Yes, he said it was from a client who paid him for freelance work. Is there an issue with that?
+
+Advisor: It’s possible that this payment from James is linked to fraudulent activity. Our system flagged it as originating from an account that has been associated with fraud in the past. This doesn’t necessarily mean James was involved, but we need to investigate further. Did James ask you to forward any of that money to someone else after you received it?
+
+Customer: Actually, yes. He asked me to send £1,500 to someone named Sarah, who he said was a subcontractor.
+
+Advisor: Thank you for sharing that. This is a common tactic used in money laundering schemes. Fraudsters often move funds through multiple accounts to obscure the trail. Could you provide the account details where you sent the £1,500?
+
+Customer: Sure. Let me check my app. The sort code was 30-45-67, and the account number was 98765432.
+
+Advisor: Thank you. I’ll cross-check those details against our internal database. This will take a few moments—would you mind holding?
+
+Customer: No problem.
+
+Advisor: Thanks for waiting, Mr. White. The account you forwarded the funds to is flagged in our system for suspected fraudulent activity. This strengthens the likelihood that the payment you received was part of a broader scam. I’ll need to ask you a few more questions to build a clearer picture. Is that okay?
+
+Customer: Yes, of course. I had no idea this was happening.
+
+Advisor: I understand. Just to confirm, have you had any recent contact with individuals claiming to be from the bank, law enforcement, or any other organization asking about your account activity?
+
+Customer: No, nothing like that.
+
+Advisor: That’s good to hear. Have you shared your banking details, such as your account number or sort code, with anyone outside your usual circle of friends or family?
+
+Customer: No, I’m always careful about that.
+
+Advisor: That’s great to hear. Now, regarding James, does he frequently send you large sums of money like this?
+
+Customer: Not really. This was the first time he’s sent me such a big amount.
+
+Advisor: Thank you. Based on what you’ve told me so far, it seems James may have unknowingly been involved in a scam. However, to protect your account, we’ll need to take some immediate actions. I’ll explain these steps in detail. Are you okay to proceed?
+
+Customer: Yes, absolutely.
+
+Advisor: First, I’ll place a temporary freeze on your account to prevent any further unauthorized transactions. This is a precautionary measure while we investigate. Second, I’ll escalate this case to our fraud investigations team for a detailed review. They’ll analyze the origin of the funds and determine if they can be recovered. Finally, I’ll assist you in contacting James to clarify the source of the payment. Does that sound okay?
+
+Customer: Yes, I understand. What happens to my account in the meantime?
+
+Advisor: You’ll still have access to view your account, but outgoing transactions will be restricted until the investigation is complete. This typically takes between five to ten working days. During this time, I recommend reaching out to James to gather any supporting information about the payment, such as invoices or receipts from the client he mentioned.
+
+Customer: Okay, I’ll do that. Is there anything else I should be doing?
+
+Advisor: Yes. I recommend monitoring for any unusual activity, such as unexpected messages or calls. If you receive any communication asking for your banking details, do not respond and contact us immediately. Additionally, it might be worth letting James know that his account may have been compromised so he can report it to his bank as well.
+
+Customer: I’ll let him know. This is so frustrating. I didn’t think helping him out would cause all this trouble.
+
+Advisor: I completely understand, Mr. White. You’ve done nothing wrong, and we’ll work with you to resolve this as quickly as possible. Before we finish, do you have any questions or concerns about the process?
+
+Customer: No, I think you’ve explained everything clearly. Thank you for your help.
+
+Advisor: You’re welcome. To summarize, I’ve placed a temporary freeze on your account, escalated this case to our investigations team, and provided steps for you to follow with James. Our team will keep you updated on the progress. If you need further assistance, don’t hesitate to call us again. Thank you for contacting us, Mr. White, and take care.
+
+Customer: Thanks, Karen. I appreciate it.
+
+Advisor: You’re welcome. Have a good day.
+

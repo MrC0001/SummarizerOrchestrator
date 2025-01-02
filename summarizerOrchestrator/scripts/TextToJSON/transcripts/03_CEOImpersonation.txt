@@ -1,0 +1,53 @@
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Jessica. Can I take your full name to begin with, please?
+Customer: Yes, it’s Jonathan Edwards.
+Advisor: Thank you, Mr. Edwards. Could you also confirm your date of birth and the postcode linked to your account?
+Customer: Sure. My date of birth is 27th February 1985, and the postcode is W1H 7AT.
+Advisor: Thank you. Let me just bring up your account now. Could you tell me what prompted you to contact us today?
+Customer: Well, I received a call earlier today, supposedly from my boss. He told me to transfer money to a supplier. It seemed urgent, so I made the payment, but now I’m worried it might’ve been a scam.
+Advisor: I understand your concern, Mr. Edwards. Let’s go through this step by step to understand what happened. Could you start by telling me more about the call? For example, what was said and how it all unfolded?
+Customer: Sure. I got a call at around 9:30 this morning from someone who sounded just like my boss. He said there was an issue with a supplier’s payment, and it needed to be resolved immediately. He was in a rush and told me to act quickly.
+Advisor: Thank you. Did the caller provide any specific details about the payment, such as an invoice number or the supplier’s name?
+Customer: Yes, he mentioned a company we’ve worked with before, and he said it was for a large order of equipment. He even referenced an invoice that seemed familiar.
+Advisor: I see. And when you were on the call, did anything about the conversation strike you as unusual, or did it seem genuine at the time?
+Customer: At the time, it felt legitimate. The tone, the urgency, everything sounded just like my boss. But now, thinking back, he avoided answering a couple of my questions about the payment.
+Advisor: Thank you for sharing that. Just to clarify, how did the caller instruct you to make the payment? Did they ask for a specific payment method?
+Customer: He told me to do a bank transfer through our online banking. He even provided the sort code and account number over the phone.
+Advisor: Thank you. And did you verify the account details or cross-check them with any internal records before making the transfer?
+Customer: No, I didn’t. I was in a rush because he said the supplier was threatening to cancel the order if the payment wasn’t made immediately.
+Advisor: I understand. Could you confirm how much money was transferred and at what time?
+Customer: It was £15,000, and I made the transfer around 9:45 this morning.
+Advisor: Thank you for confirming. I’ll check the transaction details on my end. Could you hold for a moment?
+Customer: Sure.
+Advisor: Thanks. I’ll be right back.
+
+Advisor: Thank you for waiting, Mr. Edwards. I’ve located the transaction, and it appears to be flagged as suspicious by our system. Based on what you’ve described, it seems this could be a case of CEO impersonation fraud. I’m going to ask you a few more questions to gather additional details. Would that be okay?
+Customer: Yes, of course.
+Advisor: Thank you. After the call, did the individual follow up with any emails or additional instructions?
+Customer: No, it was just the phone call. He hung up after I confirmed the transfer was completed.
+Advisor: Understood. And have you spoken to your actual boss since this incident?
+Customer: Yes, I called him about an hour ago. That’s when I realized it wasn’t him who called me this morning.
+Advisor: I see. Did your boss confirm whether there were any legitimate payment issues with the supplier?
+Customer: Yes, he said there weren’t. That’s when I knew for sure it was a scam.
+Advisor: Thank you. This information is very helpful. Just to confirm, do you still have the account details that the scammer provided?
+Customer: Yes, I noted them down before making the payment.
+Advisor: Great. Could you provide those details so I can cross-check them against our fraud database?
+Customer: The sort code was 20-30-40, and the account number was 12345678.
+Advisor: Thank you. I’ll check that now. Please hold for a moment.
+Customer: Okay.
+
+Advisor: Thanks for holding, Mr. Edwards. The account you’ve mentioned is linked to multiple reports of fraud. This confirms that your payment has unfortunately gone to a fraudulent account. However, the good news is that the transaction was flagged by our system, and it hasn’t been fully processed yet. I’ll take steps to recall the payment immediately.
+Customer: That’s a relief. What happens next?
+Advisor: I’ll raise an urgent recall request with the receiving bank to recover the funds. While we work on that, I’ll also escalate this case to our internal investigations team. They’ll coordinate with law enforcement and keep you updated on the progress. Typically, these recalls take a few days, but I’ll ensure it’s prioritized.
+Customer: Thank you. Is there anything else I should do in the meantime?
+Advisor: Yes, there are a few additional steps I recommend. First, you should report this incident to Action Fraud, the UK’s national fraud reporting centre. They’ll provide you with a reference number, which will also help with our investigation.
+Customer: Okay, I’ll do that.
+Advisor: Second, I suggest informing your employer about the incident if you haven’t already. They may need to review their processes to prevent similar scams in the future.
+Customer: Yes, I’ve already told my boss about it. He’s looking into it as well.
+Advisor: That’s good to hear. Finally, I recommend being cautious about any further contact from unknown numbers or individuals claiming to represent your company. Scammers often attempt follow-up calls to exploit their victims further. Have you received any other suspicious calls or messages recently?
+Customer: No, this was the only one.
+Advisor: That’s reassuring. If anything does come up, please report it to us immediately. Before we wrap up, do you have any questions or concerns about the process?
+Customer: No, I think you’ve covered everything. I just hope we can get the money back.
+Advisor: I completely understand, Mr. Edwards. We’ll do everything we can to recover the funds as quickly as possible. I’ve documented all the details you’ve shared and raised the recall request. Our team will keep you updated on the progress. Is there anything else I can assist you with today?
+Customer: No, that’s all. Thank you for your help.
+Advisor: You’re welcome. Thank you for calling, Mr. Edwards. Take care, and have a good day.
+Customer: Thanks. You too.

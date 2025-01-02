@@ -1,0 +1,96 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Rachel. Can I take your full name to begin with, please?
+
+Customer: Yes, it’s Lisa Graham.
+
+Advisor: Thank you, Ms. Graham. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 22nd August 1992, and the postcode is M4 1AB.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I think I’ve been scammed. I bought a designer handbag from someone on a marketplace app, but it never arrived. Then, this morning, I saw a couple of transactions on my account that I didn’t make.
+
+Advisor: I’m very sorry to hear that, Ms. Graham. You’ve done the right thing by contacting us. Let’s tackle this step by step. Could you start by telling me about the purchase? How did you find the seller, and how did they communicate with you?
+
+Customer: I saw the handbag listed on a marketplace app. The seller said they were moving abroad and needed to sell quickly. We started chatting through the app, but they asked to move the conversation to WhatsApp for easier communication.
+
+Advisor: Thank you. Did they provide any proof of the item, such as pictures, receipts, or certificates of authenticity?
+
+Customer: Yes, they sent pictures of the handbag, and it looked real. They even showed me what looked like a store receipt.
+
+Advisor: Understood. And how did you make the payment?
+
+Customer: They asked me to transfer £650 directly to their bank account because they didn’t want to pay the marketplace fees. I thought it was a bit unusual, but they seemed trustworthy.
+
+Advisor: Thank you for clarifying. Did the seller provide any details about delivery or tracking after you sent the payment?
+
+Customer: They said they’d post the handbag the same day and send me the tracking number. But after I made the payment, they stopped replying, and I never got a tracking number.
+
+Advisor: I see. Based on what you’ve described, this sounds like a purchase scam. Let’s move on to the unauthorized transactions you mentioned. When did you first notice these transactions, and can you describe them?
+
+Customer: It was this morning. There’s a £300 payment to an online store I don’t recognize, and another £150 transfer to a payee I’ve never heard of.
+
+Advisor: Thank you for confirming. Did you receive any emails, texts, or calls recently asking you to verify your banking details or log in to your account?
+
+Customer: Yes, actually. I got a text yesterday saying there was suspicious activity on my account and asking me to click a link to confirm my details. I clicked it and entered my information.
+
+Advisor: Thank you for sharing that. It sounds like you may have been targeted in a phishing scam, and the fraudsters used the details you provided to access your account. I’ll secure your account immediately to prevent further unauthorized activity. Could you hold for a moment while I review your recent transactions?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Graham. I’ve reviewed your account, and I can see the transactions you mentioned: £300 to an online retailer and £150 to a new payee. Additionally, there’s a pending transaction for £200 to another new payee. Do you recognize any of these?
+
+Customer: No, none of them were me.
+
+Advisor: Thank you for confirming. I’ll flag all of these as unauthorized and block any further transactions to the flagged accounts. Before proceeding, I’ll need to verify some additional details to reset your online banking credentials. Could you confirm the answer to your security question: “What is your mother’s maiden name?”
+
+Customer: It’s Foster.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 8421.
+
+Advisor: Perfect. I’ll reset your credentials now. While I do that, I’d like to ask a few more questions to assist with the investigation. Is that okay?
+
+Customer: Yes, that’s fine.
+
+Advisor: Let’s start with the phishing text you received. Did the sender’s phone number look unusual, or did it appear similar to our official number?
+
+Customer: It looked like it came from the bank, but now I’m not sure.
+
+Advisor: Thank you. Fraudsters often use number spoofing to make their messages seem legitimate. Did the link in the text take you to a website that resembled our online banking platform?
+
+Customer: Yes, it looked just like the bank’s website.
+
+Advisor: Understood. Phishing sites are designed to capture sensitive information by mimicking legitimate websites. After entering your details, did you notice any unusual activity on your account, such as failed login attempts or password changes?
+
+Customer: No, everything seemed normal until this morning.
+
+Advisor: Thank you for confirming. It’s likely the fraudsters used your credentials to access your account overnight. Let’s proceed with securing your account and recovering the funds.
+
+Advisor: I’ve flagged the unauthorized transactions, initiated recovery requests, and secured your account. While we proceed with the investigation, I’d like to provide guidance on avoiding scams in the future. Would that be helpful?
+
+Customer: Yes, definitely.
+
+Advisor: Of course. Purchase scams often involve sellers asking for direct bank transfers, which provide little buyer protection. I recommend using secure payment platforms that offer buyer protection. Does that make sense?
+
+Customer: Yes, it does. I’ll make sure to do that next time.
+
+Advisor: Great. Additionally, phishing scams often use alarming messages to trick you into providing personal information. Always double-check links, and if you’re unsure, contact us directly. Would you like me to send you a guide on recognizing phishing scams?
+
+Customer: Yes, please. That would be really helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide you with a reference number, which you can share with us for our investigation.
+
+Customer: Okay, I’ll contact them.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions, blocked further fraudulent activity, and reset your online banking credentials. I’ve also initiated the recovery process for your funds and provided guidance on avoiding scams in the future. Do you have any other questions or concerns?
+
+Customer: No, I think that’s everything. Thank you for your help.
+
+Advisor: You’re welcome, Ms. Graham. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.
+

@@ -1,0 +1,95 @@
+
+
+Advisor: Hello, you’re through to the Fraud Department at [Bank Name]. My name is Marcus. Can I take your full name to start with, please?
+
+Customer: Yes, it’s Emma Taylor.
+
+Advisor: Thank you, Ms. Taylor. Could you also confirm your date of birth and the postcode linked to your account?
+
+Customer: Sure. My date of birth is 14th February 1990, and the postcode is B15 1PQ.
+
+Advisor: Thank you for confirming. Let me access your account. Could you tell me what’s prompted you to contact us today?
+
+Customer: I got a call yesterday from someone claiming to be from a loan company. They said I was pre-approved for a personal loan and just needed to pay a fee upfront. I made the payment, but now they’re asking for more money, and I’m starting to think it’s a scam. On top of that, I’ve noticed some transactions on my account that I didn’t authorize.
+
+Advisor: I’m sorry to hear that, Ms. Taylor. You’ve done the right thing by contacting us. Let’s address this step by step. Could you start by telling me about the call you received? What did they say, and how did they approach you?
+
+Customer: They said they were from “Swift Loans,” and I’d been pre-approved for a £5,000 loan. They asked me to pay a £200 processing fee upfront to release the funds. They sounded professional, so I trusted them.
+
+Advisor: Thank you for sharing that. How did they ask you to make the payment?
+
+Customer: They gave me a sort code and account number and asked me to transfer the money directly. After I sent the payment, they called again and said there was an “insurance fee” of £500 that I needed to pay before the loan could be disbursed.
+
+Advisor: I see. Did you pay the second fee as well?
+
+Customer: No, I didn’t. That’s when I started feeling uneasy. I asked for proof of the loan, but they became evasive.
+
+Advisor: Understood. Fraudsters often create urgency to pressure their victims into making quick payments. Could you confirm the sort code and account number they provided for the payment?
+
+Customer: Yes, the sort code was 30-44-55, and the account number was 98765432.
+
+Advisor: Thank you. I’ll cross-check those details against our fraud database. Could you also confirm whether they requested any personal information, such as your account number or online banking credentials?
+
+Customer: Yes, they asked for my account number to “verify” my eligibility. I didn’t give them my login details, but now I’m worried they might have accessed my account somehow.
+
+Advisor: Thank you for sharing that. It’s possible that the fraudsters used the information you provided to attempt unauthorized access. Let me review your account for any suspicious activity. Could you hold for a moment?
+
+Customer: Yes, of course.
+
+Advisor: Thanks for holding, Ms. Taylor. I’ve reviewed your recent transactions and noticed a payment of £200 to the account you mentioned, as well as several unauthorized transactions totaling £1,800. These include two online purchases and a transfer to a new payee. Do you recognize any of these?
+
+Customer: No, none of those were me.
+
+Advisor: Thank you for confirming. I’ll flag these transactions as unauthorized and block the recipient accounts to prevent further activity. Before I proceed, I’ll need to verify some additional details to secure your account. Could you confirm the answer to your security question: “What is the name of your first school?”
+
+Customer: It’s Oakwood Primary.
+
+Advisor: Thank you. Could you also confirm the last four digits of your debit card?
+
+Customer: It’s 1234.
+
+Advisor: Perfect. I’ll reset your online banking credentials and enable enhanced fraud monitoring. While I do that, I’d like to gather more details for our investigation. Is that okay?
+
+Customer: Yes, that’s fine.
+
+Advisor: Let’s start with the phone call you received. Did the caller provide any contact details, such as a phone number or email address?
+
+Customer: Yes, they gave me a number to call back, but it doesn’t seem to work anymore. The email address they used was loans@swift-finance.com.
+
+Advisor: Thank you. The email address and phone number can help us track the fraudsters. Did they provide any documentation, such as a loan agreement or proof of the loan offer?
+
+Customer: Yes, they sent a loan agreement, but it looked generic—just a template with my name on it.
+
+Advisor: Understood. Fraudsters often use fake documents to appear legitimate. Could you forward that email to our fraud team for review?
+
+Customer: Yes, I’ll do that.
+
+Advisor: Thank you. One last question—did you notice anything unusual about your account before these transactions occurred, such as failed login attempts or messages from the bank?
+
+Customer: Yes, I got a text from the bank saying my account was accessed from a new device, but I thought it was a mistake because I didn’t log in at the time.
+
+Advisor: Thank you for mentioning that. It’s likely the fraudsters used the information you provided to attempt unauthorized access. I’ll include this in the case notes. Let’s focus on securing your account and recovering the funds.
+
+Advisor: I’ve flagged the unauthorized transactions, initiated recovery requests, and secured your account. While we proceed with the investigation, I’d like to provide guidance on avoiding similar scams in the future. Would that be helpful?
+
+Customer: Yes, please. I don’t want this to happen again.
+
+Advisor: Of course. Advance fee scams often involve fake loan offers with promises of quick approval. Fraudsters use convincing scripts and create urgency to pressure victims into paying fees upfront. Moving forward, I recommend verifying any loan offers directly with the lender by checking their contact details through official channels. Does that make sense?
+
+Customer: Yes, it does. I’ll be more careful next time.
+
+Advisor: That’s great to hear. Additionally, I recommend enabling two-factor authentication for your online accounts and monitoring for unusual activity. Would you like me to send you a guide on improving your account security?
+
+Customer: Yes, that would be helpful.
+
+Advisor: I’ll arrange that. Lastly, I recommend reporting this incident to Action Fraud. Their website is actionfraud.police.uk, and their phone number is 0300 123 2040. They’ll provide you with a reference number, which you can share with us for our investigation.
+
+Customer: Okay, I’ll contact them.
+
+Advisor: Let me summarize the steps we’ve taken so far. I’ve flagged the unauthorized transactions, initiated recovery requests, and secured your account. I’ve also provided guidance on avoiding scams and improving account security. Our investigations team will keep you updated on the progress. Do you have any other questions or concerns?
+
+Customer: No, I think you’ve covered everything. Thank you for your help.
+
+Advisor: You’re welcome, Ms. Taylor. Thank you for reporting this promptly. Take care, and have a good day.
+
+Customer: Thanks. You too.
