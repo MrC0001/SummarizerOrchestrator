@@ -22,20 +22,41 @@ block content
     // Display the selected transcript text
     if transcript
       h2 Transcript Text
-      .summary-box
+      .summary-box(style="margin-bottom: 20px; background-color: #1a1a1a; padding: 15px; border-radius: 10px;")
         pre.summary-content= transcript
 
-    // Display the summaries if available
+    // Display summaries and metrics
     if summaries && summaries.length > 0
       h2 Summaries for Selected Transcript
-      .summaries-container
+      .summaries-container(style="display: flex; flex-direction: column; gap: 20px;")
         each summary in summaries
-          .summary-box
-            h3= summary.providerName
-            if summary.summary
-              p= summary.summary
+          .summary-panel(style="background-color: #242424; padding: 20px; border-radius: 10px; width: 100%;")
+            .summary-box(style="margin-bottom: 10px;")
+              h3(style="margin-bottom: 10px;") Provider: #{summary.providerName}
+              if summary.summary
+                p Summary:
+                pre.summary-content(style="white-space: pre-wrap; margin-top: 10px;")= summary.summary
+              else
+                p.error-message No summary text available for this provider.
+
+            // Metrics Box (separate below the summary box)
+            if summary.metrics
+              .metrics-box(style="margin-top: 10px; background-color: #1a1a1a; padding: 10px; border-radius: 10px; border: 1px solid #66cc66;")
+                h4 Metrics:
+                ul
+                  li ROUGE-1: #{summary.metrics.rouge1 || 'N/A'}
+                  li ROUGE-2: #{summary.metrics.rouge2 || 'N/A'}
+                  li ROUGE-L: #{summary.metrics.rougeL || 'N/A'}
+                  li BERT Precision: #{summary.metrics.bertPrecision || 'N/A'}
+                  li BERT Recall: #{summary.metrics.bertRecall || 'N/A'}
+                  li BERT F1: #{summary.metrics.bertF1 || 'N/A'}
+                  li BLEU: #{summary.metrics.bleu || 'N/A'}
+                  li METEOR: #{summary.metrics.meteor || 'N/A'}
+                  li Length Ratio: #{summary.metrics.lengthRatio || 'N/A'}
+                  li Redundancy: #{summary.metrics.redundancy || 'N/A'}
+                  li Created At: #{summary.metrics.createdAt || 'N/A'}
             else
-              p.error-message No summary text available for this provider.
+              p.info-message No metrics available for this summary.
 
     else if transcript
       p.info-message No summaries found for the selected transcript. Please summarize it first.

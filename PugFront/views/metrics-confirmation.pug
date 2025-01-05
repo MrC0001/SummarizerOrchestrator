@@ -1,0 +1,13 @@
+//- views/metrics-confirmation.pug
+extends layout
+
+block content
+  h1
+    i.fas.fa-check-circle(style="margin-right: 10px;")
+    | Metrics Calculation Completed
+
+  p Metrics calculated and stored. Please select the transcript on the summary details page to view.
+
+  .link-group
+    a(href="/" class="btn-link") Back to Summarize
+    a(href="/summaries" class="btn-link") Go to Summary Details

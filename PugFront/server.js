@@ -232,7 +232,7 @@ app.post(
       const payload = {
           prompt: "Summarize the following conversation:",
           context: transcript,
-          parameters: { max_tokens: 200, temperature: 0.7 },
+          parameters: { max_tokens: 500, temperature: 0.7 },
           transcriptId: parseInt(transcriptSelect),
       };
 
@@ -274,6 +274,65 @@ app.post(
   }
 );
 
+/**
+ * Handle Metrics Calculation
+ */
+app.post(
+    '/metrics/calculate',
+    [body('transcriptId').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format')],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            logger.warn(`Validation errors in /metrics/calculate: ${JSON.stringify(errors.array())}`);
+            const transcripts = await fetchTranscripts();
+            return res.render('index', { title: 'Summarize a Transcript', transcripts, error: errors.array()[0].msg });
+        }
+
+        const { transcriptId } = req.body;
+
+        try {
+            logger.info(`Metrics calculation request for transcript ID: ${transcriptId}`);
+
+            const controlSummaryResponse = await fetch(`${API_BASE_URL}/api/metrics/control-summary/${transcriptId}`);
+            if (!controlSummaryResponse.ok) {
+                const errorMessage = await controlSummaryResponse.text();
+                logger.error(`Failed to fetch control summary: ${errorMessage}`);
+                throw new Error(`Failed to fetch control summary: ${errorMessage}`);
+            }
+            const controlSummary = await controlSummaryResponse.json();
+
+            const payload = {
+                transcriptId,
+                controlSummary: controlSummary.summaryText,
+            };
+
+            const metricsResponse = await fetch(`${API_BASE_URL}/api/metrics`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (!metricsResponse.ok) {
+                const errorMessage = await metricsResponse.text();
+                logger.error(`Backend error on metrics calculation: ${errorMessage}`);
+                throw new Error(`Backend error: ${errorMessage}`);
+            }
+
+            logger.info(`Metrics successfully calculated for transcript ID: ${transcriptId}`);
+            res.render('metrics-confirmation', { title: 'Metrics Calculation Completed' });
+        } catch (error) {
+            logger.error(`Error calculating metrics: ${error.message}`);
+            const transcripts = await fetchTranscripts();
+            res.render('index', {
+                title: 'Summarize a Transcript',
+                transcripts,
+                error: 'Metrics calculation failed. Please try again.',
+            });
+        }
+    }
+);
+
+
 
 /**
  * Displays summaries page with the list of transcripts.
@@ -314,11 +373,29 @@ app.post(
           logger.info(`Fetched data for transcript ID ${transcriptId}: ${JSON.stringify(data)}`);
 
           const transcripts = await fetchTranscripts();
+          const summariesWithMetrics = data.summaries.map(summary => {
+              // Ensure all metrics are included or set default values
+              summary.metrics = summary.metrics || {
+                  rouge1: 'N/A',
+                  rouge2: 'N/A',
+                  rougeL: 'N/A',
+                  bertPrecision: 'N/A',
+                  bertRecall: 'N/A',
+                  bertF1: 'N/A',
+                  bleu: 'N/A',
+                  meteor: 'N/A',
+                  lengthRatio: 'N/A',
+                  redundancy: 'N/A',
+                  createdAt: 'N/A'
+              };
+              return summary;
+          });
+
           res.render('summaries', { 
               title: 'Stored Summaries', 
               transcripts, 
               transcript: data.transcript, 
-              summaries: data.summaries, 
+              summaries: summariesWithMetrics, 
               error: null 
           });
       } catch (error) {
@@ -334,6 +411,7 @@ app.post(
       }
   }
 );
+
 
 
 /**

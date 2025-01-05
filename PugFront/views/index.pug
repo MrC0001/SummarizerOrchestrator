@@ -10,6 +10,7 @@ block content
     if error
       p.error-message= error
 
+    //- Form for summarizing a transcript
     form(action="/summarizeAll" method="post")
       .form-group
         label(for="transcriptSelect") Select a Transcript:
@@ -25,31 +26,58 @@ block content
 
       button(type="submit" class="btn-submit") Summarize
 
+    //- Form for calculating metrics
+    form(action="/metrics/calculate" method="post" style="margin-top: 20px;")
+      .form-group
+        label(for="metricsTranscriptSelect") Select a Transcript for Metrics Calculation:
+        select(name="transcriptId" id="metricsTranscriptSelect" required aria-label="Select Transcript for Metrics")
+          option(value="" disabled selected) -- Select Transcript --
+
+      button(type="submit" class="btn-submit") Calculate Metrics
+
   .link-group
     a(href="/new" class="btn-link") Create New Transcript
     a(href="/update" class="btn-link") Update Transcript
     a(href="/delete" class="btn-link") Delete Transcript
-    a(href="/summaries" class="btn-link") Browse Summaries
+    a(href="/summaries" class="btn-link") Summaries and Metrics
 
   script.
-    document.addEventListener('DOMContentLoaded', function() {
-      try {
-        const transcripts = !{JSON.stringify(transcripts)};
-        const transcriptSelect = document.getElementById('transcriptSelect');
-        const transcriptText = document.getElementById('transcriptText');
+    document.addEventListener('DOMContentLoaded', function () {
+        try {
+            const transcripts = !{JSON.stringify(transcripts)};
+            const transcriptSelect = document.getElementById('transcriptSelect');
+            const transcriptText = document.getElementById('transcriptText');
+            const metricsTranscriptSelect = document.getElementById('metricsTranscriptSelect');
+            
+            // Clear dropdowns to avoid duplicates
+            transcriptSelect.innerHTML = '';
+            metricsTranscriptSelect.innerHTML = '';
 
-        transcriptSelect.addEventListener('change', function() {
-          const selectedId = parseInt(this.value);
-          const selectedTranscript = transcripts.find(t => t.id === selectedId);
+            // Populate both dropdowns dynamically
+            transcripts.forEach(t => {
+                const transcriptOption = document.createElement('option');
+                transcriptOption.value = t.id;
+                transcriptOption.textContent = `ID ${t.id} - ${t.scenario}`;
+                transcriptSelect.appendChild(transcriptOption);
 
-          // Autofill the transcript textarea
-          if (selectedTranscript) {
-            transcriptText.value = selectedTranscript.transcript;
-          } else {
-            transcriptText.value = '';
-          }
-        });
-      } catch (error) {
-        console.error("Error in transcript selection script:", error);
-      }
+                const metricsOption = document.createElement('option');
+                metricsOption.value = t.id;
+                metricsOption.textContent = `ID ${t.id} - ${t.scenario}`;
+                metricsTranscriptSelect.appendChild(metricsOption);
+            });
+
+            // Autofill the transcript textarea on selection
+            transcriptSelect.addEventListener('change', function () {
+                const selectedId = parseInt(this.value);
+                const selectedTranscript = transcripts.find(t => t.id === selectedId);
+
+                if (selectedTranscript) {
+                    transcriptText.value = selectedTranscript.transcript;
+                } else {
+                    transcriptText.value = '';
+                }
+            });
+        } catch (error) {
+            console.error("Error in dropdown and transcript handling script:", error);
+        }
     });
