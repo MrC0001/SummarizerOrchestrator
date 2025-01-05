@@ -1,0 +1,9 @@
+Laura Bennett contacted [Bank Name]’s Fraud Department after discovering her business email was likely compromised, resulting in a client transferring £28,000 to a fraudulent account. The client had received an altered invoice with updated bank details, which prompted Ms. Bennett to investigate and confirm the issue. She recalled seeing failed login attempt notifications and clicking on a suspicious email link weeks earlier, which may have facilitated unauthorized access to her email.
+
+The advisor found no unauthorized transactions from Ms. Bennett’s bank account but identified the recipient account as flagged for fraudulent activity. They advised her to reset her email password, enable two-factor authentication, and conduct a full security audit of her business systems. Ms. Bennett agreed to involve her IT team immediately.
+
+To assist in recovering the funds, the advisor initiated a recovery process and requested copies of both the original and fraudulent invoices. They also recommended that the client report the incident to their bank and Action Fraud for further investigation and coordination.
+
+The advisor advised Ms. Bennett to notify all clients about the potential compromise and recommend verifying payment instructions directly with her office. For long-term prevention, they suggested implementing email encryption, secure communication tools, and staff training on phishing awareness. Ms. Bennett welcomed these recommendations and committed to following up promptly.
+
+The advisor summarized the actions taken, highlighted next steps, and assured Ms. Bennett of ongoing support. She expressed gratitude for the assistance and resolved to secure her business systems and protect her clients from future risks.

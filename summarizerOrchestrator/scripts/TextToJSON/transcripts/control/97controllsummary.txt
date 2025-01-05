@@ -1,0 +1,9 @@
+Christopher Edwards contacted [Bank Name]’s Fraud Department after discovering his business had been targeted by invoice redirection fraud. He reported that he paid an £18,000 invoice to what appeared to be a new account for a regular supplier, only to learn from the supplier that they had not updated their payment details or received the funds. The fraudulent invoice was sent via email, claiming that the change in account details was due to an audit.
+
+The advisor identified the payment to a flagged fraudulent account and initiated a recovery request with the receiving bank. No other unauthorized transactions were found in Mr. Edwards' account, but the advisor reset his online banking credentials as a precaution and recommended enabling two-factor authentication for additional security.
+
+Mr. Edwards agreed to provide evidence of the fraud, including emails and the invoice, to support the recovery process. The advisor advised him to report the incident to Action Fraud and provided the necessary contact details. They explained that the success of recovering the funds would depend on whether the money was still available in the fraudster’s account and promised to keep him updated.
+
+To prevent future incidents, the advisor recommended implementing a dual-authorization process for verifying payee details and high-value payments, encrypting email communications, and using secure portals for supplier interactions. Mr. Edwards expressed interest in these measures and committed to reviewing his business processes.
+
+The advisor summarized the actions taken, assured Mr. Edwards of continued support, and provided guidance for securing his account and business operations against fraud. Mr. Edwards thanked the advisor for their assistance and committed to following the recommendations.

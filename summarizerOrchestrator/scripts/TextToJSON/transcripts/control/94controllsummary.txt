@@ -1,0 +1,7 @@
+Daniel Roberts contacted [Bank Name]’s Fraud Department after noticing five unauthorized payments totaling £3,000 and an unfamiliar notification in his mobile banking app. He reported entering his credentials and a one-time passcode into a pop-up that appeared legitimate but now suspects it was a phishing attempt. Additionally, he recently downloaded a budgeting app from an unofficial website, which may have compromised his account.
+
+The advisor confirmed the unauthorized transactions and identified multiple unrecognized devices accessing his account. They immediately blocked further transactions, reset his mobile banking credentials, and flagged the fraudulent activity for investigation. Mr. Roberts was advised to report the incident to Action Fraud, with the advisor providing contact details and outlining the process.
+
+To enhance security, the advisor recommended enabling two-factor authentication, updating passwords for his email and other accounts, and using a password manager. They also suggested monitoring his credit report for potential misuse of his personal details and signing up for a credit monitoring service. Mr. Roberts received advice on verifying app authenticity, avoiding phishing attempts, and installing antivirus software to secure his mobile devices.
+
+The advisor summarized the actions taken and next steps, ensuring Mr. Roberts had no further questions. Mr. Roberts expressed gratitude and committed to following the recommendations to secure his information and prevent future incidents.

@@ -5,6 +5,7 @@ import com.local.SummarizerOrchestrator.dtos.MetricsBatchResponseDTO;
 import com.local.SummarizerOrchestrator.dtos.MetricsRequestDTO;
 import com.local.SummarizerOrchestrator.dtos.MetricsResponseDTO;
 import com.local.SummarizerOrchestrator.models.Metrics;
+import com.local.SummarizerOrchestrator.models.ReferenceSummary;
 import com.local.SummarizerOrchestrator.models.Summary;
 import com.local.SummarizerOrchestrator.models.Transcript;
 import com.local.SummarizerOrchestrator.repos.MetricsRepo;
@@ -18,7 +19,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import com.local.SummarizerOrchestrator.utils.JSONCleaner;
 
@@ -30,30 +31,41 @@ public class MetricsServiceImpl implements MetricsService {
     private final TranscriptRepo transcriptRepo;
     private final SummaryRepo summaryRepo;
     private final MetricsRepo metricsRepo;
+    private final ReferenceSummaryService referenceSummaryService;
 
-    public MetricsServiceImpl(TranscriptRepo transcriptRepo, SummaryRepo summaryRepo, MetricsRepo metricsRepo) {
+    public MetricsServiceImpl(TranscriptRepo transcriptRepo, SummaryRepo summaryRepo, MetricsRepo metricsRepo, ReferenceSummaryService referenceSummaryService) {
         this.transcriptRepo = transcriptRepo;
         this.summaryRepo = summaryRepo;
         this.metricsRepo = metricsRepo;
+        this.referenceSummaryService = referenceSummaryService;
     }
 
     @Override
     public MetricsBatchResponseDTO calculateMetricsForTranscript(MetricsRequestDTO request) {
+        // Fetch the transcript using the repository
         Transcript transcript = transcriptRepo.findById(request.getTranscriptId())
                 .orElseThrow(() -> new IllegalArgumentException("Transcript not found for ID: " + request.getTranscriptId()));
 
+        // Fetch the reference summary using ReferenceSummaryService
+        ReferenceSummary referenceSummary = referenceSummaryService.getReferenceSummary(request.getTranscriptId());
+        String controlSummary = referenceSummary.getSummaryText();
+        logger.info("Retrieved reference summary for transcript ID: {}", request.getTranscriptId());
+
+        // Fetch summaries for the transcript
         List<Summary> summaries = summaryRepo.findByTranscriptId(request.getTranscriptId());
         logger.info("Found {} summaries for transcript ID: {}", summaries.size(), request.getTranscriptId());
 
+        // Calculate metrics for each summary in parallel
         List<MetricsResponseDTO> metricsResponses = summaries.parallelStream().map(summary -> {
             try {
-                return calculateAndStoreMetrics(summary, request.getControlSummary());
+                return calculateAndStoreMetrics(summary, controlSummary);
             } catch (Exception e) {
                 logger.error("Error calculating metrics for summary ID {}: {}", summary.getId(), e.getMessage(), e);
                 return null; // Skip this summary in case of an error
             }
-        }).filter(response -> response != null).collect(Collectors.toList());
+        }).filter(Objects::nonNull).collect(Collectors.toList());
 
+        // Create the batch response
         MetricsBatchResponseDTO batchResponse = new MetricsBatchResponseDTO();
         batchResponse.setTranscriptId(transcript.getId());
         batchResponse.setScenario(transcript.getScenario());
@@ -61,6 +73,12 @@ public class MetricsServiceImpl implements MetricsService {
 
         logger.info("Metrics calculation completed for transcript ID: {}", request.getTranscriptId());
         return batchResponse;
+    }
+
+    @Override
+    public Metrics getMetricsBySummaryId(Long summaryId) {
+        logger.info("Fetching metrics for summary ID: {}", summaryId);
+        return metricsRepo.findBySummaryId(summaryId).orElse(null);
     }
 
     private MetricsResponseDTO calculateAndStoreMetrics(Summary summary, String controlSummary) throws Exception {
@@ -123,6 +141,26 @@ public class MetricsServiceImpl implements MetricsService {
     }
 
     private Metrics saveMetrics(Summary summary, Map<String, Object> metricsMap) {
+        // Check for existing metrics
+        Metrics existingMetrics = metricsRepo.findBySummaryId(summary.getId()).orElse(null);
+
+        if (existingMetrics != null) {
+            logger.info("Updating existing metrics for summary ID: {}", summary.getId());
+            existingMetrics.setRouge1(getFloatValue(metricsMap.get("ROUGE-1")));
+            existingMetrics.setRouge2(getFloatValue(metricsMap.get("ROUGE-2")));
+            existingMetrics.setRougeL(getFloatValue(metricsMap.get("ROUGE-L")));
+            existingMetrics.setBertPrecision(getFloatValue(metricsMap.get("BERT Precision")));
+            existingMetrics.setBertRecall(getFloatValue(metricsMap.get("BERT Recall")));
+            existingMetrics.setBertF1(getFloatValue(metricsMap.get("BERT F1")));
+            existingMetrics.setBleu(getFloatValue(metricsMap.get("BLEU")));
+            existingMetrics.setMeteor(getFloatValue(metricsMap.get("METEOR")));
+            existingMetrics.setLengthRatio(getFloatValue(metricsMap.get("Length Ratio")));
+            existingMetrics.setRedundancy(getFloatValue(metricsMap.get("Redundancy")));
+            existingMetrics.setCreatedAt(java.time.LocalDateTime.now());
+            return metricsRepo.save(existingMetrics); // Update the existing record
+        }
+
+        logger.info("Saving new metrics for summary ID: {}", summary.getId());
         Metrics metrics = new Metrics();
         metrics.setSummary(summary);
         metrics.setTranscript(summary.getTranscript()); // Add transcript ID linkage here
@@ -136,10 +174,10 @@ public class MetricsServiceImpl implements MetricsService {
         metrics.setMeteor(getFloatValue(metricsMap.get("METEOR")));
         metrics.setLengthRatio(getFloatValue(metricsMap.get("Length Ratio")));
         metrics.setRedundancy(getFloatValue(metricsMap.get("Redundancy")));
-
-        metricsRepo.save(metrics);
-        return metrics;
+        metrics.setCreatedAt(java.time.LocalDateTime.now());
+        return metricsRepo.save(metrics); // Save a new record
     }
+
 
     private MetricsResponseDTO mapMetricsToResponseDTO(Summary summary, Metrics metrics) {
         MetricsResponseDTO responseDTO = new MetricsResponseDTO();

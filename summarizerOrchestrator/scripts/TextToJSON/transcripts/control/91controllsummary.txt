@@ -1,0 +1,9 @@
+Anthony Reid contacted the Fraud Department at [Bank Name] after a payment of £75,000, intended as a processing fee for a business loan, was blocked. The payment was made via the bank’s mobile app using account details provided by a broker who contacted him through a comparison website. This was Mr. Reid's first transaction with the broker, who had emailed the payment details after a phone discussion about the loan terms.
+
+Upon investigation, the bank determined the recipient account was flagged for fraud. Further review revealed suspicious activity on Mr. Reid’s account, including an unauthorized login from an unfamiliar IP address and three unauthorized transactions totaling £5,000 to “LoanSecure Assist,” a merchant unknown to him. The bank blocked further transactions to this merchant, reset his online banking credentials, and secured his account.
+
+Mr. Reid disclosed that the broker had requested sensitive information, including a copy of his driver’s license and online banking credentials, under the pretense of confirming loan eligibility. The advisor flagged this as suspicious and recommended that Mr. Reid report the broker to Action Fraud. He was advised to verify the broker's legitimacy through the Financial Conduct Authority (FCA) and to reach out to the comparison website to investigate the broker’s registration.
+
+To enhance security, the advisor suggested enabling two-factor authentication for both his bank and email accounts, changing his email password, and using a password manager to create unique credentials. Guidance for these measures, along with tips for recognizing legitimate brokers, was promised in a follow-up email.
+
+Mr. Reid expressed disappointment at the potential loss of the loan opportunity but committed to taking the recommended actions. The advisor summarized the steps taken and provided further resources before closing the call.

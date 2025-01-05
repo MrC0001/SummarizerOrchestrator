@@ -7,6 +7,7 @@ import com.local.SummarizerOrchestrator.models.Transcript;
 import com.local.SummarizerOrchestrator.providers.SummarizationProvider;
 import com.local.SummarizerOrchestrator.repos.SummaryRepo;
 import com.local.SummarizerOrchestrator.repos.TranscriptRepo;
+import com.local.SummarizerOrchestrator.repos.MetricsRepo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ public class SummarizationServiceImpl implements SummarizationService {
 
     private final SummaryRepo summaryRepo;
     private final TranscriptRepo transcriptRepo;
+    private final MetricsRepo metricsRepo;
     private final List<SummarizationProvider> providers;
 
     /**
@@ -42,9 +44,10 @@ public class SummarizationServiceImpl implements SummarizationService {
      * @param transcriptRepo Repository for managing transcripts.
      * @param providers      List of summarization providers.
      */
-    public SummarizationServiceImpl(SummaryRepo summaryRepo, TranscriptRepo transcriptRepo, List<SummarizationProvider> providers) {
+    public SummarizationServiceImpl(SummaryRepo summaryRepo, TranscriptRepo transcriptRepo, MetricsRepo metricsRepo, List<SummarizationProvider> providers) {
         this.summaryRepo = summaryRepo;
         this.transcriptRepo = transcriptRepo;
+        this.metricsRepo = metricsRepo;
         this.providers = providers;
     }
 
@@ -169,17 +172,29 @@ public class SummarizationServiceImpl implements SummarizationService {
     }
 
     /**
-     * Overwrites existing summaries for a specific transcript with new summaries.
+     * Overwrites existing summaries and their associated metrics for a specific transcript with new summaries.
      *
-     * @param transcriptId The ID of the transcript.
-     * @param newSummaries The new summaries to save.
+     * <p>
+     * This method performs the following steps in a single transaction:
+     * <ul>
+     *   <li>Deletes all metrics associated with the existing summaries of the given transcript.</li>
+     *   <li>Deletes all summaries associated with the transcript.</li>
+     *   <li>Saves the new summaries provided in the request.</li>
+     * </ul>
+     * </p>
+     *
+     * @param transcriptId The ID of the transcript for which summaries are to be overwritten. Must not be null.
+     * @param newSummaries A list of new summaries to save, each containing a provider name and summary text. Must not be null or empty.
+     * @throws RuntimeException if the transcript with the specified ID is not found.
      */
+
     @Override
     @Transactional
     public void overwriteSummaries(@NotNull(message = "Transcript ID must not be null.") Long transcriptId,
                                    @Valid @NotNull List<SummarizationResponseDTO> newSummaries) {
         logger.info("Overwriting summaries for transcript ID: {}", transcriptId);
 
+        // Fetch the transcript
         Transcript transcript = transcriptRepo.findById(transcriptId)
                 .orElseThrow(() -> {
                     logger.error("Transcript not found for ID: {}", transcriptId);
@@ -188,9 +203,15 @@ public class SummarizationServiceImpl implements SummarizationService {
 
         logger.debug("Found transcript for overwrite: {}", transcript.getId());
 
-        summaryRepo.deleteByTranscriptId(transcriptId);
-        logger.info("Deleted old summaries for transcript ID: {}", transcriptId);
+        // Delete metrics associated with existing summaries
+        logger.info("Deleting metrics for transcript ID: {}", transcriptId);
+        metricsRepo.deleteByTranscriptId(transcriptId);
 
+        // Delete existing summaries
+        logger.info("Deleting old summaries for transcript ID: {}", transcriptId);
+        summaryRepo.deleteByTranscriptId(transcriptId);
+
+        // Map and save new summaries
         List<Summary> summariesToSave = newSummaries.stream()
                 .map(dto -> {
                     Summary summary = new Summary();
@@ -203,6 +224,7 @@ public class SummarizationServiceImpl implements SummarizationService {
         summaryRepo.saveAll(summariesToSave);
         logger.info("Saved new summaries for transcript ID: {}", transcriptId);
     }
+
     @Autowired
     private Executor asyncExecutor;
     /**

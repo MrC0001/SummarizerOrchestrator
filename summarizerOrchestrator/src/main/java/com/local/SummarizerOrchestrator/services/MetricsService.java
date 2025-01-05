@@ -2,6 +2,7 @@ package com.local.SummarizerOrchestrator.services;
 
 import com.local.SummarizerOrchestrator.dtos.MetricsRequestDTO;
 import com.local.SummarizerOrchestrator.dtos.MetricsBatchResponseDTO;
+import com.local.SummarizerOrchestrator.models.Metrics;
 
 public interface MetricsService {
 
@@ -12,4 +13,12 @@ public interface MetricsService {
      * @return A batch response containing metrics for all summaries linked to the transcript.
      */
     MetricsBatchResponseDTO calculateMetricsForTranscript(MetricsRequestDTO request);
+
+    /**
+     * Retrieves metrics for a given summary ID.
+     *
+     * @param summaryId The ID of the summary.
+     * @return The metrics associated with the summary, or null if none exist.
+     */
+    Metrics getMetricsBySummaryId(Long summaryId);
 }

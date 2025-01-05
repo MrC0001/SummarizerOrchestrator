@@ -2,10 +2,12 @@ package com.local.SummarizerOrchestrator.controllers;
 
 import com.local.SummarizerOrchestrator.dtos.SummarizationRequestDTO;
 import com.local.SummarizerOrchestrator.dtos.SummarizationResponseDTO;
+import com.local.SummarizerOrchestrator.models.Metrics;
 import com.local.SummarizerOrchestrator.models.Summary;
 import com.local.SummarizerOrchestrator.models.Transcript;
 import com.local.SummarizerOrchestrator.repos.SummaryRepo;
 import com.local.SummarizerOrchestrator.repos.TranscriptRepo;
+import com.local.SummarizerOrchestrator.repos.MetricsRepo;
 import com.local.SummarizerOrchestrator.services.SummarizationService;
 import com.local.SummarizerOrchestrator.utils.JSONCleaner;
 import jakarta.validation.Valid;
@@ -19,6 +21,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -43,6 +46,7 @@ public class SummarizationController {
     private final SummarizationService summarizationService;
     private final TranscriptRepo transcriptRepo;
     private final SummaryRepo summaryRepo;
+    private final MetricsRepo metricsRepo;
 
     /**
      * Constructor for SummarizationController.
@@ -51,10 +55,11 @@ public class SummarizationController {
      * @param transcriptRepo       The repository for transcript data.
      * @param summaryRepo          The repository for summary data.
      */
-    public SummarizationController(SummarizationService summarizationService, TranscriptRepo transcriptRepo, SummaryRepo summaryRepo) {
+    public SummarizationController(SummarizationService summarizationService, TranscriptRepo transcriptRepo, SummaryRepo summaryRepo, MetricsRepo metricsRepo) {
         this.summarizationService = summarizationService;
         this.transcriptRepo = transcriptRepo;
         this.summaryRepo = summaryRepo;
+        this.metricsRepo = metricsRepo;
     }
 
     /**
@@ -126,36 +131,59 @@ public class SummarizationController {
         }
     }
 
-
-
-
-
-    /**
-     * Retrieve summaries for a specific transcript.
-     *
-     * @param transcriptId The ID of the transcript. Must be greater than or equal to 1 and not null.
-     * @return A ResponseEntity containing the transcript and summaries or an error message.
-     * @throws jakarta.validation.ConstraintViolationException if validation fails for the ID.
-     */
     @GetMapping("/{transcriptId}")
-    public ResponseEntity<?> getSummariesWithTranscript(@PathVariable @NotNull(message = "Transcript ID must not be null.") @Min(value = 1, message = "Transcript ID must be greater than or equal to 1.") Long transcriptId) {
+    public ResponseEntity<?> getSummariesAndMetricsWithTranscript(
+            @PathVariable @NotNull(message = "Transcript ID must not be null.")
+            @Min(value = 1, message = "Transcript ID must be greater than or equal to 1.") Long transcriptId) {
         logger.info("Fetching summaries and transcript for transcript ID: {}", transcriptId);
+
         try {
+            // Fetch the transcript
             Transcript transcript = transcriptRepo.findById(transcriptId)
                     .orElseThrow(() -> new RuntimeException("Transcript not found"));
             logger.info("Transcript found for ID {}: {}", transcriptId, transcript.getTranscript());
 
+            // Fetch summaries
             List<Summary> summaries = summaryRepo.findByTranscriptId(transcriptId);
-            List<SummarizationResponseDTO> summaryDTOs = summaries.stream()
-                    .map(summary -> new SummarizationResponseDTO(summary.getProviderName(), summary.getSummaryText()))
+
+            // Map summaries with metrics
+            List<Map<String, Object>> summariesWithMetrics = summaries.stream()
+                    .map(summary -> {
+                        Map<String, Object> summaryData = new HashMap<>();
+                        summaryData.put("providerName", summary.getProviderName());
+                        summaryData.put("summary", summary.getSummaryText());
+
+                        // Fetch metrics for each summary
+                        Metrics metrics = metricsRepo.findBySummaryId(summary.getId()).orElse(null);
+                        if (metrics != null) {
+                            Map<String, Object> metricsMap = new HashMap<>();
+                            metricsMap.put("rouge1", metrics.getRouge1());
+                            metricsMap.put("rouge2", metrics.getRouge2());
+                            metricsMap.put("rougeL", metrics.getRougeL());
+                            metricsMap.put("bertPrecision", metrics.getBertPrecision());
+                            metricsMap.put("bertRecall", metrics.getBertRecall());
+                            metricsMap.put("bertF1", metrics.getBertF1());
+                            metricsMap.put("bleu", metrics.getBleu());
+                            metricsMap.put("meteor", metrics.getMeteor());
+                            metricsMap.put("lengthRatio", metrics.getLengthRatio());
+                            metricsMap.put("redundancy", metrics.getRedundancy());
+                            metricsMap.put("createdAt", metrics.getCreatedAt());
+                            summaryData.put("metrics", metricsMap);
+                        } else {
+                            summaryData.put("metrics", null);
+                        }
+
+                        return summaryData;
+                    })
                     .collect(Collectors.toList());
 
+            // Build response
             Map<String, Object> response = Map.of(
                     "transcript", transcript.getTranscript(),
-                    "summaries", summaryDTOs
+                    "summaries", summariesWithMetrics
             );
 
-            logger.info("Returning transcript and summaries for transcript ID: {}", transcriptId);
+            logger.info("Returning transcript, summaries, and metrics for transcript ID: {}", transcriptId);
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             logger.error("Transcript not found for ID {}: {}", transcriptId, e.getMessage());
@@ -165,6 +193,7 @@ public class SummarizationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error fetching transcript and summaries");
         }
     }
+
 
     /**
      * Overwrite old summaries with new ones for a specific transcript.
