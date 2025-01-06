@@ -16,69 +16,82 @@ block content
           option(value="" disabled selected) -- Select Transcript --
           each transcript in transcripts
             option(value=transcript.id)= `ID ${transcript.id} - ${transcript.scenario}`
-
       button(type="submit" class="btn-submit") View Summaries
 
-    // Display the selected transcript text
+    // Transcript box (scrollable) - single-line style
     if transcript
       h2 Transcript Text
-      .summary-box(style="margin-bottom: 20px; background-color: #1a1a1a; padding: 15px; border-radius: 10px;")
+      .summary-box(style="margin-bottom: 20px; background-color: #1a1a1a; padding: 15px; border-radius: 10px; max-height: 400px; overflow-y: auto;")
         pre.summary-content= transcript
 
-    // Display summaries and metrics
+    // Each summary is also a .summary-box - single-line style
     if summaries && summaries.length > 0
       h2 Summaries for Selected Transcript
-      .summaries-container(style="display: flex; flex-direction: column; gap: 20px;")
-        each summary in summaries
-          .summary-panel(style="background-color: #242424; padding: 20px; border-radius: 10px; width: 100%;")
-            .summary-box(style="margin-bottom: 10px;")
-              h3(style="margin-bottom: 10px;") Provider: #{summary.providerName}
-              if summary.summary
-                p Summary:
-                pre.summary-content(style="white-space: pre-wrap; margin-top: 10px;")= summary.summary
-              else
-                p.error-message No summary text available for this provider.
+      each summary in summaries
+        .summary-box(
+          style="background-color: #242424; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 2px solid #66cc66; max-height: 400px; overflow-y: auto;"
+          data-providerName=summary.providerName
+          data-rouge1=(summary.metrics.rouge1 || 0)
+          data-rouge2=(summary.metrics.rouge2 || 0)
+          data-rougeL=(summary.metrics.rougeL || 0)
+          data-bertPrecision=(summary.metrics.bertPrecision || 0)
+          data-bertRecall=(summary.metrics.bertRecall || 0)
+          data-bertF1=(summary.metrics.bertF1 || 0)
+          data-bleu=(summary.metrics.bleu || 0)
+          data-meteor=(summary.metrics.meteor || 0)
+          data-lengthRatio=(summary.metrics.lengthRatio || 0)
+          data-redundancy=(summary.metrics.redundancy || 0)
+          data-createdAt=(summary.metrics.createdAt || 'N/A')
+        )
+          h3(style="margin-bottom: 10px;") Provider: #{summary.providerName}
+          if summary.summary
+            p Summary:
+            pre.summary-content(style="white-space: pre-wrap; margin-top: 10px;")= summary.summary
+          else
+            p.error-message No summary text available for this provider.
 
-            // Metrics Box (separate below the summary box)
-            if summary.metrics
-              .metrics-box(style="margin-top: 10px; background-color: #1a1a1a; padding: 10px; border-radius: 10px; border: 1px solid #66cc66;")
-                h4 Metrics:
-                ul
-                  li ROUGE-1: #{summary.metrics.rouge1 || 'N/A'}
-                  li ROUGE-2: #{summary.metrics.rouge2 || 'N/A'}
-                  li ROUGE-L: #{summary.metrics.rougeL || 'N/A'}
-                  li BERT Precision: #{summary.metrics.bertPrecision || 'N/A'}
-                  li BERT Recall: #{summary.metrics.bertRecall || 'N/A'}
-                  li BERT F1: #{summary.metrics.bertF1 || 'N/A'}
-                  li BLEU: #{summary.metrics.bleu || 'N/A'}
-                  li METEOR: #{summary.metrics.meteor || 'N/A'}
-                  li Length Ratio: #{summary.metrics.lengthRatio || 'N/A'}
-                  li Redundancy: #{summary.metrics.redundancy || 'N/A'}
-                  li Created At: #{summary.metrics.createdAt || 'N/A'}
-            else
-              p.info-message No metrics available for this summary.
+      // Consolidated Metrics Visualization Section
+      h2 Metrics Visualization
+      .metrics-container(style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;")
+        .metric-tile
+          h4 ROUGE Scores
+          canvas#rouge-bar-chart
+
+        .metric-tile
+          h4 BERT Precision, Recall, F1
+          canvas#bert-radar-chart
+
+        .metric-tile
+          h4 BLEU Score
+          canvas#bleu-progress-circle
+
+        .metric-tile
+          h4 METEOR Score
+          canvas#meteor-bar-chart
+
+        .metric-tile
+          h4 Length Ratio
+          canvas#length-ratio-line-chart
+
+        .metric-tile
+          h4 Redundancy
+          canvas#redundancy-pie-chart
+        
+        .metric-tile
+          h4 ROUGE Average
+          canvas#rouge-average-bar-chart
+
+        .metric-tile
+          h4 Structural vs. Quality
+          canvas#structural-quality-scatter
+
+        .metric-tile
+          h4 Quality Composite
+          canvas#quality-composite-gauge
+
 
     else if transcript
       p.info-message No summaries found for the selected transcript. Please summarize it first.
 
   .link-group
-    a(href="/" class="btn-link") Back to Summarize
-
-  // Client-side validation script
-  script.
-    document.addEventListener('DOMContentLoaded', function () {
-      try {
-        const form = document.getElementById('viewSummariesForm');
-        const transcriptSelect = document.getElementById('transcriptSelect');
-
-        form.addEventListener('submit', (e) => {
-          if (!transcriptSelect.value || transcriptSelect.value === "") {
-            e.preventDefault();
-            console.error('No transcript selected for viewing summaries.');
-            alert('Please select a transcript to view summaries.');
-          }
-        });
-      } catch (error) {
-        console.error('Error initializing view summaries form:', error);
-      }
-    });
+    a.btn-link(href="/") Back to Summarize

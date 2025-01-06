@@ -31,6 +31,7 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // Middleware to parse URL-encoded bodies and JSON
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(express.json({ limit: "10mb" }));
 
@@ -351,68 +352,72 @@ app.get('/summaries', async (req, res) => {
  * Displays summaries for a selected transcript.
  */
 app.post(
-  '/summaries/view',
-  [body('transcriptId').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format')],
-  async (req, res) => {
+    '/summaries/view',
+    [body('transcriptId').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format')],
+    async (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-          logger.warn(`Validation errors in /summaries/view: ${JSON.stringify(errors.array())}`);
-          const transcripts = await fetchTranscripts();
-          return res.render('summaries', { title: 'Stored Summaries', transcripts, summaries: null, error: errors.array()[0].msg });
+        logger.warn(`Validation errors in /summaries/view: ${JSON.stringify(errors.array())}`);
+        const transcripts = await fetchTranscripts();
+        return res.render('summaries', { title: 'Stored Summaries', transcripts, summaries: null, error: errors.array()[0].msg });
       }
-
+  
       const { transcriptId } = req.body;
-
+  
       try {
-          const response = await fetch(`${API_BASE_URL}/api/${transcriptId}`);
-          if (!response.ok) {
-              throw new Error('Failed to fetch transcript and summaries for the selected transcript.');
-          }
-
-          const data = await response.json();
-          logger.info(`Fetched data for transcript ID ${transcriptId}: ${JSON.stringify(data)}`);
-
-          const transcripts = await fetchTranscripts();
-          const summariesWithMetrics = data.summaries.map(summary => {
-              // Ensure all metrics are included or set default values
-              summary.metrics = summary.metrics || {
-                  rouge1: 'N/A',
-                  rouge2: 'N/A',
-                  rougeL: 'N/A',
-                  bertPrecision: 'N/A',
-                  bertRecall: 'N/A',
-                  bertF1: 'N/A',
-                  bleu: 'N/A',
-                  meteor: 'N/A',
-                  lengthRatio: 'N/A',
-                  redundancy: 'N/A',
-                  createdAt: 'N/A'
-              };
-              return summary;
-          });
-
-          res.render('summaries', { 
-              title: 'Stored Summaries', 
-              transcripts, 
-              transcript: data.transcript, 
-              summaries: summariesWithMetrics, 
-              error: null 
-          });
+        // Fetch the transcript and summaries from the backend
+        const response = await fetch(`${API_BASE_URL}/api/${transcriptId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch transcript and summaries for the selected transcript.');
+        }
+  
+        const data = await response.json();
+        logger.info(`Fetched data for transcript ID ${transcriptId}: ${JSON.stringify(data)}`);
+  
+        // Process metrics for each summary
+        const summariesWithMetrics = data.summaries.map(summary => {
+          summary.metrics = summary.metrics || {
+            rouge1: 'N/A',
+            rouge2: 'N/A',
+            rougeL: 'N/A',
+            bertPrecision: 'N/A',
+            bertRecall: 'N/A',
+            bertF1: 'N/A',
+            bleu: 'N/A',
+            meteor: 'N/A',
+            lengthRatio: 'N/A',
+            redundancy: 'N/A',
+            createdAt: 'N/A'
+          };
+  
+          // Pre-process metrics as a JSON string for Pug
+          summary.metricsJson = JSON.stringify(summary.metrics);
+          return summary;
+        });
+  
+        const transcripts = await fetchTranscripts();
+  
+        res.render('summaries', {
+          title: 'Stored Summaries',
+          transcripts,
+          transcript: data.transcript,
+          summaries: summariesWithMetrics,
+          error: null
+        });
       } catch (error) {
-          logger.error(`Error fetching transcript and summaries: ${error.message}`);
-          const transcripts = await fetchTranscripts();
-          res.render('summaries', { 
-              title: 'Stored Summaries', 
-              transcripts, 
-              transcript: null, 
-              summaries: null, 
-              error: 'Failed to fetch transcript and summaries for the selected transcript.' 
-          });
+        logger.error(`Error fetching transcript and summaries: ${error.message}`);
+        const transcripts = await fetchTranscripts();
+        res.render('summaries', {
+          title: 'Stored Summaries',
+          transcripts,
+          transcript: null,
+          summaries: null,
+          error: 'Failed to fetch transcript and summaries for the selected transcript.'
+        });
       }
-  }
-);
-
-
+    }
+  );
+  
 
 /**
  * Generates summaries for a selected transcript.
