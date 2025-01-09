@@ -4,6 +4,10 @@ from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from nltk.translate.meteor_score import meteor_score
 from rouge_score import rouge_scorer
 from bert_score import score
+import os
+os.environ["TORCH_CUDA_SDP_DISABLE_FLASH_ATTENTION"] = "1"  # Disable flash attention warnings
+
+
 
 def calculate_metrics(candidate, reference, transcript=None):
     if not isinstance(candidate, str) or not isinstance(reference, str):
@@ -53,9 +57,21 @@ def calculate_metrics(candidate, reference, transcript=None):
     }
     return metrics
 
+
 if __name__ == "__main__":
     try:
-        input_data = json.loads(sys.argv[1])
+        if len(sys.argv) > 1 and sys.argv[1] != "--file":
+            # API mode: JSON passed as a command-line argument
+            input_data = json.loads(sys.argv[1])
+        elif len(sys.argv) > 2 and sys.argv[1] == "--file":
+            # File mode: JSON read from a file
+            file_path = sys.argv[2]
+            with open(file_path, "r") as f:
+                input_data = json.load(f)
+        else:
+            raise ValueError("No input provided. Pass a JSON string or use '--file <path>'.")
+
+        # Extract candidate and reference
         candidate = input_data["candidate"]
         reference = input_data["reference"]
         transcript = input_data.get("transcript")
@@ -64,9 +80,9 @@ if __name__ == "__main__":
         results = calculate_metrics(candidate, reference, transcript)
 
         # Output JSON result to stdout
-        print(json.dumps(results))  # Only JSON goes to stdout
+        print(json.dumps(results, indent=4))
 
     except Exception as e:
         error_message = {"error": str(e)}
-        print(json.dumps(error_message), file=sys.stderr)  # Error message to stderr
+        print(json.dumps(error_message, indent=4))  # Error message to stdout
         sys.exit(1)

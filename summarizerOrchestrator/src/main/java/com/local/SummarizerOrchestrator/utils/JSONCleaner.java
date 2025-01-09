@@ -46,6 +46,7 @@ public class JSONCleaner {
                 .replace("\\\"", "\"")
                 .replace("\\\\", "\\")
                 .replace("'", "\"")
+                .replaceAll("[^a-zA-Z0-9.,!?\\s]", " ")
                 .trim();
     }
 

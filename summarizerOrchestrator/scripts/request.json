@@ -1,0 +1,11 @@
+{
+  "model": "mistral-large-2411",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Summarize this text: Artificial intelligence aims to replicate human intelligence through machines."
+    }
+  ],
+  "max_tokens": 256,
+  "stream": true
+}

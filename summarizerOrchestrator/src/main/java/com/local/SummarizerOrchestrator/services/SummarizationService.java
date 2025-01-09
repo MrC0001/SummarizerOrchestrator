@@ -2,12 +2,13 @@ package com.local.SummarizerOrchestrator.services;
 
 import com.local.SummarizerOrchestrator.dtos.SummarizationRequestDTO;
 import com.local.SummarizerOrchestrator.dtos.SummarizationResponseDTO;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-
 
 /**
  * Service interface for managing summarization operations.
@@ -15,13 +16,8 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface SummarizationService {
 
-
     /**
      * Retrieves summaries for a specific transcript and formats the response.
-     *
-     * <p>This method retrieves existing summaries (if any) for the given transcript ID
-     * and ensures the response is structured correctly. If no summaries exist, it returns
-     * an appropriate message or an empty list.</p>
      *
      * @param transcriptId The ID of the transcript whose summaries are being retrieved.
      * @return A ResponseEntity containing:
@@ -30,15 +26,10 @@ public interface SummarizationService {
      *           <li>An appropriate error message if no summaries exist or the transcript is not found.</li>
      *         </ul>
      */
-
     ResponseEntity<?> getSummariesResponse(Long transcriptId);
 
     /**
      * Compares old and new summaries for a given transcript.
-     *
-     * <p>This method retrieves existing summaries (if any) and generates new summaries
-     * using configured providers. For providers that fail, error messages are included
-     * in the new summaries.</p>
      *
      * @param request The summarization request DTO containing the input data for comparison.
      * @return A map containing:
@@ -47,7 +38,6 @@ public interface SummarizationService {
      *           <li><b>newSummaries:</b> The summaries generated during this request, including error messages for failed providers.</li>
      *         </ul>
      */
-
     Map<String, Object> compareSummaries(SummarizationRequestDTO request);
 
     /**
@@ -70,17 +60,6 @@ public interface SummarizationService {
      * Processes a summarization request asynchronously, generates summaries using providers,
      * and saves the results to the database. Only valid summaries (those without errors) are saved.
      *
-     * <p>This method:
-     * <ul>
-     *   <li>Distributes the request to multiple providers concurrently.</li>
-     *   <li>Handles errors for individual providers, ensuring other providers' results are not affected.</li>
-     *   <li>Filters out invalid or incomplete summaries before saving to the database.</li>
-     * </ul>
-     * </p>
-     *
-     * <p>Enables non-blocking execution, allowing the application to handle other
-     * tasks while the summarization process is ongoing.</p>
-     *
      * @param request The summarization request DTO, containing the transcript ID and additional parameters.
      *                Must not be {@code null}.
      * @return A {@link CompletableFuture} containing a list of {@link SummarizationResponseDTO}, which
@@ -88,8 +67,19 @@ public interface SummarizationService {
      *         as summaries for providers that fail.
      * @throws IllegalArgumentException If the provided request is {@code null} or contains invalid data.
      */
+    CompletableFuture<Map<String, Object>> summarizeAndSaveAsync(@Valid @NotNull SummarizationRequestDTO request);
 
-    CompletableFuture<List<SummarizationResponseDTO>> summarizeAndSaveAsync(SummarizationRequestDTO request);
 
+    /**
+     * Dynamically distributes a summarization request across all configured providers,
+     * building custom payloads for each provider and aggregating results.
+     *
+     * @param request The base summarization request DTO.
+     * @return A list of {@link SummarizationResponseDTO} objects containing:
+     *         <ul>
+     *           <li>Provider-specific summaries.</li>
+     *           <li>Error messages for any provider that fails.</li>
+     *         </ul>
+     */
+    List<SummarizationResponseDTO> summarizeAcrossProviders(SummarizationRequestDTO request);
 }
-

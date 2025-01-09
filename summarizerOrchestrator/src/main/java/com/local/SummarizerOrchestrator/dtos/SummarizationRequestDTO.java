@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,34 +17,28 @@ import java.util.Map;
  * - `@NotNull`: Ensures the field is not null.
  * - `@NotBlank`: Ensures the field is not blank (applies to strings).
  */
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class SummarizationRequestDTO {
 
-    /**
-     * The ID of the transcript to summarize.
-     * Must not be null.
-     */
     @NotNull(message = "Transcript ID must not be null.")
     private Long transcriptId;
 
-    /**
-     * The prompt to guide the summarization.
-     * Must not be blank.
-     */
-    @NotBlank(message = "Prompt must not be blank.")
+    private String provider;
+
+    private String model;
+
     private String prompt;
 
-    /**
-     * Additional context information for the summarization.
-     */
     private String context;
 
-    /**
-     * Optional parameters for customizing the summarization request.
-     * Examples include temperature, max tokens, etc.
-     */
+    private List<Map<String, String>> messages;
+
     private Map<String, Object> parameters;
+
+    private boolean stream;
+
+
 }

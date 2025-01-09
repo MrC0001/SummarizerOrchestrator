@@ -28,6 +28,7 @@
 		<flyway.version>10.2.0</flyway.version>
 		<hibernate-validator.version>8.0.2.Final</hibernate-validator.version>
 		<jakarta.validation.version>3.0.2</jakarta.validation.version>
+		<langchain4j.version>1.0.0-alpha1</langchain4j.version>
 	</properties>
 
 	<dependencyManagement>
@@ -143,6 +144,18 @@
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version>
+		</dependency>
+
+		<!-- LangChain4j Dependencies -->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j</artifactId>
+			<version>${langchain4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-mistral-ai</artifactId>
+			<version>${langchain4j.version}</version>
 		</dependency>
 	</dependencies>
 

@@ -17,9 +17,11 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import com.local.SummarizerOrchestrator.utils.JSONCleaner;
 
@@ -116,23 +118,52 @@ public class MetricsServiceImpl implements MetricsService {
     private String executePythonScript(String inputJson) throws Exception {
         ProcessBuilder pb = new ProcessBuilder("C:\\Python312\\python.exe", "scripts/metrics_calculator.py", "\"" + inputJson + "\"");
         logger.info("Executing command: {}", String.join(" ", pb.command()));
+        logger.info("Input JSON size: {} bytes", inputJson.getBytes(StandardCharsets.UTF_8).length);
 
         Process process = pb.start();
+
+        StringBuilder stdout = new StringBuilder();
+        StringBuilder stderr = new StringBuilder();
 
         try (BufferedReader stdOutReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
              BufferedReader stdErrReader = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
 
-            String stdout = stdOutReader.lines().collect(Collectors.joining("\n"));
-            String stderr = stdErrReader.lines().collect(Collectors.joining("\n"));
+            // Read output and error streams asynchronously to avoid blocking
+            Thread stdOutThread = new Thread(() -> stdOutReader.lines().forEach(line -> {
+                logger.debug("Python script stdout: {}", line);
+                stdout.append(line).append("\n");
+            }));
 
-            if (!stderr.isEmpty()) {
-                logger.error("Python script stderr: {}", stderr);
+            Thread stdErrThread = new Thread(() -> stdErrReader.lines().forEach(line -> {
+                logger.error("Python script stderr: {}", line);
+                stderr.append(line).append("\n");
+            }));
+
+            stdOutThread.start();
+            stdErrThread.start();
+
+            boolean completed = process.waitFor(60, TimeUnit.SECONDS); // Timeout after 60 seconds
+
+            // Ensure threads finish
+            stdOutThread.join();
+            stdErrThread.join();
+
+            if (!completed) {
+                process.destroyForcibly();
+                throw new RuntimeException("Python script timed out.");
             }
 
-            logger.info("Python script stdout: {}", stdout);
-            return stdout;
+            if (process.exitValue() != 0) {
+                throw new RuntimeException("Python script failed with error: " + stderr.toString().trim());
+            }
+
+            return stdout.toString().trim();
+        } catch (Exception e) {
+            logger.error("Error executing Python script: {}", e.getMessage(), e);
+            throw e;
         }
     }
+
 
     private void validateJsonOutput(String stdout) {
         if (!JSONCleaner.isValidJSON(stdout)) {

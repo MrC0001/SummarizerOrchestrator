@@ -72,8 +72,8 @@ public class HuggingFaceProvider implements SummarizationProvider {
 
             // Create a new CloseableHttpClient for each request
             RequestConfig requestConfig = RequestConfig.custom()
-                    .setConnectTimeout(5000) // Connection timeout in milliseconds
-                    .setSocketTimeout(10000) // Read timeout in milliseconds
+                    .setConnectTimeout(30000) // Connection timeout in milliseconds
+                    .setSocketTimeout(30000) // Read timeout in milliseconds
                     .build();
 
             try (CloseableHttpClient httpClient = HttpClientBuilder.create()
@@ -87,6 +87,7 @@ public class HuggingFaceProvider implements SummarizationProvider {
                 postRequest.setEntity(new StringEntity(jsonPayload, StandardCharsets.UTF_8));
 
                 try (CloseableHttpResponse response = httpClient.execute(postRequest)) {
+                    logger.debug("HuggingFaceProvider response status code: {}", response.getStatusLine().getStatusCode());
                     String responseBody = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
                     logger.debug("HuggingFaceProvider Raw JSON Response Body: {}", responseBody);
 

@@ -28,7 +28,7 @@ public class VertexAIProvider implements SummarizationProvider {
     @NotBlank(message = "GCP Project ID must not be blank.")
     private String projectId;
 
-    @Value("${vertex.region}")
+    @Value("${vertex.gemini.region}")
     @NotBlank(message = "Vertex AI Region must not be blank.")
     private String location;
 

@@ -78,10 +78,10 @@ public class SummarizationServiceImpl implements SummarizationService {
      */
     @Override
     @Async("asyncExecutor")
-    public CompletableFuture<List<SummarizationResponseDTO>> summarizeAndSaveAsync(@Valid @NotNull SummarizationRequestDTO request) {
+    public CompletableFuture<Map<String, Object>> summarizeAndSaveAsync(@Valid @NotNull SummarizationRequestDTO request) {
         logger.info("Starting async summarization and save for transcript ID: {}", request.getTranscriptId());
 
-        // Fetch the transcript asynchronously
+        // Fetch the transcript synchronously to ensure it exists before proceeding
         Transcript transcript = transcriptRepo.findById(request.getTranscriptId())
                 .orElseThrow(() -> {
                     logger.error("Transcript not found for ID: {}", request.getTranscriptId());
@@ -90,24 +90,39 @@ public class SummarizationServiceImpl implements SummarizationService {
 
         logger.debug("Found transcript for summarization: {}", transcript.getId());
 
-        // Process summarization asynchronously
-        CompletableFuture<List<SummarizationResponseDTO>> summariesFuture = CompletableFuture.supplyAsync(() -> summarizeAcrossProviders(request))
-                .thenApply(responses -> {
-                    logger.debug("Generated summaries: {}", responses);
+        return CompletableFuture.supplyAsync(() -> {
+            // Fetch existing summaries from the database
+            List<Summary> existingSummaries = summaryRepo.findByTranscriptId(request.getTranscriptId());
+            logger.debug("Existing summaries for transcript ID {}: {}", request.getTranscriptId(), existingSummaries);
 
-                    // Save valid summaries asynchronously
-                    responses.stream()
-                            .filter(response -> !response.getSummary().startsWith("Error"))
-                            .forEach(response -> {
-                                saveSummary(transcript, response);
-                            });
+            // Generate new summaries
+            List<SummarizationResponseDTO> newSummaries = summarizeAcrossProviders(request);
 
-                    return responses;
-                });
+            // Save valid new summaries if they don't already exist in the database
+            newSummaries.stream()
+                    .filter(newSummary -> newSummary.getSummary() != null && !newSummary.getSummary().startsWith("Error")) // Validation step
+                    .forEach(newSummary -> {
+                        if (existingSummaries.stream()
+                                .noneMatch(existing -> existing.getProviderName().equals(newSummary.getProviderName()))) {
+                            saveSummary(transcript, newSummary);
+                        }
+                    });
 
-        // Return the CompletableFuture to handle the response asynchronously
-        return summariesFuture;
+            // Classify old summaries (those already in the database)
+            List<SummarizationResponseDTO> oldSummaries = existingSummaries.stream()
+                    .map(summary -> new SummarizationResponseDTO(summary.getProviderName(), summary.getSummaryText()))
+                    .collect(Collectors.toList());
+
+            // Return old and new summaries
+            Map<String, Object> result = new HashMap<>();
+            result.put("oldSummaries", oldSummaries);
+            result.put("newSummaries", newSummaries);
+            return result;
+        });
     }
+
+
+
 
     /**
      * Helper method to save a summary entity.
@@ -156,16 +171,22 @@ public class SummarizationServiceImpl implements SummarizationService {
     public Map<String, Object> compareSummaries(@Valid @NotNull SummarizationRequestDTO request) {
         logger.info("Comparing old and new summaries for transcript ID: {}", request.getTranscriptId());
 
+        // Fetch old summaries before generating new ones
         List<Summary> oldSummaries = summaryRepo.findByTranscriptId(request.getTranscriptId());
+
+        // Generate new summaries
         List<SummarizationResponseDTO> newSummaries = summarizeAcrossProviders(request);
 
         logger.debug("Old Summaries: {}", oldSummaries);
         logger.debug("New Summaries: {}", newSummaries);
 
-        Map<String, Object> result = new HashMap<>();
-        result.put("oldSummaries", oldSummaries.stream()
+        // Map old summaries to response format
+        List<SummarizationResponseDTO> oldSummaryDTOs = oldSummaries.stream()
                 .map(summary -> new SummarizationResponseDTO(summary.getProviderName(), summary.getSummaryText()))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("oldSummaries", oldSummaryDTOs);
         result.put("newSummaries", newSummaries);
 
         return result;
@@ -257,15 +278,16 @@ public class SummarizationServiceImpl implements SummarizationService {
      *         </ul>
      * @throws NullPointerException If the list of providers is {@code null}.
      */
-
-    private List<SummarizationResponseDTO> summarizeAcrossProviders(SummarizationRequestDTO request) {
+    public List<SummarizationResponseDTO> summarizeAcrossProviders(SummarizationRequestDTO request) {
         logger.info("Distributing summarization request across providers.");
 
         // Create a list of CompletableFutures for asynchronous provider calls
         List<CompletableFuture<SummarizationResponseDTO>> futures = providers.stream()
                 .map(provider -> CompletableFuture.supplyAsync(() -> {
                     try {
-                        SummarizationResponseDTO response = provider.summarize(request);
+                        // Dynamically build provider-specific payload
+                        SummarizationRequestDTO providerRequest = buildProviderPayload(request, provider.getProviderName());
+                        SummarizationResponseDTO response = provider.summarize(providerRequest);
                         logger.debug("Provider {} response: {}", provider.getProviderName(), response);
                         return response;
                     } catch (Exception e) {
@@ -285,5 +307,107 @@ public class SummarizationServiceImpl implements SummarizationService {
         return responses;
     }
 
+
+    /**
+     * Builds provider-specific payloads based on the provider name.
+     */
+    private SummarizationRequestDTO buildProviderPayload(SummarizationRequestDTO request, String provider) {
+        switch (provider.toLowerCase()) {
+            case "anthropic":
+                return new SummarizationRequestDTO(
+                        request.getTranscriptId(),
+                        "anthropic",
+                        "claude-3-5-sonnet-20241022",
+                        null,
+                        request.getContext(),
+                        List.of(Map.of("role", "user", "content", "Summarize this text:\n" + request.getContext())),
+                        Map.of("max_tokens", 256, "temperature", 0.7, "stream", true),
+                        true
+                );
+            case "mistral":
+            case "mistral ai":
+                return new SummarizationRequestDTO(
+                        request.getTranscriptId(), // Transcript ID for tracking
+                        "mistral", // Model provider
+                        "mistral-large-latest", // Use the correct model name for better performance
+                        null, // Additional parameters if required
+                        request.getContext(), // Context or transcript text
+                        List.of(
+                                Map.of("role", "system", "content", "You are a helpful assistant specialized in summarizing text.Forget prior conversations and summarize each request independently."),
+                                Map.of("role", "user", "content", "Summarize this text with as much detail as possible:\n" + request.getContext())
+                        ), // Chat message setup with system and user roles
+                        Map.of(
+                                "max_tokens", 512, // Increased for more comprehensive summaries
+                                "temperature", 0.7, // Adjusted for a balance of creativity and relevance
+                                "stream", false // Disable streaming for batch processing
+                        ),
+                        true // Optional: Enable safety or system-specific configurations
+                );
+
+            case "huggingface":
+            case "hugging face":
+                return new SummarizationRequestDTO(
+                        request.getTranscriptId(),
+                        "huggingface",
+                        null,
+                        null,
+                        null, // Context moved to `messages`
+                        List.of(
+                                Map.of(
+                                        "role", "user", // Role explicitly set
+                                        "content", "Summarize this text:\n" + truncateContext(request.getContext(), 128000) // Truncated context
+                                )
+                        ),
+                        Map.of(
+                                "parameters", Map.of(
+                                        "max_new_tokens", 128,
+                                        "temperature", 0.7,
+                                        "top_p", 0.9,
+                                        "repetition_penalty", 1.0
+                                )
+                        ),
+                        false
+                );
+
+            case "vertex":
+            case "vertex ai":
+                return new SummarizationRequestDTO(
+                        request.getTranscriptId(),
+                        "vertex",
+                        "gemini-1.5-pro-002",
+                        "Summarize this text:\n" + request.getContext(),
+                        null,
+                        null,
+                        Map.of("max_output_tokens", 256, "temperature", 0.7, "top_p", 0.9, "top_k", 40),
+                        false
+                );
+            case "vllm":
+                return new SummarizationRequestDTO(
+                        request.getTranscriptId(),
+                        "vllm",
+                        "phi-3.5-mini-instruct", // Registered model name
+                        null,
+                        request.getContext(),
+                        List.of(
+                                Map.of("role", "system", "content", "You are a helpful assistant."),
+                                Map.of("role", "user", "content", "Summarize this text:\n" + request.getContext())
+                        ),
+                        Map.of(
+                                "max_tokens", 512,
+                                "temperature", 0.5,
+                                "top_p", 0.8
+                        ),
+                        false
+                );
+            default:
+                throw new IllegalArgumentException("Unsupported provider: " + provider);
+        }
+    }
+    private String truncateContext(String context, int maxTokens) {
+        if (context == null || context.isEmpty()) {
+            return "";
+        }
+        return context.length() > maxTokens ? context.substring(0, maxTokens) : context;
+    }
 
 }
