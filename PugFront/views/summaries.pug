@@ -18,13 +18,13 @@ block content
             option(value=transcript.id)= `ID ${transcript.id} - ${transcript.scenario}`
       button(type="submit" class="btn-submit") View Summaries
 
-    // Transcript box (scrollable) - single-line style
+    // Transcript box (scrollable)
     if transcript
       h2 Transcript Text
       .summary-box(style="margin-bottom: 20px; background-color: #1a1a1a; padding: 15px; border-radius: 10px; max-height: 400px; overflow-y: auto;")
         pre.summary-content= transcript
 
-    // Each summary is also a .summary-box - single-line style
+    // Summaries section
     if summaries && summaries.length > 0
       h2 Summaries for Selected Transcript
       each summary in summaries
@@ -54,41 +54,40 @@ block content
       h2 Metrics Visualization
       .metrics-container(style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;")
         .metric-tile
-          h4 ROUGE Scores
+          h4 Summary Accuracy Comparison
           canvas#rouge-bar-chart
 
         .metric-tile
-          h4 BERT Precision, Recall, F1
+          h4 Precision, Recall & F1 Analysis
           canvas#bert-radar-chart
 
         .metric-tile
-          h4 BLEU Score
+          h4 Language Match Quality
           canvas#bleu-progress-circle
 
         .metric-tile
-          h4 METEOR Score
+          h4 Summary Clarity
           canvas#meteor-bar-chart
 
         .metric-tile
-          h4 Length Ratio
+          h4 Summary Length Proportion
           canvas#length-ratio-line-chart
 
         .metric-tile
-          h4 Redundancy
+          h4 Repetition Check
           canvas#redundancy-pie-chart
-        
+
         .metric-tile
-          h4 ROUGE Average
+          h4 Overall Summary Accuracy
           canvas#rouge-average-bar-chart
 
         .metric-tile
-          h4 Structural vs. Quality
-          canvas#structural-quality-scatter
+          h4 Balance of Length vs. Redundancy
+          canvas#length-vs-redundancy-scatter
 
         .metric-tile
-          h4 Quality Composite
+          h4 Overall Summary Quality
           canvas#quality-composite-gauge
-
 
     else if transcript
       p.info-message No summaries found for the selected transcript. Please summarize it first.

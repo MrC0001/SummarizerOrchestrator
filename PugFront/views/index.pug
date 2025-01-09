@@ -50,8 +50,8 @@ block content
             const metricsTranscriptSelect = document.getElementById('metricsTranscriptSelect');
             
             // Clear dropdowns to avoid duplicates
-            transcriptSelect.innerHTML = '';
-            metricsTranscriptSelect.innerHTML = '';
+            transcriptSelect.innerHTML = '<option value="" disabled selected>-- Select Transcript --</option>';
+            metricsTranscriptSelect.innerHTML = '<option value="" disabled selected>-- Select Transcript --</option>';
 
             // Populate both dropdowns dynamically
             transcripts.forEach(t => {

@@ -1,8 +1,10 @@
 // Define a color palette
 const providerColors = {
-  Anthropic: 'rgba(75, 192, 100, 0.5)',      // green
-  'Hugging Face': 'rgba(255, 103, 1, 0.5)', // red
-  'Vertex AI': 'rgba(54, 162, 235, 0.5)',    // blue
+  Anthropic: 'rgba(75, 192, 100, 0.5)',
+  'Hugging Face': 'rgba(255, 103, 1, 0.5)',
+  'Vertex AI': 'rgba(54, 162, 235, 0.5)',
+  'vLLM': 'rgba(238, 39, 39, 0.5)',
+  'Mistral AI': 'rgba(178, 39, 238, 0.5)',
   // Add more providers as needed
 };
 
@@ -199,6 +201,7 @@ function renderQualityCompositeGauge(ctx, summaries) {
         0.5 * (s.metrics.bertF1 || 0) +
         0.3 * (s.metrics.bleu || 0) +
         0.2 * (s.metrics.meteor || 0)
+        
       ).toFixed(2)
   );
 
@@ -265,14 +268,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!summaries.length) return;
 
   // Get chart canvases
-  const rougeBarEl        = document.getElementById('rouge-bar-chart');
-  const bertRadarEl       = document.getElementById('bert-radar-chart');
-  const bleuDoughnutEl    = document.getElementById('bleu-progress-circle');
+  const rougeBarEl = document.getElementById('rouge-bar-chart');
+  const bertRadarEl = document.getElementById('bert-radar-chart');
+  const bleuDoughnutEl = document.getElementById('bleu-progress-circle');
   const meteorBarEl = document.getElementById('meteor-bar-chart');
   const lengthRatioLineEl = document.getElementById('length-ratio-line-chart');
   const redundancyPieEl = document.getElementById('redundancy-pie-chart');
   const rougeAverageBarEl = document.getElementById('rouge-average-bar-chart');
-  const structuralQualityScatterEl = document.getElementById('structural-quality-scatter');
+  const structuralQualityScatterEl = document.getElementById('length-vs-redundancy-scatter');
   const qualityCompositeGaugeEl = document.getElementById('quality-composite-gauge');
 
   // Render ROUGE

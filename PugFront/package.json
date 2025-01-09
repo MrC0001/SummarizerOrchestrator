@@ -7,7 +7,7 @@
   "scripts": {
     "test": "-test"
   },
-  "author": "David Szabo",
+  "author": "David Szabo", 
   "license": "ISC",
   "repository": {
     "type": "git",

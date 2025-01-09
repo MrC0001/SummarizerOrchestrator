@@ -217,63 +217,72 @@ app.post(
 app.post(
   '/summarizeAll',
   [
-      body('transcriptSelect').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format'),
-      body('transcript').notEmpty().withMessage('Transcript content is required'),
+    body('transcriptSelect')
+      .notEmpty()
+      .withMessage('Transcript ID is required')
+      .isNumeric()
+      .withMessage('Invalid ID format'),
+    body('transcript').notEmpty().withMessage('Transcript content is required'),
   ],
   async (req, res) => {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-          logger.warn(`Validation errors: ${JSON.stringify(errors.array())}`);
-          const transcripts = await fetchTranscripts();
-          return res.render('index', { title: 'Summarize a Transcript', transcripts, error: errors.array()[0].msg });
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      logger.warn(`Validation errors: ${JSON.stringify(errors.array())}`);
+      const transcripts = await fetchTranscripts();
+      return res.render('index', {
+        title: 'Summarize a Transcript',
+        transcripts,
+        error: errors.array()[0].msg,
+      });
+    }
+
+    const { transcriptSelect, transcript } = req.body;
+
+    // Construct payload for the backend summarization API
+    const payload = {
+      transcriptId: parseInt(transcriptSelect),
+      prompt: "Summarize the following conversation:",
+      context: transcript,
+    };
+
+    logger.info(`Generated summarization request payload: ${JSON.stringify(payload)}`);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/summarizeAll`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorDetails = await response.text();
+        logger.error(`Summarization failed. Status: ${response.status}, Error: ${errorDetails}`);
+        throw new Error('Summarization failed.');
       }
 
-      const { transcriptSelect, transcript } = req.body;
+      const responseData = await response.json();
+      const { newSummaries = [], oldSummaries = [] } = responseData;
 
-      const payload = {
-          prompt: "Summarize the following conversation:",
-          context: transcript,
-          parameters: { max_tokens: 500, temperature: 0.7 },
-          transcriptId: parseInt(transcriptSelect),
-      };
+      logger.info(`Summarization response: ${JSON.stringify(responseData)}`);
 
-      logger.info(`Summarization payload: ${JSON.stringify(payload)}`);
-
-      try {
-          const response = await fetch(`${API_BASE_URL}/api/summarize`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload),
-          });
-
-          if (!response.ok) {
-              const errorDetails = await response.text();
-              logger.error(`Summarization failed. Status: ${response.status}, Error: ${errorDetails}`);
-              throw new Error('Summarization failed.');
-          }
-
-          const responseData = await response.json();
-          const { newSummaries = [], oldSummaries = [] } = responseData;
-
-          logger.info(`Summarization response: ${JSON.stringify(responseData)}`);
-
-          res.render('results', {
-              title: 'Summarization Results',
-              newSummaries,
-              oldSummaries,
-              transcriptId: transcriptSelect,
-          });
-      } catch (error) {
-          logger.error(`Error summarizing transcript: ${error.message}`);
-          const transcripts = await fetchTranscripts();
-          res.render('index', {
-              title: 'Summarize a Transcript',
-              transcripts,
-              error: 'Summarization failed. Please try again.',
-          });
-      }
+      res.render('results', {
+        title: 'Summarization Results',
+        newSummaries,
+        oldSummaries,
+        transcriptId: transcriptSelect,
+      });
+    } catch (error) {
+      logger.error(`Error summarizing transcript: ${error.message}`);
+      const transcripts = await fetchTranscripts();
+      res.render('index', {
+        title: 'Summarize a Transcript',
+        transcripts,
+        error: 'Summarization failed. Please try again.',
+      });
+    }
   }
 );
+
 
 /**
  * Handle Metrics Calculation
@@ -418,57 +427,6 @@ app.post(
     }
   );
   
-
-/**
- * Generates summaries for a selected transcript.
- */
-app.post(
-  '/summaries/generate',
-  [body('transcriptId').notEmpty().withMessage('Transcript ID is required').isNumeric().withMessage('Invalid ID format')],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      logger.warn(`Validation errors in /summaries/generate: ${JSON.stringify(errors.array())}`);
-      return res.redirect('/summaries?error=Validation failed');
-    }
-
-    const { transcriptId } = req.body;
-
-    const transcripts = await fetchTranscripts();
-    const transcript = transcripts.find((t) => t.id === parseInt(transcriptId))?.transcript;
-
-    if (!transcript) {
-      logger.warn(`Transcript not found for ID ${transcriptId}`);
-      return res.redirect('/summaries?error=Transcript not found');
-    }
-
-    const payload = {
-      prompt: "Summarize the following conversation:",
-      context: transcript,
-      parameters: { max_tokens: 200, temperature: 0.7 },
-    };
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/api/summarize`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        logger.error(`Summarization failed for transcript ID ${transcriptId}: Status ${response.status}`);
-        throw new Error(`Java API returned status ${response.status}`);
-      }
-
-      const summaries = await response.json();
-      logger.info(`Generated summaries for transcript ID ${transcriptId}`);
-      res.render('summaries', { title: 'Summaries', summaries, transcriptId });
-    } catch (error) {
-      logger.error(`Error generating summaries: ${error.message}`);
-      res.redirect(`/summaries?error=${encodeURIComponent(error.message)}`);
-    }
-  }
-);
 
 /**
  * Overwrites summaries for a selected transcript.
