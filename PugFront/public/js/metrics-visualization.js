@@ -10,6 +10,12 @@ const providerColors = {
 
 const defaultColor = 'rgba(153, 102, 255, 0.5)'; // fallback
 
+/**
+ * Get the color for a given provider.
+ * @param {string} providerName - The name of the provider.
+ * @param {string} [type='background'] - The type of color ('background' or 'border').
+ * @returns {string} The color for the provider.
+ */
 function getProviderColor(providerName, type = 'background') {
   const base = providerColors[providerName] || defaultColor;
   return type === 'border' ? base.replace('0.5', '1') : base;
@@ -17,7 +23,11 @@ function getProviderColor(providerName, type = 'background') {
 
 // =============== CHART RENDER FUNCTIONS ===============
 
-// ROUGE
+/**
+ * Render a ROUGE bar chart.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderRougeBarChart(ctx, summaries) {
   const labels = ['ROUGE-1', 'ROUGE-2', 'ROUGE-L'];
   const datasets = summaries.map(s => ({
@@ -35,7 +45,11 @@ function renderRougeBarChart(ctx, summaries) {
   });
 }
 
-// BERT Radar
+/**
+ * Render a BERT radar chart.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderBertRadarChart(ctx, summaries) {
   const labels = ['Precision', 'Recall', 'F1'];
   const datasets = summaries.map(s => ({
@@ -53,7 +67,11 @@ function renderBertRadarChart(ctx, summaries) {
   });
 }
 
-// BLEU Doughnut
+/**
+ * Render a BLEU doughnut chart.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderBleuProgressCircle(ctx, summaries) {
   const providerNames = summaries.map(s => s.providerName);
   const bleuScores = summaries.map(s => s.metrics.bleu);
@@ -74,7 +92,11 @@ function renderBleuProgressCircle(ctx, summaries) {
   });
 }
 
-// METEOR Bar Chart
+/**
+ * Render a METEOR bar chart.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderMeteorBarChart(ctx, summaries) {
   const labels = ['METEOR'];
   const datasets = summaries.map(s => ({
@@ -92,7 +114,11 @@ function renderMeteorBarChart(ctx, summaries) {
   });
 }
 
-// Length Ratio Line Chart
+/**
+ * Render a length ratio line chart.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderLengthRatioLineChart(ctx, summaries) {
   const labels = summaries.map(s => s.providerName);
   const datasets = [
@@ -113,7 +139,11 @@ function renderLengthRatioLineChart(ctx, summaries) {
   });
 }
 
-// Redundancy Pie Chart
+/**
+ * Render a redundancy pie chart.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderRedundancyPieChart(ctx, summaries) {
   const labels = summaries.map(s => s.providerName);
   const redundancyScores = summaries.map(s => s.metrics.redundancy);
@@ -136,7 +166,11 @@ function renderRedundancyPieChart(ctx, summaries) {
   });
 }
 
-// ROUGE Average Mini Bar Chart
+/**
+ * Render a ROUGE average mini bar chart.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderRougeAverageChart(ctx, summaries) {
   const labels = summaries.map(s => s.providerName);
   const rougeAverages = summaries.map(
@@ -161,7 +195,11 @@ function renderRougeAverageChart(ctx, summaries) {
   });
 }
 
-// Structural vs. Quality Scatter Plot
+/**
+ * Render a structural vs. quality scatter plot.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderStructuralVsQualityScatter(ctx, summaries) {
   const data = summaries.map(s => ({
     x: s.metrics.lengthRatio,
@@ -193,7 +231,11 @@ function renderStructuralVsQualityScatter(ctx, summaries) {
   });
 }
 
-// Quality Composite Gauge Chart
+/**
+ * Render a quality composite gauge chart.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {Array} summaries - The summaries data.
+ */
 function renderQualityCompositeGauge(ctx, summaries) {
   const compositeScores = summaries.map(
     s =>
@@ -236,75 +278,58 @@ function renderQualityCompositeGauge(ctx, summaries) {
   });
 }
 
+/**
+ * Render all charts with the provided summaries.
+ * @param {Array} summaries - The summaries data used for rendering charts.
+ */
+function renderAllCharts(summaries) {
+  const chartElements = {
+    rougeBarEl: document.getElementById('rouge-bar-chart'),
+    bertRadarEl: document.getElementById('bert-radar-chart'),
+    bleuDoughnutEl: document.getElementById('bleu-progress-circle'),
+    meteorBarEl: document.getElementById('meteor-bar-chart'),
+    lengthRatioLineEl: document.getElementById('length-ratio-line-chart'),
+    redundancyPieEl: document.getElementById('redundancy-pie-chart'),
+    rougeAverageBarEl: document.getElementById('rouge-average-bar-chart'),
+    structuralQualityScatterEl: document.getElementById('length-vs-redundancy-scatter'),
+    qualityCompositeGaugeEl: document.getElementById('quality-composite-gauge')
+  };
 
-
+  if (chartElements.rougeBarEl) renderRougeBarChart(chartElements.rougeBarEl.getContext('2d'), summaries);
+  if (chartElements.bertRadarEl) renderBertRadarChart(chartElements.bertRadarEl.getContext('2d'), summaries);
+  if (chartElements.bleuDoughnutEl) renderBleuProgressCircle(chartElements.bleuDoughnutEl.getContext('2d'), summaries);
+  if (chartElements.meteorBarEl) renderMeteorBarChart(chartElements.meteorBarEl.getContext('2d'), summaries);
+  if (chartElements.lengthRatioLineEl) renderLengthRatioLineChart(chartElements.lengthRatioLineEl.getContext('2d'), summaries);
+  if (chartElements.redundancyPieEl) renderRedundancyPieChart(chartElements.redundancyPieEl.getContext('2d'), summaries);
+  if (chartElements.rougeAverageBarEl) renderRougeAverageChart(chartElements.rougeAverageBarEl.getContext('2d'), summaries);
+  if (chartElements.structuralQualityScatterEl) renderStructuralVsQualityScatter(chartElements.structuralQualityScatterEl.getContext('2d'), summaries);
+  if (chartElements.qualityCompositeGaugeEl) renderQualityCompositeGauge(chartElements.qualityCompositeGaugeEl.getContext('2d'), summaries);
+}
 
 // =============== MAIN DOMContentLoaded ===============
 document.addEventListener('DOMContentLoaded', () => {
-  // Updated to .summary-box
   const summaryBoxes = document.querySelectorAll('.summary-box');
 
-  // Build the summaries array from data attributes and filter out invalid entries
   const summaries = Array.from(summaryBoxes)
     .map(box => ({
       providerName: box.getAttribute('data-providerName'),
       metrics: {
-        rouge1:        parseFloat(box.getAttribute('data-rouge1')) || 0,
-        rouge2:        parseFloat(box.getAttribute('data-rouge2')) || 0,
-        rougeL:        parseFloat(box.getAttribute('data-rougeL')) || 0,
+        rouge1: parseFloat(box.getAttribute('data-rouge1')) || 0,
+        rouge2: parseFloat(box.getAttribute('data-rouge2')) || 0,
+        rougeL: parseFloat(box.getAttribute('data-rougeL')) || 0,
         bertPrecision: parseFloat(box.getAttribute('data-bertPrecision')) || 0,
-        bertRecall:    parseFloat(box.getAttribute('data-bertRecall')) || 0,
-        bertF1:        parseFloat(box.getAttribute('data-bertF1')) || 0,
-        bleu:          parseFloat(box.getAttribute('data-bleu')) || 0,
-        meteor:        parseFloat(box.getAttribute('data-meteor')) || 0,
-        lengthRatio:   parseFloat(box.getAttribute('data-lengthRatio')) || 0,
-        redundancy:    parseFloat(box.getAttribute('data-redundancy')) || 0,
-        createdAt:     box.getAttribute('data-createdAt') || 'N/A'
+        bertRecall: parseFloat(box.getAttribute('data-bertRecall')) || 0,
+        bertF1: parseFloat(box.getAttribute('data-bertF1')) || 0,
+        bleu: parseFloat(box.getAttribute('data-bleu')) || 0,
+        meteor: parseFloat(box.getAttribute('data-meteor')) || 0,
+        lengthRatio: parseFloat(box.getAttribute('data-lengthRatio')) || 0,
+        redundancy: parseFloat(box.getAttribute('data-redundancy')) || 0,
+        createdAt: box.getAttribute('data-createdAt') || 'N/A'
       }
     }))
-    .filter(s => s.providerName !== null); // Filter out null providers
+    .filter(s => s.providerName !== null);
 
-  // If no summaries, do nothing
   if (!summaries.length) return;
 
-  // Get chart canvases
-  const rougeBarEl = document.getElementById('rouge-bar-chart');
-  const bertRadarEl = document.getElementById('bert-radar-chart');
-  const bleuDoughnutEl = document.getElementById('bleu-progress-circle');
-  const meteorBarEl = document.getElementById('meteor-bar-chart');
-  const lengthRatioLineEl = document.getElementById('length-ratio-line-chart');
-  const redundancyPieEl = document.getElementById('redundancy-pie-chart');
-  const rougeAverageBarEl = document.getElementById('rouge-average-bar-chart');
-  const structuralQualityScatterEl = document.getElementById('length-vs-redundancy-scatter');
-  const qualityCompositeGaugeEl = document.getElementById('quality-composite-gauge');
-
-  // Render ROUGE
-  if (rougeBarEl) {
-    renderRougeBarChart(rougeBarEl.getContext('2d'), summaries);
-  }
-
-  // Render BERT
-  if (bertRadarEl) {
-    renderBertRadarChart(bertRadarEl.getContext('2d'), summaries);
-  }
-
-  // Render BLEU
-  if (bleuDoughnutEl) {
-    renderBleuProgressCircle(bleuDoughnutEl.getContext('2d'), summaries);
-  }
-    if (meteorBarEl) renderMeteorBarChart(meteorBarEl.getContext('2d'), summaries);
-  if (lengthRatioLineEl) renderLengthRatioLineChart(lengthRatioLineEl.getContext('2d'), summaries);
-  if (redundancyPieEl) renderRedundancyPieChart(redundancyPieEl.getContext('2d'), summaries);
-
-  if (rougeAverageBarEl) {
-    renderRougeAverageChart(rougeAverageBarEl.getContext('2d'), summaries);
-  }
-
-  if (structuralQualityScatterEl) {
-    renderStructuralVsQualityScatter(structuralQualityScatterEl.getContext('2d'), summaries);
-  }
-
-  if (qualityCompositeGaugeEl) {
-    renderQualityCompositeGauge(qualityCompositeGaugeEl.getContext('2d'), summaries);
-  }
+  renderAllCharts(summaries);
 });
