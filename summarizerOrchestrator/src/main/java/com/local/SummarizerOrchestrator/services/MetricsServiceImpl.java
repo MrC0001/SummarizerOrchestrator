@@ -11,6 +11,7 @@ import com.local.SummarizerOrchestrator.models.Transcript;
 import com.local.SummarizerOrchestrator.repos.MetricsRepo;
 import com.local.SummarizerOrchestrator.repos.SummaryRepo;
 import com.local.SummarizerOrchestrator.repos.TranscriptRepo;
+import com.local.SummarizerOrchestrator.utils.JSONCleaner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,17 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import com.local.SummarizerOrchestrator.utils.JSONCleaner;
 
+/**
+ * Service implementation for calculating and managing metrics for summaries.
+ *
+ * <p>Handles tasks such as:
+ * <ul>
+ *     <li>Calculating evaluation metrics for generated summaries using a Python script.</li>
+ *     <li>Persisting metrics in the database.</li>
+ *     <li>Fetching metrics for summaries.</li>
+ * </ul>
+ */
 @Service
 public class MetricsServiceImpl implements MetricsService {
 
@@ -35,166 +45,122 @@ public class MetricsServiceImpl implements MetricsService {
     private final MetricsRepo metricsRepo;
     private final ReferenceSummaryService referenceSummaryService;
 
-    public MetricsServiceImpl(TranscriptRepo transcriptRepo, SummaryRepo summaryRepo, MetricsRepo metricsRepo, ReferenceSummaryService referenceSummaryService) {
+    /**
+     * Constructs a new instance of {@link MetricsServiceImpl}.
+     *
+     * @param transcriptRepo         Repository for managing transcripts.
+     * @param summaryRepo            Repository for managing summaries.
+     * @param metricsRepo            Repository for managing metrics.
+     * @param referenceSummaryService Service for managing reference summaries.
+     */
+    public MetricsServiceImpl(TranscriptRepo transcriptRepo, SummaryRepo summaryRepo, MetricsRepo metricsRepo,
+                              ReferenceSummaryService referenceSummaryService) {
         this.transcriptRepo = transcriptRepo;
         this.summaryRepo = summaryRepo;
         this.metricsRepo = metricsRepo;
         this.referenceSummaryService = referenceSummaryService;
     }
 
+    /**
+     * Calculates metrics for all summaries associated with a transcript.
+     *
+     * @param request The request containing the transcript ID and other parameters.
+     * @return A {@link MetricsBatchResponseDTO} containing calculated metrics for all summaries.
+     */
     @Override
     public MetricsBatchResponseDTO calculateMetricsForTranscript(MetricsRequestDTO request) {
-        // Fetch the transcript using the repository
-        Transcript transcript = transcriptRepo.findById(request.getTranscriptId())
-                .orElseThrow(() -> new IllegalArgumentException("Transcript not found for ID: " + request.getTranscriptId()));
-
-        // Fetch the reference summary using ReferenceSummaryService
+        Transcript transcript = fetchTranscript(request.getTranscriptId());
         ReferenceSummary referenceSummary = referenceSummaryService.getReferenceSummary(request.getTranscriptId());
         String controlSummary = referenceSummary.getSummaryText();
-        logger.info("Retrieved reference summary for transcript ID: {}", request.getTranscriptId());
 
-        // Fetch summaries for the transcript
         List<Summary> summaries = summaryRepo.findByTranscriptId(request.getTranscriptId());
         logger.info("Found {} summaries for transcript ID: {}", summaries.size(), request.getTranscriptId());
 
-        // Calculate metrics for each summary in parallel
-        List<MetricsResponseDTO> metricsResponses = summaries.parallelStream().map(summary -> {
-            try {
-                return calculateAndStoreMetrics(summary, controlSummary);
-            } catch (Exception e) {
-                logger.error("Error calculating metrics for summary ID {}: {}", summary.getId(), e.getMessage(), e);
-                return null; // Skip this summary in case of an error
-            }
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+        List<MetricsResponseDTO> metricsResponses = summaries.parallelStream()
+                .map(summary -> safelyCalculateMetrics(summary, controlSummary))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
-        // Create the batch response
-        MetricsBatchResponseDTO batchResponse = new MetricsBatchResponseDTO();
-        batchResponse.setTranscriptId(transcript.getId());
-        batchResponse.setScenario(transcript.getScenario());
-        batchResponse.setSummaryMetrics(metricsResponses);
-
-        logger.info("Metrics calculation completed for transcript ID: {}", request.getTranscriptId());
-        return batchResponse;
+        return createBatchResponse(transcript, metricsResponses);
     }
 
+    /**
+     * Fetches metrics for a specific summary by its ID.
+     *
+     * @param summaryId The ID of the summary.
+     * @return The {@link Metrics} associated with the given summary ID, or {@code null} if not found.
+     */
     @Override
     public Metrics getMetricsBySummaryId(Long summaryId) {
         logger.info("Fetching metrics for summary ID: {}", summaryId);
         return metricsRepo.findBySummaryId(summaryId).orElse(null);
     }
 
-    private MetricsResponseDTO calculateAndStoreMetrics(Summary summary, String controlSummary) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
+    /**
+     * Safely calculates metrics for a summary, handling any exceptions during the process.
+     *
+     * @param summary       The summary for which metrics are being calculated.
+     * @param controlSummary The reference (control) summary for comparison.
+     * @return A {@link MetricsResponseDTO} containing the calculated metrics, or {@code null} if an error occurs.
+     */
+    private MetricsResponseDTO safelyCalculateMetrics(Summary summary, String controlSummary) {
+        try {
+            return calculateAndStoreMetrics(summary, controlSummary);
+        } catch (Exception e) {
+            logger.error("Error calculating metrics for summary ID {}: {}", summary.getId(), e.getMessage(), e);
+            return null;
+        }
+    }
 
-        // Validate and sanitize inputs
+    /**
+     * Calculates and stores metrics for a summary.
+     *
+     * @param summary       The summary for which metrics are being calculated.
+     * @param controlSummary The reference (control) summary for comparison.
+     * @return A {@link MetricsResponseDTO} containing the calculated metrics.
+     * @throws Exception If an error occurs during the calculation process.
+     */
+    private MetricsResponseDTO calculateAndStoreMetrics(Summary summary, String controlSummary) throws Exception {
         String candidate = JSONCleaner.cleanGeneratedText(summary.getSummaryText());
         String reference = JSONCleaner.cleanGeneratedText(controlSummary);
         validateInputs(candidate, reference);
 
-        // Prepare sanitized input JSON
         String inputJson = JSONCleaner.sanitizeInputJSON(Map.of("candidate", candidate, "reference", reference));
-        logger.info("Sanitized input JSON for Python script: {}", inputJson);
-
-        // Execute Python script and parse the output
         String stdout = executePythonScript(inputJson);
         validateJsonOutput(stdout);
 
-        // Parse metrics from JSON output
-        Map<String, Object> metricsMap = objectMapper.readValue(stdout, Map.class);
-
-        // Save metrics and map to response DTO
-        Metrics metrics = saveMetrics(summary, metricsMap);
+        Map<String, Object> metricsMap = parseMetrics(stdout);
+        Metrics metrics = saveOrUpdateMetrics(summary, metricsMap);
         return mapMetricsToResponseDTO(summary, metrics);
     }
 
-    private void validateInputs(String candidate, String reference) {
-        if (candidate.isEmpty() || reference.isEmpty() ||
-                candidate.toLowerCase().startsWith("error:") || reference.toLowerCase().startsWith("error:")) {
-            logger.error("Invalid candidate or reference for metrics calculation. Candidate: {}, Reference: {}", candidate, reference);
-            throw new IllegalArgumentException("Invalid candidate or reference for metrics calculation.");
-        }
+    /**
+     * Creates a batch response containing metrics for all summaries of a transcript.
+     *
+     * @param transcript         The transcript associated with the summaries.
+     * @param metricsResponses The list of metrics responses for each summary.
+     * @return A {@link MetricsBatchResponseDTO} containing the batch metrics response.
+     */
+    private MetricsBatchResponseDTO createBatchResponse(Transcript transcript, List<MetricsResponseDTO> metricsResponses) {
+        MetricsBatchResponseDTO batchResponse = new MetricsBatchResponseDTO();
+        batchResponse.setTranscriptId(transcript.getId());
+        batchResponse.setScenario(transcript.getScenario());
+        batchResponse.setSummaryMetrics(metricsResponses);
+        return batchResponse;
     }
 
-    private String executePythonScript(String inputJson) throws Exception {
-        ProcessBuilder pb = new ProcessBuilder("C:\\Python312\\python.exe", "scripts/metrics_calculator.py", "\"" + inputJson + "\"");
-        logger.info("Executing command: {}", String.join(" ", pb.command()));
-        logger.info("Input JSON size: {} bytes", inputJson.getBytes(StandardCharsets.UTF_8).length);
+    /**
+     * Saves or updates the metrics for a summary in the database.
+     *
+     * @param summary    The summary for which metrics are being saved or updated.
+     * @param metricsMap The map containing the calculated metrics.
+     * @return The saved or updated {@link Metrics} entity.
+     */
+    private Metrics saveOrUpdateMetrics(Summary summary, Map<String, Object> metricsMap) {
+        Metrics metrics = metricsRepo.findBySummaryId(summary.getId()).orElse(new Metrics());
 
-        Process process = pb.start();
-
-        StringBuilder stdout = new StringBuilder();
-        StringBuilder stderr = new StringBuilder();
-
-        try (BufferedReader stdOutReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-             BufferedReader stdErrReader = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
-
-            // Read output and error streams asynchronously to avoid blocking
-            Thread stdOutThread = new Thread(() -> stdOutReader.lines().forEach(line -> {
-                logger.debug("Python script stdout: {}", line);
-                stdout.append(line).append("\n");
-            }));
-
-            Thread stdErrThread = new Thread(() -> stdErrReader.lines().forEach(line -> {
-                logger.error("Python script stderr: {}", line);
-                stderr.append(line).append("\n");
-            }));
-
-            stdOutThread.start();
-            stdErrThread.start();
-
-            boolean completed = process.waitFor(60, TimeUnit.SECONDS); // Timeout after 60 seconds
-
-            // Ensure threads finish
-            stdOutThread.join();
-            stdErrThread.join();
-
-            if (!completed) {
-                process.destroyForcibly();
-                throw new RuntimeException("Python script timed out.");
-            }
-
-            if (process.exitValue() != 0) {
-                throw new RuntimeException("Python script failed with error: " + stderr.toString().trim());
-            }
-
-            return stdout.toString().trim();
-        } catch (Exception e) {
-            logger.error("Error executing Python script: {}", e.getMessage(), e);
-            throw e;
-        }
-    }
-
-
-    private void validateJsonOutput(String stdout) {
-        if (!JSONCleaner.isValidJSON(stdout)) {
-            throw new RuntimeException("Invalid JSON output from Python script: " + stdout);
-        }
-    }
-
-    private Metrics saveMetrics(Summary summary, Map<String, Object> metricsMap) {
-        // Check for existing metrics
-        Metrics existingMetrics = metricsRepo.findBySummaryId(summary.getId()).orElse(null);
-
-        if (existingMetrics != null) {
-            logger.info("Updating existing metrics for summary ID: {}", summary.getId());
-            existingMetrics.setRouge1(getFloatValue(metricsMap.get("ROUGE-1")));
-            existingMetrics.setRouge2(getFloatValue(metricsMap.get("ROUGE-2")));
-            existingMetrics.setRougeL(getFloatValue(metricsMap.get("ROUGE-L")));
-            existingMetrics.setBertPrecision(getFloatValue(metricsMap.get("BERT Precision")));
-            existingMetrics.setBertRecall(getFloatValue(metricsMap.get("BERT Recall")));
-            existingMetrics.setBertF1(getFloatValue(metricsMap.get("BERT F1")));
-            existingMetrics.setBleu(getFloatValue(metricsMap.get("BLEU")));
-            existingMetrics.setMeteor(getFloatValue(metricsMap.get("METEOR")));
-            existingMetrics.setLengthRatio(getFloatValue(metricsMap.get("Length Ratio")));
-            existingMetrics.setRedundancy(getFloatValue(metricsMap.get("Redundancy")));
-            existingMetrics.setCreatedAt(java.time.LocalDateTime.now());
-            return metricsRepo.save(existingMetrics); // Update the existing record
-        }
-
-        logger.info("Saving new metrics for summary ID: {}", summary.getId());
-        Metrics metrics = new Metrics();
         metrics.setSummary(summary);
-        metrics.setTranscript(summary.getTranscript()); // Add transcript ID linkage here
+        metrics.setTranscript(summary.getTranscript());
         metrics.setRouge1(getFloatValue(metricsMap.get("ROUGE-1")));
         metrics.setRouge2(getFloatValue(metricsMap.get("ROUGE-2")));
         metrics.setRougeL(getFloatValue(metricsMap.get("ROUGE-L")));
@@ -206,10 +172,117 @@ public class MetricsServiceImpl implements MetricsService {
         metrics.setLengthRatio(getFloatValue(metricsMap.get("Length Ratio")));
         metrics.setRedundancy(getFloatValue(metricsMap.get("Redundancy")));
         metrics.setCreatedAt(java.time.LocalDateTime.now());
-        return metricsRepo.save(metrics); // Save a new record
+
+        return metricsRepo.save(metrics);
     }
 
+    /**
+     * Validates the candidate and reference summaries before processing.
+     *
+     * @param candidate The candidate (generated) summary.
+     * @param reference The reference (control) summary.
+     * @throws IllegalArgumentException If either the candidate or reference is invalid.
+     */
+    private void validateInputs(String candidate, String reference) {
+        if (candidate.isEmpty() || reference.isEmpty() ||
+                candidate.toLowerCase().startsWith("error:") || reference.toLowerCase().startsWith("error:")) {
+            throw new IllegalArgumentException("Invalid candidate or reference for metrics calculation.");
+        }
+    }
 
+    /**
+     * Executes a Python script for metrics calculation and retrieves its output.
+     *
+     * @param inputJson The input JSON string to pass to the Python script.
+     * @return The output of the Python script.
+     * @throws Exception If an error occurs during script execution or if the script times out.
+     */
+    private String executePythonScript(String inputJson) throws Exception {
+        ProcessBuilder pb = new ProcessBuilder("C:\\Python312\\python.exe", "scripts/metrics_calculator.py", "\"" + inputJson + "\"");
+        logger.info("Executing command: {}", String.join(" ", pb.command()));
+
+        Process process = pb.start();
+        try (BufferedReader stdOutReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+             BufferedReader stdErrReader = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
+
+            StringBuilder stdout = new StringBuilder();
+            StringBuilder stderr = new StringBuilder();
+
+            Thread stdOutThread = new Thread(() -> stdOutReader.lines().forEach(stdout::append));
+            Thread stdErrThread = new Thread(() -> stdErrReader.lines().forEach(stderr::append));
+
+            stdOutThread.start();
+            stdErrThread.start();
+
+            if (!process.waitFor(60, TimeUnit.SECONDS)) {
+                process.destroyForcibly();
+                throw new RuntimeException("Python script timed out.");
+            }
+
+            stdOutThread.join();
+            stdErrThread.join();
+
+            if (process.exitValue() != 0) {
+                throw new RuntimeException("Python script failed with error: " + stderr.toString().trim());
+            }
+
+            return stdout.toString().trim();
+        }
+    }
+
+    /**
+     * Validates the output JSON string from the Python script.
+     *
+     * @param stdout The output JSON string.
+     * @throws RuntimeException If the JSON output is invalid.
+     */
+    private void validateJsonOutput(String stdout) {
+        if (!JSONCleaner.isValidJSON(stdout)) {
+            throw new RuntimeException("Invalid JSON output from Python script.");
+        }
+    }
+
+    /**
+     * Parses the JSON string from the Python script into a metrics map.
+     *
+     * @param stdout The JSON string containing the metrics.
+     * @return A map of metrics values.
+     * @throws Exception If parsing the JSON fails.
+     */
+    private Map<String, Object> parseMetrics(String stdout) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(stdout, Map.class);
+    }
+
+    /**
+     * Retrieves the float value from an object.
+     *
+     * @param value The object to convert.
+     * @return The float value, or {@code null} if the value is not a number.
+     */
+    private Float getFloatValue(Object value) {
+        return value instanceof Number ? ((Number) value).floatValue() : null;
+    }
+
+    /**
+     * Fetches a transcript by its ID from the repository.
+     *
+     * @param transcriptId The ID of the transcript.
+     * @return The {@link Transcript} entity.
+     * @throws IllegalArgumentException If the transcript is not found.
+     */
+    private Transcript fetchTranscript(Long transcriptId) {
+        return transcriptRepo.findById(transcriptId)
+                .orElseThrow(() -> new IllegalArgumentException("Transcript not found for ID: " + transcriptId));
+    }
+
+    /**
+     * Maps a metrics entity to a metrics response DTO.
+     *
+     * @param summary The summary associated with the metrics.
+     * @param metrics The metrics entity to map.
+     * @return The mapped {@link MetricsResponseDTO}.
+     */
     private MetricsResponseDTO mapMetricsToResponseDTO(Summary summary, Metrics metrics) {
         MetricsResponseDTO responseDTO = new MetricsResponseDTO();
         responseDTO.setSummaryId(summary.getId());
@@ -224,12 +297,6 @@ public class MetricsServiceImpl implements MetricsService {
         responseDTO.setMeteor(metrics.getMeteor());
         responseDTO.setLengthRatio(metrics.getLengthRatio());
         responseDTO.setRedundancy(metrics.getRedundancy());
-
         return responseDTO;
     }
-
-    private Float getFloatValue(Object value) {
-        return (value instanceof Number) ? ((Number) value).floatValue() : null;
-    }
-
 }

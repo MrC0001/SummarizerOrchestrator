@@ -7,37 +7,44 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 /**
- * Configuration class for defining custom thread pool settings used for asynchronous
- * execution in the application.
+ * Configuration class for customizing thread pool settings used for asynchronous task execution.
  *
- * <p>This configuration defines a {@link ThreadPoolTaskExecutor} bean named {@code asyncExecutor},
- * which is used to execute tasks annotated with {@link org.springframework.scheduling.annotation.Async}.
- * The executor supports a limited number of concurrent threads and queues additional tasks when necessary.</p>
+ * <p>This class defines a {@link ThreadPoolTaskExecutor} bean named {@code asyncExecutor}.
+ * It is utilized to handle tasks annotated with {@link org.springframework.scheduling.annotation.Async},
+ * ensuring efficient and controlled asynchronous execution.</p>
+ *
+ * <p>Key configurations:
+ * <ul>
+ *     <li><strong>Core Pool Size:</strong> Minimum number of threads kept alive.</li>
+ *     <li><strong>Max Pool Size:</strong> Maximum number of threads in the pool.</li>
+ *     <li><strong>Queue Capacity:</strong> Maximum tasks that can be queued when all threads are busy.</li>
+ *     <li><strong>Thread Name Prefix:</strong> A prefix for thread names, aiding in debugging.</li>
+ * </ul>
+ * </p>
  */
 @Configuration
 public class AsyncConfig {
 
+    private static final int CORE_POOL_SIZE = 4;  // Minimum number of threads always kept alive
+    private static final int MAX_POOL_SIZE = 8;  // Maximum number of threads allowed in the pool
+    private static final int QUEUE_CAPACITY = 32;  // Queue size for tasks waiting to be executed
+    private static final String THREAD_NAME_PREFIX = "SummarizationThread-";  // Prefix for thread names
+
     /**
-     * Creates and configures a {@link ThreadPoolTaskExecutor} bean for handling asynchronous tasks.
+     * Configures and provides a {@link ThreadPoolTaskExecutor} bean for asynchronous task execution.
      *
-     * <p>The executor is configured with the following settings:
-     * <ul>
-     *     <li><strong>Core Pool Size:</strong> Minimum number of threads always kept alive.</li>
-     *     <li><strong>Max Pool Size:</strong> Maximum number of threads allowed in the pool.</li>
-     *     <li><strong>Queue Capacity:</strong> Number of tasks that can be queued when all threads are busy.</li>
-     *     <li><strong>Thread Name Prefix:</strong> Prefix for thread names, useful for debugging.</li>
-     * </ul>
-     * </p>
+     * <p>Threads in the executor pool are managed dynamically within the specified bounds, ensuring
+     * optimal resource utilization while processing asynchronous tasks.</p>
      *
-     * @return A configured {@link Executor} instance for asynchronous task execution.
+     * @return A fully configured {@link Executor} instance for asynchronous execution.
      */
     @Bean(name = "asyncExecutor")
     public Executor asyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(4);
-        executor.setMaxPoolSize(8);
-        executor.setQueueCapacity(32);
-        executor.setThreadNamePrefix("SummarizationThread-");
+        executor.setCorePoolSize(CORE_POOL_SIZE);
+        executor.setMaxPoolSize(MAX_POOL_SIZE);
+        executor.setQueueCapacity(QUEUE_CAPACITY);
+        executor.setThreadNamePrefix(THREAD_NAME_PREFIX);
         executor.initialize();
         return executor;
     }

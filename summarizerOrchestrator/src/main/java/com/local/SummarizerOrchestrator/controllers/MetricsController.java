@@ -13,12 +13,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
-
 import java.util.Map;
 
 /**
  * REST controller for managing metrics calculations.
- * Includes endpoints for calculating and retrieving metrics for summaries.
+ * Provides endpoints for calculating and retrieving metrics for summaries.
  */
 @RestController
 @RequestMapping("/api/metrics")
@@ -30,9 +29,10 @@ public class MetricsController {
     private final ReferenceSummaryService referenceSummaryService;
 
     /**
-     * Constructor for MetricsController.
+     * Constructs the MetricsController.
      *
-     * @param metricsService The service to handle metrics-related operations.
+     * @param metricsService          The service to handle metrics-related operations.
+     * @param referenceSummaryService The service to manage reference summaries.
      */
     public MetricsController(MetricsService metricsService, ReferenceSummaryService referenceSummaryService) {
         this.metricsService = metricsService;
@@ -40,23 +40,36 @@ public class MetricsController {
     }
 
     /**
-     * Calculate metrics for all summaries linked to a specific transcript.
+     * Calculates metrics for all summaries linked to a specific transcript.
      *
      * @param request The metrics calculation request containing the transcript ID and control summary.
-     * @return A ResponseEntity containing the batch metrics response.
+     * @return A ResponseEntity containing the batch metrics response or an error message.
      */
     @PostMapping
     public ResponseEntity<MetricsBatchResponseDTO> calculateMetrics(@Valid @RequestBody MetricsRequestDTO request) {
         logger.info("Received metrics calculation request for transcript ID: {}", request.getTranscriptId());
 
-        MetricsBatchResponseDTO response = metricsService.calculateMetricsForTranscript(request);
-        logger.info("Metrics calculation completed for transcript ID: {}", request.getTranscriptId());
-
-        return ResponseEntity.ok(response);
+        try {
+            MetricsBatchResponseDTO response = metricsService.calculateMetricsForTranscript(request);
+            logger.info("Metrics calculation completed for transcript ID: {}", request.getTranscriptId());
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            logger.error("Failed to calculate metrics for transcript ID: {}", request.getTranscriptId(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null); // Returning null to match MetricsBatchResponseDTO
+        }
     }
 
+    /**
+     * Retrieves the control summary for a specific transcript.
+     *
+     * @param transcriptId The ID of the transcript.
+     * @return A ResponseEntity containing the control summary or an error message if not found.
+     */
     @GetMapping("/control-summary/{transcriptId}")
     public ResponseEntity<?> getControlSummary(@PathVariable Long transcriptId) {
+        logger.info("Fetching control summary for transcript ID: {}", transcriptId);
+
         try {
             ReferenceSummary referenceSummary = referenceSummaryService.getReferenceSummary(transcriptId);
             return ResponseEntity.ok(Map.of("summaryText", referenceSummary.getSummaryText()));
@@ -66,6 +79,4 @@ public class MetricsController {
                     .body("Control summary not found for transcript ID: " + transcriptId);
         }
     }
-
-
 }

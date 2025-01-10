@@ -23,7 +23,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
- * Provides integration with Hugging Face's API for summarization tasks.
+ * Integration provider for Hugging Face API summarization tasks.
+ *
+ * <p>This class handles communication with the Hugging Face API by constructing
+ * summarization requests, sending them, and processing the results.</p>
  */
 @Component
 public class HuggingFaceProvider implements SummarizationProvider {
@@ -32,18 +35,18 @@ public class HuggingFaceProvider implements SummarizationProvider {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @Value("${huggingface.api.url}")
-    @NotBlank(message = "HuggingFace API URL must not be blank.")
+    @NotBlank(message = "Hugging Face API URL must not be blank.")
     private String apiUrl;
 
     @Value("${huggingface.api.token}")
-    @NotBlank(message = "HuggingFace API Token must not be blank.")
+    @NotBlank(message = "Hugging Face API Token must not be blank.")
     private String apiToken;
 
     /**
-     * Sends a summarization request to Hugging Face's API.
+     * Sends a summarization request to Hugging Face's API and processes the response.
      *
      * @param request The validated summarization request DTO.
-     * @return A summarization response DTO containing the summary or error information.
+     * @return A {@link SummarizationResponseDTO} containing the summary or an error message.
      */
     @Override
     public SummarizationResponseDTO summarize(@Valid SummarizationRequestDTO request) {
@@ -53,48 +56,36 @@ public class HuggingFaceProvider implements SummarizationProvider {
         responseDTO.setProviderName(getProviderName());
 
         try {
-            // Ensure inputs are sanitized
+            // Sanitize inputs
             String sanitizedPrompt = JSONCleaner.removeControlCharacters(request.getPrompt());
             String sanitizedContext = JSONCleaner.removeControlCharacters(request.getContext());
 
-            // Ensure parameters are serializable and sanitized
-            Map<String, Object> params = request.getParameters() != null ? request.getParameters() : Map.of();
-            String parametersJson = MAPPER.writeValueAsString(params);
-
-            // Construct the payload
-            String jsonPayload = String.format(
-                    "{\"inputs\": \"%s\\n%s\", \"parameters\": %s}",
-                    escapeJson(sanitizedPrompt),
-                    escapeJson(sanitizedContext),
-                    parametersJson
-            );
+            // Construct payload
+            String jsonPayload = buildJsonPayload(sanitizedPrompt, sanitizedContext, request.getParameters());
             logger.debug("HuggingFaceProvider JSON Payload: {}", jsonPayload);
 
-            // Create a new CloseableHttpClient for each request
+            // Configure HTTP client
             RequestConfig requestConfig = RequestConfig.custom()
-                    .setConnectTimeout(30000) // Connection timeout in milliseconds
-                    .setSocketTimeout(30000) // Read timeout in milliseconds
+                    .setConnectTimeout(30000)  // Connection timeout in milliseconds
+                    .setSocketTimeout(30000)  // Read timeout in milliseconds
                     .build();
 
             try (CloseableHttpClient httpClient = HttpClientBuilder.create()
                     .setDefaultRequestConfig(requestConfig)
                     .build()) {
 
-                HttpPost postRequest = new HttpPost(apiUrl);
-                postRequest.setHeader("Authorization", "Bearer " + apiToken);
-                postRequest.setHeader("Content-Type", "application/json");
-
-                postRequest.setEntity(new StringEntity(jsonPayload, StandardCharsets.UTF_8));
+                HttpPost postRequest = buildHttpPostRequest(jsonPayload);
 
                 try (CloseableHttpResponse response = httpClient.execute(postRequest)) {
                     logger.debug("HuggingFaceProvider response status code: {}", response.getStatusLine().getStatusCode());
                     String responseBody = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
                     logger.debug("HuggingFaceProvider Raw JSON Response Body: {}", responseBody);
 
+                    // Process and clean response
                     String rawText = JSONCleaner.extractGeneratedText(responseBody);
                     String cleanedText = JSONCleaner.cleanGeneratedText(rawText);
-
                     responseDTO.setSummary(cleanedText);
+
                     logger.info("Successfully completed summarization request for transcript ID: {}", request.getTranscriptId());
                 }
             }
@@ -117,7 +108,41 @@ public class HuggingFaceProvider implements SummarizationProvider {
     }
 
     /**
-     * Escapes JSON string values for safe inclusion in payloads.
+     * Builds the JSON payload for the Hugging Face API request.
+     *
+     * @param prompt      The sanitized prompt to guide summarization.
+     * @param context     The sanitized transcript context for summarization.
+     * @param parameters  Additional parameters for the request.
+     * @return The constructed JSON payload as a string.
+     */
+    private String buildJsonPayload(String prompt, String context, Map<String, Object> parameters) throws IOException {
+        Map<String, Object> params = parameters != null ? parameters : Map.of();
+        String parametersJson = MAPPER.writeValueAsString(params);
+
+        return String.format(
+                "{\"inputs\": \"%s\\n%s\", \"parameters\": %s}",
+                escapeJson(prompt),
+                escapeJson(context),
+                parametersJson
+        );
+    }
+
+    /**
+     * Constructs the HTTP POST request for the Hugging Face API.
+     *
+     * @param jsonPayload The JSON payload to send in the request body.
+     * @return A configured {@link HttpPost} object.
+     */
+    private HttpPost buildHttpPostRequest(String jsonPayload) {
+        HttpPost postRequest = new HttpPost(apiUrl);
+        postRequest.setHeader("Authorization", "Bearer " + apiToken);
+        postRequest.setHeader("Content-Type", "application/json");
+        postRequest.setEntity(new StringEntity(jsonPayload, StandardCharsets.UTF_8));
+        return postRequest;
+    }
+
+    /**
+     * Escapes special characters in a string for safe inclusion in JSON payloads.
      *
      * @param text The text to escape.
      * @return The escaped text.

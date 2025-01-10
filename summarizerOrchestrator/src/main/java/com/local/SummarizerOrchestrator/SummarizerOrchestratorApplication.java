@@ -26,24 +26,8 @@ public class SummarizerOrchestratorApplication {
 	 * @param args Command-line arguments passed to the application.
 	 */
 	public static void main(String[] args) throws IOException {
-
-		System.setProperty("GOOGLE_APPLICATION_CREDENTIALS", "E:\\ProgrammingStuff\\Bishop\\SummarizerOrchestrator\\summarizerOrchestrator\\src\\main\\resources\\summariser-prototype-12d217210401.json");
-		System.out.println("GOOGLE_APPLICATION_CREDENTIALS: " + System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
-		String credentialsPath = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
-		if (credentialsPath != null) {
-			System.setProperty("GOOGLE_APPLICATION_CREDENTIALS", credentialsPath);
-		} else {
-			System.err.println("GOOGLE_APPLICATION_CREDENTIALS environment variable not set.");
-		}
-
-		GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
-		if (credentials instanceof ServiceAccountCredentials) {
-			ServiceAccountCredentials sa = (ServiceAccountCredentials) credentials;
-			logger.info("Credential Project ID: {}", sa.getProjectId());
-			logger.info("Credential Client Email: {}", sa.getClientEmail());
-		} else {
-			logger.warn("Not using a service account credential, got: {}", credentials.getClass());
-		}
+		setGoogleCredentials();
+		logGoogleCredentials();
 
 		logger.info("Starting Summarizer Orchestrator Application...");
 		try {
@@ -58,5 +42,33 @@ public class SummarizerOrchestratorApplication {
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
 			logger.info("Summarizer Orchestrator Application is shutting down...");
 		}));
+	}
+
+	/**
+	 * Sets the Google application credentials from the environment variable.
+	 */
+	private static void setGoogleCredentials() {
+		String credentialsPath = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
+		if (credentialsPath != null) {
+			System.setProperty("GOOGLE_APPLICATION_CREDENTIALS", credentialsPath);
+		} else {
+			logger.error("GOOGLE_APPLICATION_CREDENTIALS environment variable not set.");
+		}
+	}
+
+	/**
+	 * Logs the Google credentials information.
+	 *
+	 * @throws IOException If an I/O error occurs.
+	 */
+	private static void logGoogleCredentials() throws IOException {
+		GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
+		if (credentials instanceof ServiceAccountCredentials) {
+			ServiceAccountCredentials sa = (ServiceAccountCredentials) credentials;
+			logger.info("Credential Project ID: {}", sa.getProjectId());
+			logger.info("Credential Client Email: {}", sa.getClientEmail());
+		} else {
+			logger.warn("Not using a service account credential, got: {}", credentials.getClass());
+		}
 	}
 }

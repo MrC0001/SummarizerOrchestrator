@@ -5,11 +5,26 @@ from nltk.translate.meteor_score import meteor_score
 from rouge_score import rouge_scorer
 from bert_score import score
 import os
-os.environ["TORCH_CUDA_SDP_DISABLE_FLASH_ATTENTION"] = "1"  # Disable flash attention warnings
 
+# Disable flash attention warnings
+os.environ["TORCH_CUDA_SDP_DISABLE_FLASH_ATTENTION"] = "1"
 
 
 def calculate_metrics(candidate, reference, transcript=None):
+    """
+    Calculate various text metrics comparing a candidate summary to a reference summary.
+
+    Parameters:
+        candidate (str): The generated summary to be evaluated.
+        reference (str): The reference summary to compare against.
+        transcript (str, optional): The transcript associated with the summary (not used directly).
+
+    Returns:
+        dict: A dictionary containing evaluation metrics such as ROUGE, BERTScore, BLEU, METEOR, length ratio, and redundancy.
+
+    Raises:
+        ValueError: If either `candidate` or `reference` is not a string.
+    """
     if not isinstance(candidate, str) or not isinstance(reference, str):
         raise ValueError("Candidate and reference must be strings.")
 
@@ -37,12 +52,13 @@ def calculate_metrics(candidate, reference, transcript=None):
     meteor = meteor_score(reference_tokens, candidate_tokens)
 
     # Length Ratio
-    length_ratio = len(candidate.split()) / len(reference.split()) if reference.split() else 0
+    length_ratio = len(candidate_tokens) / len(reference_tokens[0]) if reference_tokens[0] else 0
 
     # Redundancy
-    words = candidate.split()
-    redundancy = 1 - len(set(words)) / len(words) if words else 0
+    unique_word_count = len(set(candidate_tokens))
+    redundancy = 1 - unique_word_count / len(candidate_tokens) if candidate_tokens else 0
 
+    # Compile metrics into a dictionary
     metrics = {
         "ROUGE-1": rouge_scores["rouge1"].fmeasure,
         "ROUGE-2": rouge_scores["rouge2"].fmeasure,
@@ -59,7 +75,17 @@ def calculate_metrics(candidate, reference, transcript=None):
 
 
 if __name__ == "__main__":
+    """
+    Entry point for the script. Supports two modes of input:
+    - JSON string passed as a command-line argument.
+    - JSON file specified with '--file <path>'.
+
+    Outputs:
+        - The calculated metrics in JSON format.
+        - Error message in JSON format if an exception occurs.
+    """
     try:
+        # Determine input mode
         if len(sys.argv) > 1 and sys.argv[1] != "--file":
             # API mode: JSON passed as a command-line argument
             input_data = json.loads(sys.argv[1])
@@ -71,7 +97,7 @@ if __name__ == "__main__":
         else:
             raise ValueError("No input provided. Pass a JSON string or use '--file <path>'.")
 
-        # Extract candidate and reference
+        # Extract candidate and reference from input data
         candidate = input_data["candidate"]
         reference = input_data["reference"]
         transcript = input_data.get("transcript")
@@ -83,6 +109,7 @@ if __name__ == "__main__":
         print(json.dumps(results, indent=4))
 
     except Exception as e:
+        # Handle exceptions and output error messages
         error_message = {"error": str(e)}
-        print(json.dumps(error_message, indent=4))  # Error message to stdout
+        print(json.dumps(error_message, indent=4))
         sys.exit(1)

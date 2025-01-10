@@ -17,7 +17,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * Provides integration with Google Cloud's Vertex AI for summarization tasks.
+ * Integration provider for Google Cloud's Vertex AI summarization tasks.
+ *
+ * <p>This class handles communication with Vertex AI by constructing summarization requests,
+ * sending them, and processing the responses.</p>
  */
 @Component
 public class VertexAIProvider implements SummarizationProvider {
@@ -37,10 +40,10 @@ public class VertexAIProvider implements SummarizationProvider {
     private String modelName;
 
     /**
-     * Sends a summarization request to Vertex AI.
+     * Processes a summarization request using Vertex AI and returns the response.
      *
      * @param request The validated summarization request DTO.
-     * @return A summarization response DTO containing the summary or error information.
+     * @return A {@link SummarizationResponseDTO} containing the summary or an error message.
      */
     @Override
     public SummarizationResponseDTO summarize(@Valid SummarizationRequestDTO request) {
@@ -50,10 +53,11 @@ public class VertexAIProvider implements SummarizationProvider {
         responseDTO.setProviderName(getProviderName());
 
         // Combine prompt and context
-        String inputText = request.getPrompt() + "\n" + request.getContext();
+        String inputText = buildInputText(request.getPrompt(), request.getContext());
         logger.debug("VertexAIProvider Input Text: {}", inputText);
 
         try (VertexAI vertexAI = new VertexAI(projectId, location)) {
+            // Initialize generative model
             GenerativeModel model = new GenerativeModel(modelName, vertexAI);
 
             // Generate content
@@ -76,12 +80,23 @@ public class VertexAIProvider implements SummarizationProvider {
     }
 
     /**
-     * Returns the name of the summarization provider.
+     * Retrieves the name of the summarization provider.
      *
      * @return The provider name.
      */
     @Override
     public String getProviderName() {
         return "Vertex AI";
+    }
+
+    /**
+     * Builds the input text for the Vertex AI request by combining the prompt and context.
+     *
+     * @param prompt  The prompt to guide summarization.
+     * @param context The context or transcript to be summarized.
+     * @return A concatenated string of prompt and context.
+     */
+    private String buildInputText(String prompt, String context) {
+        return (prompt != null ? prompt : "") + "\n" + (context != null ? context : "");
     }
 }
