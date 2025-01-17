@@ -255,7 +255,7 @@ public class SummarizationServiceImpl implements SummarizationService {
      * @param provider The provider name.
      * @return A customized request for the provider.
      */
-    private SummarizationRequestDTO buildProviderPayload(SummarizationRequestDTO request, String provider) {
+    protected SummarizationRequestDTO buildProviderPayload(SummarizationRequestDTO request, String provider) {
         switch (provider.toLowerCase()) {
             case "anthropic":
                 return new SummarizationRequestDTO(
@@ -339,6 +339,28 @@ public class SummarizationServiceImpl implements SummarizationService {
                                 "temperature", 0.5,
                                 "top_p", 0.8
                         ),
+                        false
+                );
+                case "provider1":
+                return new SummarizationRequestDTO(
+                        request.getTranscriptId(),
+                        "provider1",
+                        "provider1-model",
+                        null,
+                        request.getContext(),
+                        List.of(Map.of("role", "user", "content", "Summarize this text:\n" + request.getContext())),
+                        Map.of("max_tokens", 128, "temperature", 0.3),
+                        false
+                );
+            case "provider2":
+                return new SummarizationRequestDTO(
+                        request.getTranscriptId(),
+                        "provider2",
+                        "provider2-model",
+                        null,
+                        request.getContext(),
+                        List.of(Map.of("role", "user", "content", "Summarize this text:\n" + request.getContext())),
+                        Map.of("max_tokens", 128, "temperature", 0.3),
                         false
                 );
             default:

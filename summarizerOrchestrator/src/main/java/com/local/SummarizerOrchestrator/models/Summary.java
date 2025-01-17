@@ -36,7 +36,7 @@ public class Summary extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transcript_id", nullable = false)
     @NotNull(message = "Transcript must not be null.")
-    @JsonBackReference // Prevents circular references in bidirectional relationships
+    @JsonBackReference
     private Transcript transcript;
 
     /**
