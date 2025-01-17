@@ -53,40 +53,49 @@ block content
       // Consolidated Metrics Visualization Section
       h2 Metrics Visualization
       .metrics-container(style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;")
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Summary Accuracy Comparison
+          i.info-icon(aria-label="This chart compares the ROUGE scores to evaluate the overlap of words and phrases between the summary and the original text. ROUGE-1 measures the overlap of individual words. ROUGE-2 measures the overlap of two consecutive words (bigrams). ROUGE-L measures the longest common subsequence of words. These metrics help in understanding how much of the original content is captured in the summary.") i
           canvas#rouge-bar-chart
 
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Precision, Recall & F1 Analysis
+          i.info-icon(aria-label="This radar chart shows BERT-based Precision, Recall, and F1 scores. Precision indicates the proportion of relevant information in the summary. Recall measures how much of the relevant information from the original text is captured in the summary. F1 score is the harmonic mean of Precision and Recall, providing a balance between the two. These metrics are based on BERT embeddings, which capture semantic similarity rather than just word overlap.") i
           canvas#bert-radar-chart
 
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Language Match Quality
+          i.info-icon(aria-label="This circle chart visualizes BLEU scores, which reflect the fluency and exactness of the summary compared to the original text. BLEU (Bilingual Evaluation Understudy) score measures how many words and phrases in the summary match the original text. Higher BLEU scores indicate better fluency and more accurate representation of the original content.") i
           canvas#bleu-progress-circle
 
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Summary Clarity
+          i.info-icon(aria-label="This bar chart displays METEOR scores, which measure the clarity and sentence-level matches between the summary and the original text. METEOR (Metric for Evaluation of Translation with Explicit ORdering) considers synonyms, stemming, and word order. Higher METEOR scores indicate clearer and more coherent summaries.") i
           canvas#meteor-bar-chart
 
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Summary Length Proportion
+          i.info-icon(aria-label="This line chart shows the ratio of the summary length to the length of the original text. It helps in understanding how concise the summary is. A lower ratio indicates a more concise summary, while a higher ratio suggests a longer summary relative to the original text.") i
           canvas#length-ratio-line-chart
 
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Repetition Check
+          i.info-icon(aria-label="This pie chart measures redundancy by checking for repeated words in the summary. It indicates how much repetition is present in the summary. Lower redundancy is generally preferred as it suggests a more concise and varied summary.") i
           canvas#redundancy-pie-chart
 
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Overall Summary Accuracy
+          i.info-icon(aria-label="This bar chart displays the average ROUGE scores, providing an overall measure of the summary's accuracy compared to the original text. It combines ROUGE-1, ROUGE-2, and ROUGE-L scores to give a comprehensive view of the summary's quality. Higher average ROUGE scores indicate better accuracy and content preservation.") i
           canvas#rouge-average-bar-chart
 
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Balance of Length vs. Redundancy
+          i.info-icon(aria-label="This scatter plot shows the relationship between the length ratio and redundancy. It helps in balancing conciseness and repetition in the summary. Ideally, a summary should have a low length ratio and low redundancy, indicating it is concise and varied.") i
           canvas#length-vs-redundancy-scatter
 
-        .metric-tile
+        .metric-tile(style="position: relative;")
           h4 Overall Summary Quality
+          i.info-icon(aria-label="This circle chart combines BERT F1, BLEU, and METEOR scores to provide a composite metric of the overall quality of the summary. It gives a holistic view of the summary's performance across different dimensions, including semantic similarity, fluency, and clarity. Higher composite scores indicate better overall quality.") i
           canvas#quality-composite-gauge
 
     else if transcript
