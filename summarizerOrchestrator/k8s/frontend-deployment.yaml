@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: gcr.io/summariser-prototype/frontend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            # Here we override the .env variable with the K8s secret if needed
+            - name: API_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-config
+                  key: API_BASE_URL
+
+            # If your Node.js code needs these as well
+            - name: PORT
+              value: "3000"
+            - name: NODE_ENV
+              value: "development"
+
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

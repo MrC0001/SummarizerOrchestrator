@@ -16,6 +16,15 @@ const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8080';
+
+/**
+ * Middleware to set the API_BASE_URL for all requests.
+ */
+app.use((req, res, next) => {
+  res.locals.API_BASE_URL = API_BASE_URL;
+  next();
+});
 
 // Set Pug as the view engine
 app.set('view engine', 'pug');

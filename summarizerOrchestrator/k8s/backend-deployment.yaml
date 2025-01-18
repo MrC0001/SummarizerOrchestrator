@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      serviceAccountName: default
+      containers:
+        # Main Spring Boot container
+        - name: backend-api
+          image: gcr.io/summariser-prototype/backend-api:latest
+          ports:
+            - containerPort: 8080
+          env:
+            # Database configuration for H2 file-based database
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:h2:file:/data/h2db/summarizer"
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              value: "org.h2.Driver"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "sa"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "password"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_FLYWAY_ENABLED
+              value: "false"
+
+            # Secrets (HuggingFace, Anthropic, Mistral)
+            - name: HUGGINGFACE_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: HUGGINGFACE_API_TOKEN
+            - name: ANTHROPIC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: ANTHROPIC_API_KEY
+            - name: MISTRAL_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: MISTRAL_API_KEY
+
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          volumeMounts:
+            - name: h2-storage
+              mountPath: /data/h2db
+
+      volumes:
+        - name: h2-storage
+          emptyDir: {}
