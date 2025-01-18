@@ -166,6 +166,12 @@
 			<artifactId>langchain4j-mistral-ai</artifactId>
 			<version>${langchain4j.version}</version>
 		</dependency>
+		<!-- H2 DB Dependencies -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
