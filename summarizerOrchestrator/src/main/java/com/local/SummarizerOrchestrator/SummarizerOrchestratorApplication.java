@@ -2,8 +2,11 @@ package com.local.SummarizerOrchestrator;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
+import com.zaxxer.hikari.HikariDataSource;
+import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -17,6 +20,9 @@ import java.io.IOException;
 @SpringBootApplication
 @EnableAsync
 public class SummarizerOrchestratorApplication {
+
+	@Autowired
+	private HikariDataSource dataSource;
 
 	private static final Logger logger = LoggerFactory.getLogger(SummarizerOrchestratorApplication.class);
 
@@ -69,6 +75,14 @@ public class SummarizerOrchestratorApplication {
 			logger.info("Credential Client Email: {}", sa.getClientEmail());
 		} else {
 			logger.warn("Not using a service account credential, got: {}", credentials.getClass());
+		}
+	}
+
+	@PreDestroy
+	public void cleanUp() {
+		if (dataSource != null) {
+			dataSource.close();
+			System.out.println("Hikari DataSource has been closed.");
 		}
 	}
 }

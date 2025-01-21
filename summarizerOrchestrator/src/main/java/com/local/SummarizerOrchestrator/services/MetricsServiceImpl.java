@@ -15,6 +15,7 @@ import com.local.SummarizerOrchestrator.utils.JSONCleaner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -120,6 +121,7 @@ public class MetricsServiceImpl implements MetricsService {
      * @return A {@link MetricsResponseDTO} containing the calculated metrics.
      * @throws Exception If an error occurs during the calculation process.
      */
+    @Transactional
     private MetricsResponseDTO calculateAndStoreMetrics(Summary summary, String controlSummary) throws Exception {
         String candidate = JSONCleaner.cleanGeneratedText(summary.getSummaryText());
         String reference = JSONCleaner.cleanGeneratedText(controlSummary);
@@ -198,15 +200,22 @@ public class MetricsServiceImpl implements MetricsService {
      * @throws Exception If an error occurs during script execution or if the script times out.
      */
     private String executePythonScript(String inputJson) throws Exception {
-        ProcessBuilder pb = new ProcessBuilder("C:\\Python312\\python.exe", "scripts/metrics_calculator.py", "\"" + inputJson + "\"");
-        logger.info("Executing command: {}", String.join(" ", pb.command()));
+        String pythonPath = System.getenv("PYTHON_PATH");
+        String scriptPath = System.getenv("METRICS_SCRIPT_PATH");
+
+        if (pythonPath == null || scriptPath == null) {
+            throw new RuntimeException("Python path or script path environment variable is not set.");
+        }
+
+        ProcessBuilder pb = new ProcessBuilder(pythonPath, scriptPath, inputJson);
+        pb.environment().put("PYTHONUNBUFFERED", "1"); // Ensure real-time output streaming
 
         Process process = pb.start();
+        StringBuilder stdout = new StringBuilder();
+        StringBuilder stderr = new StringBuilder();
+
         try (BufferedReader stdOutReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
              BufferedReader stdErrReader = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
-
-            StringBuilder stdout = new StringBuilder();
-            StringBuilder stderr = new StringBuilder();
 
             Thread stdOutThread = new Thread(() -> stdOutReader.lines().forEach(stdout::append));
             Thread stdErrThread = new Thread(() -> stdErrReader.lines().forEach(stderr::append));
@@ -214,16 +223,18 @@ public class MetricsServiceImpl implements MetricsService {
             stdOutThread.start();
             stdErrThread.start();
 
-            if (!process.waitFor(60, TimeUnit.SECONDS)) {
-                process.destroyForcibly();
-                throw new RuntimeException("Python script timed out.");
-            }
+            boolean completed = process.waitFor(60, TimeUnit.SECONDS);
 
             stdOutThread.join();
             stdErrThread.join();
 
+            if (!completed) {
+                process.destroyForcibly();
+                throw new RuntimeException("Python script timed out.");
+            }
+
             if (process.exitValue() != 0) {
-                throw new RuntimeException("Python script failed with error: " + stderr.toString().trim());
+                throw new RuntimeException("Python script failed: " + stderr.toString().trim());
             }
 
             return stdout.toString().trim();

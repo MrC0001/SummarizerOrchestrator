@@ -25,8 +25,8 @@ import java.util.concurrent.Executor;
 @Configuration
 public class AsyncConfig {
 
-    private static final int CORE_POOL_SIZE = 4;  // Minimum number of threads always kept alive
-    private static final int MAX_POOL_SIZE = 8;  // Maximum number of threads allowed in the pool
+    private static final int CORE_POOL_SIZE = 6;  // Minimum number of threads always kept alive
+    private static final int MAX_POOL_SIZE = 12;  // Maximum number of threads allowed in the pool
     private static final int QUEUE_CAPACITY = 32;  // Queue size for tasks waiting to be executed
     private static final String THREAD_NAME_PREFIX = "SummarizationThread-";  // Prefix for thread names
 

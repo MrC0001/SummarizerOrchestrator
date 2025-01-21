@@ -16,13 +16,11 @@ spec:
     spec:
       serviceAccountName: default
       containers:
-        # Main Spring Boot container
         - name: backend-api
           image: gcr.io/summariser-prototype/backend-api:latest
           ports:
             - containerPort: 8080
           env:
-            # Database configuration for H2 file-based database
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:h2:file:/data/h2db/summarizer"
             - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
@@ -35,8 +33,6 @@ spec:
               value: "update"
             - name: SPRING_FLYWAY_ENABLED
               value: "false"
-
-            # Secrets (HuggingFace, Anthropic, Mistral)
             - name: HUGGINGFACE_API_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -52,33 +48,40 @@ spec:
                 secretKeyRef:
                   name: app-secrets
                   key: MISTRAL_API_KEY
-
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/secrets/service-account-key.json
+            - name: PYTHON_PATH
+              value: "/usr/bin/python3"
+            - name: METRICS_SCRIPT_PATH
+              value: "/app/scripts/metrics_calculator.py"
           resources:
             requests:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: "768Mi"
+              cpu: "750m"
             limits:
-              memory: "1Gi"
-              cpu: "1"
-
+              memory: "1.5Gi"
+              cpu: "1.5"
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 15
+            initialDelaySeconds: 20
             periodSeconds: 10
-
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 30
+            initialDelaySeconds: 40
             periodSeconds: 10
-
           volumeMounts:
             - name: h2-storage
               mountPath: /data/h2db
-
+            - name: gcp-credentials
+              mountPath: /etc/secrets
+              readOnly: true
       volumes:
         - name: h2-storage
           emptyDir: {}
+        - name: gcp-credentials
+          secret:
+            secretName: gcp-service-account
