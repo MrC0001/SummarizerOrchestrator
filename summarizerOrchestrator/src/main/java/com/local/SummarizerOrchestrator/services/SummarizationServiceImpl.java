@@ -303,10 +303,9 @@ public class SummarizationServiceImpl implements SummarizationService {
                         ),
                         Map.of(
                                 "parameters", Map.of(
-                                        "max_new_tokens", 128,
+                                        "max_new_tokens", 256,
                                         "temperature", 0.7,
-                                        "top_p", 0.9,
-                                        "repetition_penalty", 1.0
+                                        "top_p", 0.9
                                 )
                         ),
                         false
